@@ -95,7 +95,6 @@ Use character palette for default outfit
 Show Background Art
 显示背景
 
-
 Show DP instead of %
 显示具体的分心值
 Quick Inv only equips to self
@@ -273,18 +272,18 @@ Button Font:
 Select a journey. This will determine the ordering of game areas.
 选择旅程。这将决定游戏区域的顺序。
 Standard: The intended experience
-标准 : ‎预期体验
+标准: ‎预期体验
 Random: A chaotic journey
-随机 : ‎混乱的旅程
+随机: ‎混乱的旅程
 Harder: A more difficult journey
-更难 : ‎更困难的旅程
+更难: ‎更困难的旅程
 
 Select perks to start with.
 选择初始技能
 Having 10+ spare points will trigger Hard Mode, granting unique loot.
 可用积分大于10将进入困难模式，可获得独特的战利品
-(HARD MODE ENABLED)
-（已启用困难模式）
+ (HARD MODE ENABLED)
+ (困难模式已启用)
 Advanced start (choose perks)
 高级启动 ( 选择额外技能 )
 Confirm and start playing!
@@ -918,9 +917,9 @@ Locked Up is 150% effective. Gain +70 psychic/charm resist from a chastity belt 
 Ready for Training
 准备训练
 Locked Up is 200% effective. +25% stamina regen per 100 current DP. Playing with yourself is less effective while vibrators are off or set to edge. Slow level is increased by 1 when you aren't wearing any chastity.
-锁定200%有效。每 100 当前 DP，+25% 耐力恢复。当振动器关闭或设置为边缘时，与自己玩耍的效果会降低。当你没有佩戴任何贞操时，缓慢等级会增加1。
+“禁锢”技能有效率为 200%。每 100 当前 DP 可恢复 +25% 体力。当振动器关闭或设置为边缘时，自慰的效果会降低。当您未佩戴任何贞操带时，减速等级会增加 1。
 Efficient Denial
-高效拒绝
+有效拒绝
 Locked Up is 300% effective. When Locked Up triggers, you gain -30% mana costs and +25% physical damage for 7 turns (35 when opening a chest or breaking orbs). You cannot orgasm unless you are wearing a chastity belt, and slow level is increased by 2.
 “禁锢”技能有效率为 300%。当该技能触发时，你获得-30%魔法消耗和+25%的物理伤害的增益，持续7回合 ( 打开箱子或打碎球体时为35 ) 。在未佩戴贞操带时，你将无法达到性高潮，并且缓慢等级增加至2。
 Recalcitrant
@@ -999,7 +998,7 @@ Petsuits occur less often.
 Unmasked
 无面罩
 Hoods and full-face covering masks do not appear, but blindfolds are more powerful. Does not include kigurumi masks.
-头罩和全脸面罩没有出现，但眼罩的威力更大。不包括 kigurumi 面具。
+头罩和全脸面具将不会出现，但眼罩的威力更大。不包括 kigurumi 面具。
 No Kigurumi Masks
 没有KIG面具
 Removes face-mimicking masks from the game.
@@ -1047,9 +1046,9 @@ Your vision in dark areas is reduced.
 你在黑暗区域的视力将会降低。
 
 Mutually Assured Darkness
-相互保证的黑暗
+黑暗同归于尽
 Darkness is twice as effective in hiding from enemies, but your night vision is also reduced.
-黑暗中躲避敌人的效率是原来的两倍，但你的夜视能力也会降低。
+黑暗躲避敌人的效果将会提高两倍，但你的夜视能力也会降低。
 Stalker
 潜行者
 Darkness is twice as effective in hiding from enemies.
@@ -1312,9 +1311,9 @@ Everywhere!
 任何位置！
 
 Physical Armor:
-物理护甲：
+物理护甲:
 Magic Armor:
-魔法铠甲：
+魔法护甲:
 In the Shadows: You are harder to see.
 处在阴影中 : ‎你更难被敌人察觉。
 Invisible: You are very difficult to see.
@@ -1322,7 +1321,7 @@ Invisible: You are very difficult to see.
 Quickness: Your next movement is so fast it doesn't advance a turn.
 迅捷 : ‎你的下一个动作极其迅速，不消耗回合时间。
 All Damage Reduction:
-所有伤害减少：
+所有伤害减免:
 You take PERCENT1 DAMAGETYPE damage, based on PERCENT2 DAMAGETYPE resist and PERCENT3 DAMAGECATEGORY modifier.
 你受到的DAMAGETYPE伤害COUNTPERCENT [基于 PERCENT2 DAMAGETYPE抗性和 PERCENT3 DAMAGECATEGORY修正]
 You deal PERCENT more DAMAGETYPE damage.
@@ -1351,7 +1350,7 @@ Torturous vibrations!!!
 折磨般的震动！
 
 Your restraints are restrictive! Struggling is less effective without help.
-你的束缚是有限的！如果没有帮助，挣扎的效果就会降低。
+你的束缚太严格了！没人帮你的话，挣扎就基本无效。
 Stunned! You can't move!
 你被晕眩，无法移动！
 Your vision is impaired!
@@ -1363,15 +1362,15 @@ Hands are useless!
 Hands are impaired! Some tasks will be harder...
 你的双手受到束缚！一些操作会更加困难...
 Slow Level 2: Movement significantly impaired!
-慢速 2 级：运动明显受损！
+缓慢 2 级：行动能力严重受损！
 Slow Level 1: Movement slightly impaired.
-慢速 1 级：运动轻微受损。
+缓慢 1 级：行动能力轻度受损。
 Slow Level 3: Movement severely impaired!
-缓慢3级：运动严重受损！
+缓慢 3 级：行动能力严重受损！
 Slow Level 4+: Movement is almost impossible. Sprinting and hopping are disabled.
-慢速 4+ 级：几乎不可能移动。冲刺和跳跃被禁用。
+缓慢 4 级以上：几乎无法移动。冲刺和跳跃均被禁用。
 Slow Level 10+: Immobilized!
-缓慢等级 10+：无法动弹！
+缓慢 10 级以上：完全无法动弹！
 Your mouth is free for potion-drinking and spellcasting activities.
 你的嘴巴可以自由饮用药剂和施放法术。
 Your vision is clear.
@@ -1440,7 +1439,7 @@ You are on fire and taking damage!
 Divine Punishment: Deals bonus damage when you hit an enemy.
 狂暴状态 : ‎当你击中敌人时，造成额外的伤害
 Divine Protection: Automatically blocks the next 3 times an enemy tries to bind you.
-神圣保护：自动阻挡接下来 3 次敌人试图束缚你的行为。
+神圣守护：自动阻挡敌人接下来三次试图束缚你的攻击。
 Divine Cunning: You turn invisible briefly after attacking.
 神圣之灵 : ‎你在攻击后短暂变得隐形
 
@@ -1482,7 +1481,7 @@ Sleepy: You are sluggish and have a hard time keeping your eyes open.
 Afterimage: Evasion greatly increased.
 残像 : ‎闪避大幅增加
 We did it! We made ourselves invisible--mmmmph!!!
-我们做到了！我们让自己隐形了——嗯！！！
+我们做到了！我们让自己隐形了--mmmmph!!!
 You are not currently attempting to disguise yourself. Click to reenable.
 你目前并没有试图伪装自己。点击以重新启用。
 Your restraints are disenchanted, treating them as nonmagical for purposes of cutting.
@@ -1529,7 +1528,7 @@ Journal
 Change Outfit
 换装
 Reset to Default
-重置为默认值
+重置至默认
 Outfit Code
 服装代码
 Confirm Reset?
@@ -1593,7 +1592,7 @@ Missing key
 You are protected from damage and can't be bound until the shield is broken!
 你将受到保护，免受伤害，并且在护盾被打破之前无法被束缚！
 Chance for a spell to fizzle:
-咒语失效的几率：
+咒语失效的概率:
 Dodge Chance: Percent%, based on EVASIONSUM Evasion and EVASIONPENALTY% penalty.
 闪避率 : ‎Percent% [基于 EVASIONSUM 点闪避值和 EVASIONPENALTY% 闪避值惩罚]
 Block Chance: Percent%, based on BLOCKSUM Block and BLOCKPENALTY% penalty.
@@ -1641,7 +1640,7 @@ Charge: PERCENT
 Use Potion
 使用药水
 MP
-国会议员
+法力值
 Go to sleep
 睡觉
 Call for help!
@@ -1652,7 +1651,7 @@ Let go...
 高潮...
 
 Call for Help!!!
-寻求帮助！
+呼救!!!
 Wait until interrupted
 等待至被打断
 Auto-struggle
@@ -1886,15 +1885,15 @@ Floor FLOORNUMBER: DUNGEONNAME
 楼层 FLOORNUMBER : DUNGEONNAME
 
 Lockpicks:
-开锁工具：
+撬锁器:
 Keys:
-按键：
+钥匙:
 Magic Keys:
-魔法钥匙：
+魔法钥匙:
 Knife:
-刀：
+小刀:
 Mag. Knife:
-马格。刀：
+魔法小刀:
 
 You climb down the stairs. The passage closes behind you.
 你进入了下一层。通道在你的身后关闭。
@@ -1966,19 +1965,19 @@ Elevator Hall
 Dark Passageway
 黑暗通道
 Caldera Beach
-卡尔德拉海滩
+Caldera 海滩
 Temple of Air
 空气神殿
 Temple of Fire
-火神殿
+火焰神殿
 Temple of Water
-水神庙
+水神殿
 Temple of Ice
-冰之神殿
+冰神殿
 Temple of Storms
 风暴神殿
 Temple of Earth
-地坛
+大地神殿
 The Edge of Reality
 现实边缘
 Dark Dimension
@@ -2095,7 +2094,7 @@ You find a medley of potions.
 你会发现一堆药水。
 
 Rarity:
-稀有度：
+品质:
 Lesser
 无价值的
 Common
@@ -2210,7 +2209,7 @@ An outfit made from heavily processed slime. It is naturally silky and smooth to
 Doll Catsuit
 玩偶紧身衣
 Resistant to electricity but does not insulate well.
-耐电但绝缘性能不佳。
+耐电但绝缘性不佳。
 
 Cyber Doll Suit
 赛博玩偶制服
@@ -2312,7 +2311,7 @@ Key
 A key with traces of magic that fades with one use.
 一把含有些许魔力的普通钥匙，一次使用就会消失。
 Can be used to unlock a red-locked restraint, door, or chest.
-可用于解锁红锁约束装置、门或箱子。
+可用于打开红色锁的束缚、门或箱子。
 Magic Key
 魔法钥匙
 A glowing key enchanted with magic that fades with one use.
@@ -2541,8 +2540,7 @@ You feel the restraints become loose on your skin!
 The secret to elven cosmetics and blemish-free skin.
 精灵化妆和无瑕肌肤的秘密。
 Makes you slippery for 100 turns, boosting all forms of struggling.
-让你打滑 100 圈，增强各种形式的挣扎。
-
+让你在 100 回合内变得很光滑，增强各种形式的挣扎。
 
 Enchanted Grinder
 魔法切割机
@@ -2769,7 +2767,7 @@ Deals fire damage. Provides light.
 Unarmed
 徒手
 Fight with your hands and feet. 50% chance to stun target if the target is disarmed.
-用你的手和脚来战斗。如果目标被解除武装，则有 50% 的几率击晕目标。
+用你的手脚进行战斗。若目标被解除武装，则有 50% 的几率使其昏迷。
 Deals unarmed damage.
 造成徒手伤害。
 Sword
@@ -2873,9 +2871,9 @@ Cutting the threads of fate.
 Deals slash damage. Ignores up to 100 Magic and Physical armor. Active ability: Spend 50 charge to free all nearby allies and disrobe enemies, increasing charm damage on them by 100% and applying the armor shred.
 造成斩击伤害。忽略最多 100 点魔法和物理护甲。主动能力 : ‎花费 50 点能量来释放附近所有盟友并脱去敌人的衣服，使他们的妩媚伤害提高 100% 并施加护甲碎片。
 With a single snip of the magic scissors, everyone's clothes fall off.
-魔剪一剪，所有人的衣服都掉了下来。
+魔法剪刀一剪，所有人的衣服都掉了下来。
 No eligible targets within 4 tiles
-4 格内没有符合条件的目标
+4 个方格内没有符合条件的目标
 Latex Projector
 乳胶投射器
 Deals crush damage. Can be used to spray a '+' shaped pool of slime.
@@ -2923,7 +2921,7 @@ Dreamcatcher
 Forged in nightmares, woven in steel. Summons a Shadow Warrior on unaware targets for 2% ancient energy.
 在噩梦中铸造，用钢铁编织。召唤一个暗影武士，对于未察觉的目标，消耗2%的远古能量。
 Deals shadow damage. Deals up to 30 bonus psychic damage on unaware (100%) or vulnerable (50%) targets.
-造成暗影伤害。对不知情 (100%) 或脆弱 (50%) 的目标造成最多 30 点额外精神伤害。
+造成暗影伤害。对未察觉（100%）或脆弱（50%）的目标造成最多 30 点额外精神伤害。
 Axe
 斧头
 Great for cutting trees that happen to be underground.
@@ -2931,11 +2929,11 @@ Great for cutting trees that happen to be underground.
 Also deals 20 damage to enemies next to you. Deals slash damage.
 同时对你旁边的敌人造成 20 点伤害。造成斩击伤害。
 Accuracy:
-准确性：
+精准度:
 Crit Multiplier:
-暴击乘数：
+暴击倍率:
 Bind Crit Multiplier:
-绑定暴击倍数：
+束缚暴击倍率:
 Find the keys..
 寻找钥匙...
 Find the exit!
@@ -2953,10 +2951,9 @@ You found a crack and could maybe wedge a knife or tool into it to keep it still
 You found something sticky and might be able to pull off fabrics.
 你找到了一些黏糊糊的东西，也许可以用它来撕掉布料
 Evasion:
-闪避：
+逃避:
 Visibility:
-能见度：
-
+可见度:
 
 Submissive: Enemies won't attack you, but they will try to play with you.
 顺从者 : ‎敌人不会尝试攻击你，但他们会尝试对你做一些奇妙的互动。
@@ -2999,13 +2996,13 @@ Satisfied. Miscast chance is reduced.
 
 
 Damage:
-损害：
+伤害:
 Bind:
-绑定：
+束缚:
 Crit:
-暴击：
+暴击:
 SP Cost:
-SP成本：
+SP 点数:
 Cut PWR: AMNT%
 力量削减 : ‎AMNT%
 
@@ -3109,7 +3106,7 @@ Angel: MMMMMPHH!!!
 The EnemyName pulls away your ArmorName!!!
 EnemyName 夺走了你的 ArmorName！！！
 There was a bug removing your ArmorName. Please report!
-删除您的 ArmorName 时出现错误。请举报！
+移除你的 ArmorName 时出现错误。请报告！
 The EnemyName bypasses your security to add the RestraintName!
 EnemyName 绕过你的安全措施添加了 RestrictName！
 The EnemyName tries to restrain you, but you resist the bondage!
@@ -3142,13 +3139,13 @@ Wall
 The wall shatters into pieces, which fade away slowly.
 墙壁破碎成碎片，慢慢消失。
 Locked Door
-锁着的门
+锁定的门
 The door lock shatters into pieces.
 门锁碎成了碎片。
 Earthen Monolith
 土制巨石
 The monolith recedes into the ground.
-巨石退入地下。
+巨石逐渐沉入地下。
 Static Sphere
 静态球体
 The sphere shrinks back into the storm dimension.
@@ -3271,11 +3268,11 @@ M.F. '女仆长'
 The head maid surrenders gracefully.
 女仆长优雅地投降。
 The head maid suddenly whips out a restraint and locks it on! (+RestraintAdded)
-女仆长突然抽出拘束具，将其锁在你身上！  ( +RestraintAdded )
+女仆长突然抽出拘束具，将其锁在你身上！(+RestraintAdded)
 The head maid snaps her fingers and you find your restraints locked! (DamageTaken)
-女仆长打了个响指，你发现你的束缚被锁住了！ （受到的伤害）
+女仆长打了个响指，你发现你的束缚被锁住了！(DamageTaken)
 The head maid tickles you strategically! (DamageTaken)
-女仆长有策略地逗你！ (DamageTaken)
+女仆长有策略地逗你！(DamageTaken)
 You are distracted for a moment and suddenly you find yourself in chastity!
 你一时心神不宁，突然发现自己贞洁了！
 
@@ -4029,7 +4026,7 @@ Miner Bomb
 矿工炸弹
 
 The bandit cries. You should feel bad.
-强盗哭了。你应该感觉很糟糕。
+强盗哭了。你应该感到难过。
 
 The bandit collapses.
 盗贼崩溃了。
@@ -4375,14 +4372,14 @@ Rope Tentacle
 The rope kraken retreats its tentacle.
 绳妖收回了它的触手。
 The rope kraken squeezes you with one of its tentacles! (DamageTaken)
-绳妖用它的一根触手压迫你！ ( DamageTaken )
+绳妖用它的一根触手压迫你！ (DamageTaken)
 
 Rope Kraken
 绳妖
 The rope kraken devolves into a bundle of premium bondage rope.
 绳妖演变成一束优质束缚绳索。
 The rope kraken tightly cinches itself around your body! (DamageTaken)
-绳妖的绳子紧紧地缠绕在你的身体上！ ( DamageTaken )
+绳妖的绳子紧紧地缠绕在你的身体上！ (DamageTaken)
 
 Magic Rope
 魔绳
@@ -11906,7 +11903,7 @@ For 3 rep the goddess will grant you
 For 3 rep the goddess
 消耗 3 声望，女神
 For 3 rep the goddess
-女神 3 次
+消耗 3 声望，女神
 
 The goddess will fully restore your mana in exchange for AMOUNT rep
 女神会以 AMOUNT 点声望为代价完全恢复你的魔力
@@ -12563,7 +12560,7 @@ Extreme
 A supposedly reasonable difficulty curve.
 合理的难度曲线
 Play the game the way it was intended. Cruel and restrictive.
-按照预期的方式玩游戏。残酷且限制性的。
+按照游戏的初衷来玩。残酷而有限制性。
 Play at your own peril. Unlocked by double-clicking the Hard Mode button.
 你将自食其果，该难度通过双击“困难模式”按钮解锁
 
@@ -28641,7 +28638,7 @@ You retrieve an interesting article dubbed 'the Robe of Chastity.
 您检索到一篇名为“贞洁长袍”的有趣文章。
 
 Took
-拿了
+受到
 
 (As you slay the dragon, it begins shapeshifting into human form!)
 ( 当你杀死龙时，它开始变身为人形！ )
@@ -28900,7 +28897,7 @@ It's a defunct elevator, likely from the Old Civilization.
 这是一部废弃的电梯，可能来自旧文明。
 
 (The elevator beeps and roars to life)|(Its control panel displays a list of options)
-( 电梯发出嘟嘟声和轰鸣声 ) | ( 其控制面板显示选项列表 )
+(电梯发出嘟嘟声和轰鸣声) | (其控制面板显示选项列表)
 (Go to floor 0)
 ( 前往第 0 层 )
 (Go to floor 1)
@@ -29198,7 +29195,6 @@ Bows, guns, and other projectile weapons do 10% more damage and consume 10% less
 弓、枪和其他射弹武器造成的伤害增加 10%，消耗的电荷减少 10%。
 
 
-
 After casting a DMG spell:
 施展 DMG 法术后:
 Gain AMNT% DMG Damage for DRTN turns
@@ -29295,16 +29291,16 @@ You can use it to unlock certain doors.
 Your keycard blinks red as the facility remotely locks it!
 当设备远程锁定时，你的钥匙卡会闪烁红色！
 Your keycard blinks red as the facility remotely locks it! System Security: 100%
-当设施远程锁定时，您的钥匙卡会呈红色闪烁！系统安全：100%
+当设施远程锁定时，你的钥匙卡会闪烁红光！系统安全性：100%
 Unauthorized removal detected. System Security: AMNT%
-检测到未经授权的删除。系统安全：AMNT%
+检测到未经授权的删除。系统安全性：AMNT%
 Security breach. Initiating remote lockout. System Security: AMNT%
-安全漏洞。启动远程锁定。系统安全：AMNT%
+安全漏洞。启动远程锁定。系统安全性：AMNT%
 
 You pick up a flash bomb.
-你拿起一枚闪光弹。
+你拿起了一颗闪光弹。
 You pick up a flashbang grenade.
-你拿起一枚闪光弹。
+你拿起了一颗闪光震爆弹。
 
 Actions
 行动
@@ -29327,7 +29323,7 @@ ENMY calls for help!
 ENMY 请求帮助！
 
 (Go to The Summit)
-( 前往巅峰设施 )
+(前往巅峰设施)
 
 The Summit is a safe area. Items can be left here without fear of losing them.
 巅峰设施是一个安全地区。物品可以放在这里，不用担心丢失。
@@ -29387,13 +29383,13 @@ You are holding too many leashes!
 你的皮带太多了！
 
 You feel a corrupting influence... (+AMNT Corruption)
-你感觉到了一种堕性的影响... ( +AMNT 堕落 )
+你感觉到了一种堕性的影响... (+AMNT 堕落)
 You feel a restoring influence! (-AMNT Corruption)
-你感觉到了一种恢复性的影响！ ( -AMNT 堕落 )
+你感觉到了一种恢复性的影响！ (-AMNT 堕落)
 Sticky latex fuses itself to your skin! (+AMNT LatexIntegration)
-粘稠的乳胶会自动融入您的皮肤！ （+AMNT Latex 集成）
+粘稠的乳胶会与你的皮肤融合！ (+AMNT 乳胶融合)
 The latex starts to detach from your skin... (-AMNT Latex Integration)
-乳胶开始从您的皮肤上脱落...（-AMNT 乳胶集成）
+乳胶开始从你的皮肤上脱落... (-AMNT 乳胶融合)
 
 While you have an evasion penalty, even clumsy enemies...
 虽然你有逃避惩罚，但即使是笨拙的敌人......
@@ -29486,7 +29482,7 @@ Assign servants to perfect the art of walking in heels,wearing tight corsets,|co
 Rescue Operations
 救援行动
 Assign servants to train squads of rescue maids, which you can call in times of need.
-指派仆人来训练救援女佣小队，您可以在需要时呼叫她们。
+指派仆人训练救援女仆小队，以便在需要时可以呼叫她们。
 Alchemy Lab
 炼金实验室
 Assign servants to produce potions from base ingredients you acquire in your adventures.
@@ -29494,7 +29490,7 @@ Assign servants to produce potions from base ingredients you acquire in your adv
 Recycler
 回收者
 Convert low tier restraints into raw materials and output higher quality restraints.|Adding more servants increase the conversion speed.
-将低等级束缚物转化为原材料，产出更高品质的束缚物。|添加更多仆人可以提高转化速度。
+将低等级的限制转化为原材料，输出更高质量的限制。|添加更多仆人可以增加转化速度。
 Cuddle Lounge
 拥抱休息室
 Assign prisoners to the lounge in order to improve servant and prisoner opinion.
@@ -29513,14 +29509,14 @@ Recycle all but one
 You recycle a ITM
 你回收了 ITM
 You recycle #x ITM
-您回收#x ITM
+你回收了 #x ITM
 
 You disassemble #x ITM into $x PRD
-您将 #x ITM 反汇编为 $x PRD
+你将 #x ITM 拆解为 $x PRD
 Disassemble all but one
-除一个外全部拆掉
+拆除所有但留下一个
 Disassemble one
-拆机一台
+拆开一个
 
 You're blocking me.
 你挡住我了。
@@ -29669,19 +29665,19 @@ Heels
 高跟鞋
 
 Equipped:
-装备：
+已装备的:
 Click to Add
 点击添加
 Apply
-申请
+应用
 Raw Material:
-原料：
+原料:
 
 Free Prisoner
 释放囚犯
 
 Perk Unlocked:
-解锁额外福利：
+解锁的技能:
 
 Latex Solvent
 乳胶溶剂
@@ -29757,11 +29753,11 @@ NPC 已成功解开她的束缚。
 Any
 全员
 NPC Opinion:
-全国人大意见：
+NPC 意见：
 NPC Escape Status:
-NPC逃脱状态：
+NPC 逃脱状态：
 NPC Binding:
-NPC绑定：
+NPC 绑定：
 NPC Availability:
 NPC 可用性：
 Favorited:
@@ -29866,7 +29862,7 @@ Appointing managers increases the efficiency of other facilities.
 Total Efficiency Boost: AMNT%
 总效率提升：AMNT%
 idle
-闲置的
+闲置
 
 (As you approach the statue, you hear a crumbling sound)|(The stone crumbles along the statue's slender frame)|(...revealing inside a beautiful, and extremely angry catgirl)|Who dares disturb my slumber?|I shall see to it that you receive your punishment!
 （当你接近雕像时，你听到破碎的声音）|（石头沿着雕像细长的框架破碎）|（……露出一个美丽而愤怒的猫女）|谁敢打扰我的睡眠？|我会看到愿你接受你的惩罚！
@@ -29900,7 +29896,7 @@ The conjured RSTN vanishes as you remove it.
 当你移除它时，召唤出来的 RSTN 就会消失。
 
 No free slots to bind in
-没有可绑定的空闲插槽
+没有空闲槽位可以绑定
 
 Reaching Authority
 语威延伸
@@ -29923,12 +29919,11 @@ Save From Code
 Delete?
 删除？
 Import to Slot
-导入到插槽
+导入到槽位
 Invalid Data
-无效数据
+无效的数据
 No Data
 无数据
-
 
 This is the normal entrance to the dungeon.|The tutorial is at the beginning of the hall.
 这是地牢的正常入口|教程在大厅的开头。
@@ -29946,13 +29941,13 @@ You've gotten yourself lost wandering in the ruins.|The order of tilesets is rev
 你在废墟中迷失了方向。|图块顺序颠倒了！
 
 
-(Hard)
-（难的）
-(Extreme)
-（极端）
+ (Hard)
+ (困难)
+ (Extreme)
+ (极限)
 
 Choose Save Slot:
-选择存档槽位 :
+选择保存到的槽位:
 
 Standard Route
 标准路线 ‎
@@ -29969,14 +29964,14 @@ Reverse Route
 Chaos Route
 混沌路线 ‎
 Map Seed:
-地图种子：
+地图种子:
 Will Overwrite NME!
-将覆盖 NME！
+这会覆盖 NME!
 
 Play Slot
-玩老虎机
+加载存档
 Play (NO SLOT!)
-加载 ( 未选择存档 )
+加载 (未选择存档!)
 
 Looks like you might be stuck. Try calling for help (bottom right of UI)
 看来你可能被卡住了，尝试呼叫帮助（界面右下角）
@@ -30033,7 +30028,7 @@ Reset all Keybindings
 重置所有按键绑定
 
 That item is blocked! You can't remove it.
-该项目已被阻止！你无法删除它。
+那个物品被挡住了! 你不能移除它。
 
 min.
 分钟。
@@ -30045,10 +30040,9 @@ penalty
 惩罚
 
 You put it on, why would you want to take it off?~
-穿上了，为什么还要脱下来呢~
+你戴上它了，干嘛要摘下来呢?~
 You'll need an ancient key to unlock the ancient-made collar.
-你需要一把古老的钥匙来打开古老的项圈。
-
+你需要一把古老的钥匙来解开古老的项圈。
 
 Ancient Worshipper
 古代崇拜者
@@ -30092,11 +30086,42 @@ The gag is now in your mouth.
 堵嘴现在在你嘴里。
 
 ERROR: Restraint does not exist. Did you forget to load mods?
-错误：约束不存在。您是否忘记加载模组？
+错误: 束缚具不存在。你是否忘记了加载模组？
 
 Gag Necklace
-堵嘴项链
+口塞项链
 A cute accessory for those who wish to (not) make a statement.
-对于那些想要（不）发表声明的人来说，这是一款可爱的配饰。
+对于那些(不)想发表任何言论的人来说，这是一个可爱的配饰。
 Functions as a collar.
-起到衣领的作用。
+用作项圈。
+
+No mod info!
+无模组信息!
+Wrong patch
+错误的路径
+VERY Outdated!
+太旧了!
+Outdated!
+旧!
+Check dependencies!
+请检查依赖!
+Check compatibility!
+请检查兼容性!
+Misc Error
+其他错误
+
+Magical disenchantment suspends your living collar for AMNT turns
+魔法解除魔咒会在 AMNT 回合内让你的生命项圈无效化
+
+Hardlight
+硬光
+
+Saving...
+保存中...
+Game Saved
+游戏已保存
+
+ENMY escapes from the ITMN!
+ENMY 从 ITMN 逃脱!
+ENMY unlocks the ITMN!
+ENMY 解开了 ITMN 的锁!

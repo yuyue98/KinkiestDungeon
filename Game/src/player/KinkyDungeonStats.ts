@@ -126,14 +126,6 @@ let KinkyDungeonSleepinessMax = 10;
 
 // Other stats
 let KinkyDungeonGold = 0;
-let KinkyDungeonLockpicks = 0;
-// 3 types of keys, for 4 different types of padlocks. The last type of padlock requires all 3 types of keys to unlock
-// The red keys are one-use only as the lock traps the key
-// The green keys are multi-use, but jam often
-// The blue keys cannot be picked or cut.
-// Monsters are not dextrous enough to steal keys from your satchel, although they may spill your satchel on a nearby tile
-let KinkyDungeonRedKeys = 0;
-let KinkyDungeonBlueKeys = 0;
 
 let KinkyDungeonHasCrotchRope = false;
 
@@ -183,9 +175,6 @@ function KinkyDungeonDefaultStats(_Load?: any) {
 	KDGameData.KinkyDungeonSpawnJailers = 0;
 	KDGameData.KinkyDungeonSpawnJailersMax = 0;
 	KinkyDungeonGold = 0;
-	KinkyDungeonLockpicks = 0;
-	KinkyDungeonRedKeys = 0;
-	KinkyDungeonBlueKeys = 0;
 
 	KDGameData.Balance = 1;
 
@@ -441,19 +430,60 @@ function KDBulletAlreadyHit(bullet: any, entity: entity, suppressAdd?: boolean):
 }
 
 
-type damageInfo = {
+interface damageInfoMinor {
 	damage:     number;
 	type:       string;
+	time?: number,
+	flags?: string[],
+
+	distract?: number,
+
+	crit?: number,
+	addBind?: boolean,
+	bindcrit?: number,
+	bind?: number,
+	bindType?: string,
+}
+
+
+interface damageInfo extends damageInfoMinor {
 	flags?:     string[];
 	time?:      number;
 	bind?:      number;
+	bindEff?: number,
+	sfx?: string,
 	crit?:      number;
 	bindcrit?:  number;
 	bindType?:  string;
 	distract?:  number;
+	distractEff?: number,
+	desireMult?: number,
+	addBind?: boolean;
+	realBind?: boolean,
+
+	nodisarm?: boolean,
+	nocrit?: boolean,
+	noblock?: boolean,
+	evadeable?: boolean,
+	nokill?: boolean,
+
+	ignoreshield?: boolean,
+
+	boundBonus?: number,
+	novulnerable?: boolean,
+	tease?: boolean,
+
+	shield_crit?: boolean, // Crit thru shield
+	shield_stun?: boolean, // stun thru shield
+	shield_freeze?: boolean, // freeze thru shield
+	shield_bind?: boolean, // bind thru shield
+	shield_snare?: boolean, // snare thru shield
+	shield_slow?: boolean, // slow thru shield
+	shield_distract?: boolean, // Distract thru shield
+	shield_vuln?: boolean, // Vuln thru shield
 }
 
-function KinkyDungeonDealDamage(Damage: damageInfo, bullet?: any, noAlreadyHit?: boolean, noInterrupt?: boolean, noMsg?: boolean) {
+function KinkyDungeonDealDamage(Damage: damageInfoMinor, bullet?: any, noAlreadyHit?: boolean, noInterrupt?: boolean, noMsg?: boolean) {
 	if (bullet && !noAlreadyHit) {
 		if (KDBulletAlreadyHit(bullet, KinkyDungeonPlayerEntity)) return {happened: 0, string: ""};
 	}

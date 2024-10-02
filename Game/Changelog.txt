@@ -29,11 +29,32 @@ TODO:
 - Aggro level
 
 TODO remove hogtie when released
+TODO Add Cuddle play type
 
+
+5.3.43
+
+5.3.42
+- MODDERS: KinkyDungeonRedKeys, BlueKeys, and Lockpicks are now inventory items instead of hardcoded variables!
+- Spells now apply bindings to enemies!
+- Bindings will be conjured, so you cannot spam them to pick them up
+- Also applies to handheld weapons like ropes.
+- New spell: Conjure Anti-Magic gag
+- Revised enemy struggle function to help normalize the amount of time it takes to escape
+- Can now equip offhand weapons without clicking the icon on the hotbar
+- Enemies can now use items they struggled out of in order to tie YOU
+
+5.3.41
+- Fix bug where runes hit twice
+- Fix bug where magic keys are consumed even if unlocked by different means
 
 5.3.40
+- Added in a LOT of new patron NPCs, thank you for your support
 - Added toggle for Game sound now off when minimized
--
+- Chased restraint value formula so that restraints aren't as valuable early on, but reduced the decay
+- Added tooltips to the collection binding bars
+- Attempted to fix issue where cosplay items persist between outfits
+- Fixed some pathing issues in crowded hallways
 
 5.3.39
 - Fix issue with trail warnings disappearing one turn before they are supposed to

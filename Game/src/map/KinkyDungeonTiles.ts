@@ -358,7 +358,7 @@ function KinkyDungeonHandleStairs(toTile: string, suppressCheckPoint?: boolean) 
 					}
 					if (altRoom?.afterExit) altRoom.afterExit(data); // Handle any special contitions
 					KinkyDungeonSendEvent("AfterAdvance", data);
-					let saveData = KinkyDungeonSaveGame(true);
+					let saveData = LZString.compressToBase64(JSON.stringify(KinkyDungeonSaveGame(true)));
 					if (KDGameData.RoomType == "PerkRoom" && MiniGameKinkyDungeonLevel >= 1 && MiniGameKinkyDungeonLevel == KDGameData.HighestLevelCurrent) { //  && Math.floor(MiniGameKinkyDungeonLevel / 3) == MiniGameKinkyDungeonLevel / 3
 						if ((!KinkyDungeonStatsChoice.get("saveMode")) && !suppressCheckPoint) {
 							KinkyDungeonState = "Save";
@@ -931,3 +931,22 @@ let KDAdvanceAmount: Record<string, (altRoom: any, altRoomNext: any) => number> 
 		return 0;
 	},
 };
+
+type KDTileType = any;
+
+function KDShouldLock(x: number, y: number, tile: KDTileType): boolean {
+	if (tile.OGLock && tile.Jail && KDGameData.PrisonerState == 'parole') {
+		let nearestJail = KinkyDungeonNearestJailPoint(x, y);
+		if (nearestJail) {
+			if (KinkyDungeonPointInCell(KDPlayer().x, KDPlayer().y)) {
+				return false;
+			}
+		}
+	}
+
+	return tile.OGLock != undefined;
+}
+function KDShouldUnLock(x: number, y: number, tile: KDTileType): boolean {
+	return true;
+}
+

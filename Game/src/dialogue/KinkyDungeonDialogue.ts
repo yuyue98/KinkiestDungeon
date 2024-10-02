@@ -240,7 +240,7 @@ function KDPleaseSpeaker(Amount: number) {
 		let faction = KDGetFactionOriginal(enemy);
 		if (!KinkyDungeonHiddenFactions.has(faction)) {
 			if (!KDEntityHasFlag(enemy, "PleasedRep")) {
-				KinkyDungeonChangeFactionRep(faction, Amount);
+				KinkyDungeonChangeFactionRep(faction, 0.01);
 				KDSetIDFlag(enemy.id, "PleasedRep", -1);
 			}
 		}
@@ -1258,7 +1258,7 @@ function KDAllyDialogue(name: string, requireTags: string[], requireSingleTag: s
 							&& KDRandom() < (KDPersonalitySpread(125, 85, 25) - KinkyDungeonGoddessRep.Ghost + KDGetModifiedOpinion(enemy) + (KinkyDungeonStatsChoice.get("Dominant") ? 25 : 0))/100 * (KDPersonalitySpread(0.0, -0.25, -0.5) + (KDAllied(enemy) ? 2.0 : 1.0))
 						) {
 							KinkyDungeonChangeRep("Ghost", 3);
-							KinkyDungeonRedKeys += 1;
+							KDAddConsumable("RedKey", 1);
 							if (KDSoundEnabled()) AudioPlayInstantSoundKD(KinkyDungeonRootDirectory + "Audio/Coins.ogg");
 							enemy.items.splice(enemy.items.indexOf("RedKey"), 1);
 						} else {
@@ -1569,7 +1569,7 @@ function KDShopDialogue(name: string, items: string[], requireTags: string[], re
 			let bonus = 1;
 			let enemy = KinkyDungeonFindID(KDGameData.CurrentDialogMsgID);
 			if (enemy && enemy.Enemy.name == KDGameData.CurrentDialogMsgSpeaker) {
-				bonus = 1 / KDGetShopCost(enemy);
+				bonus = 1 / KDGetShopCost(enemy, true);
 			}
 			for (let i = 0; i < items.length; i++) {
 				let item = items[i];
@@ -1656,6 +1656,7 @@ function KDShopDialogue(name: string, items: string[], requireTags: string[], re
 					enemy.items.push(itemInv.name);
 				}
 				KinkyDungeonAddGold(KDGameData.CurrentDialogMsgValue["ItemCost"+i]);
+				KDPleaseSpeaker(0.05 * (KDGameData.CurrentDialogMsgValue["ItemCost"+i]/100));
 				enemy.gold = enemy.gold ? Math.max(0, enemy.gold - KDGameData.CurrentDialogMsgValue["ItemCost"+i]) : 0;
 				return false;
 			},
@@ -1678,7 +1679,7 @@ function KDShopBuyDialogue(name: string): KinkyDialogue {
 				if (enemy.items?.length > 0) items = enemy.items;
 			}
 			// Non-shopkeepers gouge you
-			let shopCost = KDGetShopCost(enemy);
+			let shopCost = KDGetShopCost(enemy, false);
 			for (let i = 0; i < items.length; i++) {
 				let item = items[i];
 				let itemMult = shopCost;
@@ -1796,9 +1797,10 @@ function KDShopBuyDialogue(name: string): KinkyDialogue {
 						enemy.items.splice(i, 1);
 					}
 					KinkyDungeonAddGold(-KDGameData.CurrentDialogMsgValue["IC_"+i + "_"]);
+					KDPleaseSpeaker(0.025 * (KDGameData.CurrentDialogMsgValue["ItemCost"+i]/100));
 
 					// Refresh list
-					let shopCost = KDGetShopCost(enemy);
+					let shopCost = KDGetShopCost(enemy, false);
 					for (let ii = 0; ii < enemy.items.length; ii++) {
 						item = enemy.items[ii];
 						let itemMult = shopCost;
@@ -2070,7 +2072,7 @@ function KDYesNoBasic (
 					KDIncreaseOfferFatigue(10);
 				}
 				KinkyDungeonChangeRep(antigoddess[0], -1); // Reduce submission because of refusal
-				KDAddOpinionPersistent(KDGetSpeaker().id, -10);
+				KDAddOpinionPersistent(KDGetSpeaker().id, -5);
 			}
 			return false;
 		},(refused) => { // Yes function. This happens if the user submits willingly
@@ -2082,7 +2084,7 @@ function KDYesNoBasic (
 			if (Ally)
 				KDAllySpeaker(9999, true);
 			else
-				KDPleaseSpeaker(refused ? 0.008 : 0.012); // Less reputation if you refused
+				KDPleaseSpeaker(refused ? 0.012 : 0.024); // Less reputation if you refused
 			KinkyDungeonChangeRep(antigoddess[0], refused ? 1 : 2); // Less submission if you refused
 			let enemy = KinkyDungeonFindID(KDGameData.CurrentDialogMsgID);
 			KinkyDungeonAddRestraintIfWeaker(KinkyDungeonGetRestraintByName(KDGameData.CurrentDialogMsgData.Data_r), ((enemy ? Math.min(10, enemy.Enemy.power) + KDEnemyRank(enemy) : 0) || 0), true, Lock, true, false, undefined, KDGetSpeakerFaction(), KinkyDungeonStatsChoice.has("MagicHands") ? true : undefined);
@@ -2128,7 +2130,7 @@ function KDYesNoBasic (
 				KDAddOpinionPersistent(KDGetSpeaker().id, -5);
 			} else { // If the user refuses we use the already generated success chance and calculate the result
 				let percent = KDGameData.CurrentDialogMsgValue.Percent;
-				KDAddOpinionPersistent(KDGetSpeaker().id, -10);
+				KDAddOpinionPersistent(KDGetSpeaker().id, -5);
 				if (KDRandom() > percent) { // We failed! You get tied tight
 					KDIncreaseOfferFatigue(-20);
 					KDGameData.CurrentDialogMsg = name + "Force_Failure";
@@ -2168,7 +2170,7 @@ function KDYesNoBasic (
 				KDIncreaseOfferFatigue(-20);
 				KDGameData.CurrentDialogMsg = "OfferDominantFailure";
 				KDAggroSpeaker(100, true);
-				KDAddOpinionPersistent(KDGetSpeaker().id, -20);
+				KDAddOpinionPersistent(KDGetSpeaker().id, -12);
 			} else {
 				// If we succeed, we get the speaker enemy and bind them
 				KDIncreaseOfferFatigue(10);
@@ -2290,6 +2292,7 @@ function KDSaleShop(name: string, items: string[], requireTags: string[], requir
 					KinkyDungeonAddGold(-KDGameData.CurrentDialogMsgValue["ItemCost"+i]);
 					let enemy = KinkyDungeonFindID(KDGameData.CurrentDialogMsgID);
 					if (enemy && enemy.Enemy.name == KDGameData.CurrentDialogMsgSpeaker) {
+						KDPleaseSpeaker(0.05 * (KDGameData.CurrentDialogMsgValue["ItemCost"+i]/100));
 						let faction = KDGetFactionOriginal(enemy);
 						if (!KinkyDungeonHiddenFactions.has(faction)) {
 							KinkyDungeonChangeFactionRep(faction, Math.max(0.0001, KDGameData.CurrentDialogMsgValue["ItemCost"+i] * 0.00025));
@@ -2445,15 +2448,15 @@ function KDItemSubThreshold(item: string, nomult?: boolean): number {
 		else if (KinkyDungeonStatsChoice.get("Dominant")) mult = 5;
 	}
 	if (item == "RedKey") return mult*0.4;
-	if (item == "Lockpick") return mult*0.75;
+	if (item == "Pick") return mult*0.75;
 	if (item == "BlueKey") return mult*0.1;
 	if (KinkyDungeonFindConsumable(item)?.sub) return Math.max(0, 1 - mult*KinkyDungeonFindConsumable(item).rarity * KinkyDungeonFindConsumable(item).sub);
 	if (KinkyDungeonFindWeapon(item)?.cutBonus) return Math.max(0, 1 - mult*KinkyDungeonFindWeapon(item)?.cutBonus*3);
 }
 
-function KDGetShopCost(enemy: entity): number {
-	let shopCost = KDEnemyHasFlag(enemy, "Shop") ? 0.5 : 1.5 + (0.1 * MiniGameKinkyDungeonLevel);
-	shopCost *= KinkyDungeonMultiplicativeStat(0.02*KDGetModifiedOpinion(enemy));
+function KDGetShopCost(enemy: entity, sell: boolean): number {
+	let shopCost = KDEnemyHasFlag(enemy, "Shop") ? (sell ? 0.5 : 0.5) : 1.5 + (0.1 * MiniGameKinkyDungeonLevel);
+	shopCost *= KinkyDungeonMultiplicativeStat(0.02*(KDGetModifiedOpinion(enemy) + (KDEnemyHasFlag(enemy, "Shop") ? 30 : 0)));
 	shopCost += 1;
 	return shopCost;
 }

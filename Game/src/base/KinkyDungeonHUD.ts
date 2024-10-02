@@ -1122,7 +1122,7 @@ function KinkyDungeonDrawActionBar(_x: number, _y: number) {
 		KDDraw(kdcanvas, kdpixisprites, "pick", KinkyDungeonRootDirectory + "Items/Pick.png", resourcesX, resourcesY + resourcesIndex*resourceSpacing, 50, 50, undefined, {
 			zIndex: 90
 		});
-		DrawTextFitKD("" + KinkyDungeonLockpicks, resourcesX + 25, resourcesY + 40 + resourcesIndex*resourceSpacing, 50, "#ffffff", "#333333", 18, undefined, 90);
+		DrawTextFitKD("" + KinkyDungeonItemCount("Pick"), resourcesX + 25, resourcesY + 40 + resourcesIndex*resourceSpacing, 50, "#ffffff", "#333333", 18, undefined, 90);
 		if (MouseIn(resourcesX, resourcesY + resourcesIndex*resourceSpacing, 50, 50))
 			DrawTextKD(TextGet("KinkyDungeonInventoryItemLockpick"),
 				resourcesX + 60, MouseY, "#ffffff", "#333333", 24, "left");
@@ -1132,7 +1132,7 @@ function KinkyDungeonDrawActionBar(_x: number, _y: number) {
 		KDDraw(kdcanvas, kdpixisprites, "redkey", KinkyDungeonRootDirectory + "Items/RedKey.png", resourcesX, resourcesY + resourcesIndex*resourceSpacing, 50, 50, undefined, {
 			zIndex: 90
 		});
-		DrawTextFitKD("" + KinkyDungeonRedKeys, resourcesX + 25, resourcesY + 40 + resourcesIndex*resourceSpacing, 50, "#ffffff", "#333333", 18, undefined, 90);
+		DrawTextFitKD("" + KinkyDungeonItemCount("RedKey"), resourcesX + 25, resourcesY + 40 + resourcesIndex*resourceSpacing, 50, "#ffffff", "#333333", 18, undefined, 90);
 		if (MouseIn(resourcesX, resourcesY + resourcesIndex*resourceSpacing, 50, 50))
 			DrawTextKD(TextGet("KinkyDungeonInventoryItemRedKey"),
 				resourcesX + 60, MouseY, "#ffffff", "#333333", 24, "left");
@@ -1140,11 +1140,11 @@ function KinkyDungeonDrawActionBar(_x: number, _y: number) {
 		resourcesIndex--;
 
 
-		if (KinkyDungeonBlueKeys > 0) {
+		if (KinkyDungeonItemCount("BlueKey") > 0) {
 			KDDraw(kdcanvas, kdpixisprites, "bluekey", KinkyDungeonRootDirectory + "Items/BlueKey.png", resourcesX, resourcesY + resourcesIndex*resourceSpacing, 50, 50, undefined, {
 				zIndex: 90
 			});
-			DrawTextFitKD("" + KinkyDungeonBlueKeys, resourcesX + 25, resourcesY + 40 + resourcesIndex*resourceSpacing, 50, "#ffffff", "#333333", 18, undefined, 90);
+			DrawTextFitKD("" + KinkyDungeonItemCount("BlueKey"), resourcesX + 25, resourcesY + 40 + resourcesIndex*resourceSpacing, 50, "#ffffff", "#333333", 18, undefined, 90);
 			if (MouseIn(resourcesX, resourcesY + resourcesIndex*resourceSpacing, 50, 50))
 				DrawTextKD(TextGet("KinkyDungeonInventoryItemMagicKey"),
 					resourcesX + 60, MouseY, "#ffffff", "#333333", 24, "left");
@@ -1708,7 +1708,7 @@ function KinkyDungeonHandleHUD() {
 				return true;
 			}
 			if (MouseIn(1500, 320, 300, 64)) {
-				let saveData = KinkyDungeonSaveGame(true);
+				let saveData = LZString.compressToBase64(JSON.stringify(KinkyDungeonSaveGame(true)));
 				KinkyDungeonState = "Save";
 				ElementCreateTextArea("saveDataField");
 				ElementValue("saveDataField", saveData);
@@ -2534,7 +2534,7 @@ function KDProcessBuffIcons(minXX: number, minYY: number, side: boolean = false)
 				Damage: KinkyDungeonPlayerDamage,
 			};
 			KinkyDungeonSendEvent("calcDisplayDamage", data);
-			let meleeDamage = (KinkyDungeonPlayerDamage.dmg) + KinkyDungeonGetBuffedStat(KinkyDungeonPlayerBuffs, "AttackDmg") + data.buffdmg;
+			let meleeDamage = (KinkyDungeonPlayerDamage.damage) + KinkyDungeonGetBuffedStat(KinkyDungeonPlayerBuffs, "AttackDmg") + data.buffdmg;
 			statsDraw.meleeDamage = {
 				text: TextGet("KinkyDungeonPlayerDamage")
 					.replace("DAMAGEDEALT", "" + Math.round(meleeDamage*10))
@@ -2925,7 +2925,7 @@ function KDDrawStruggleGroups() {
 											(sg.magic) ? "#8394ff" : "#ffffff", KinkyDungeonRootDirectory + name, "", undefined, true, (sg.magic) ? "#8394ff" : KDButtonColorIntense, undefined, undefined, {scaleImage: true}))
 									StruggleType = btn;
 								i++;
-							} else if (!(KDGetCurse(item)) && !sg.blocked && btn == "Pick" && KinkyDungeonLockpicks > 0 && item.lock) {
+							} else if (!(KDGetCurse(item)) && !sg.blocked && btn == "Pick" && KinkyDungeonItemCount("Pick") > 0 && item.lock) {
 								if (
 									DrawButtonKDEx("sgPick" + button_index + sg.group, (_b) => {
 										if (KinkyDungeonFastStruggle) {

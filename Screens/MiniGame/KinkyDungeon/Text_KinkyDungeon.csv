@@ -31,7 +31,7 @@ RestartNeededRU,"Restart required!"
 
 KDVersion,"Version"
 KinkyDungeon,"Kinky Dungeon"
-KDVersionStr,"5.3.39"
+KDVersionStr,"5.3.42"
 KDLogo2,"By Ada18980"
 Intro,"You are an adventurer descending into an ancient underground city of magic."
 Intro2,"Beneath its depths lies the Mistress' Staff, an artifact of untold power."
@@ -46,8 +46,8 @@ KDToggleTabControls,Controls
 KDToggleTabKeybindings,Keybindings
 
 
-KDToggleApplyPaletteRestraint,Apply palette to Restraints
-KDToggleApplyPaletteTransform,Apply palette to transforms
+KDToggleApplyPaletteRestraint,Apply palettes to Restraints
+KDToggleApplyPaletteTransform,Apply palettes to transforms
 
 KDToggleIgnoreApplyCharPalette,Don't use character palette
 KDToggleAlwaysApplyCharPalette,Always use character palette
@@ -122,12 +122,13 @@ KDToggleNipples,Enable Nipples
 KDToggleNippleToysOption,Show Nipple Toys Over Bras
 KDToggleNippleToysHide,Hide Nipple Clamps
 KDToggleNipplePiercingsHide,Hide Nipple Piercings
-KDToggleForcePalette,Force restraints to use outfit palette
+KDToggleForcePalette,Use default palette when no outfit is worn
 KDToggleFlipPlayer,Flip Player Display
 KDToggleGreyscaleBlindness,Grayscale when Blind
 KDToggleFastFloaters,Faster Floater Fade
 KDToggleNoDmgFloaters,No Damage Floaters
 KDToggleDynamicArmor,Dynamic Armor (must hide armor)
+KDToggleHideFloatingWeapon,Hide floating weapon display
 
 KDHelpless,Helpless!
 KDMissed,Evaded!
@@ -155,13 +156,14 @@ KinkyDungeonStats,"Select perks to start with."
 KinkyDungeonStats2,"Having 10+ spare points will trigger Hard Mode, granting unique loot."
 KDHardMode," (HARD MODE ENABLED)"
 KinkyDungeonStartGameAdv,"Advanced start (choose perks)"
+KinkyDungeonStartGameKinky,"Kinky start (stricter, more bondage focused)"
 KinkyDungeonStartGameQuick,"Confirm and start playing!"
 
 KinkyDungeonStatCost,"Point Cost: AMOUNT"
 KinkyDungeonStatPoints,"Points Available: AMOUNT"
 
 KinkyDungeonStatResilientFoes,"Resilient Foes"
-KinkyDungeonStatDescResilientFoes,"Enemies have 40% more hp."
+KinkyDungeonStatDescResilientFoes,"Enemies have 30% more hp."
 
 KinkyDungeonStat0,"Strong"
 KinkyDungeonStatDesc0,"Boosts the Struggle option when escaping."
@@ -431,7 +433,7 @@ KinkyDungeonStatDescMapAbsurd,"(Experimental) Make the maps really really big. P
 KinkyDungeonStat24,"Rigger"
 KinkyDungeonStatDesc24,"Binding on enemies is 30% stronger."
 KinkyDungeonStat25,"Pacifist"
-KinkyDungeonStatDesc25,"All damage dealt to humanoid enemies is reduced by 90% except pain, grope, tickle, charm, psychic, chain, or glue."
+KinkyDungeonStatDesc25,"All damage dealt to humanoid enemies is reduced by 90% except teasing damage and pain/grope/tickle/charm/psychic/chain/glue."
 KinkyDungeonStatCurseSeeker,"Curse Seeker"
 KinkyDungeonStatDescCurseSeeker,"When you pick up cursed armor or restraints from chests, they equip automatically if able."
 
@@ -937,10 +939,10 @@ KDDoor,Interact
 KDSprint,Sprint/Hop
 KDCrouch,Crouch
 
-KinkyDungeonChangeDistraction0,"Ahh!"
-KinkyDungeonChangeDistraction1,"Mmm..."
-KinkyDungeonChangeDistraction2,"Nnngh..."
-KinkyDungeonChangeDistraction3,"Ooooh..."
+KinkyDungeonChangeDistraction0,"~ah~"
+KinkyDungeonChangeDistraction1,"~mmm~"
+KinkyDungeonChangeDistraction2,"~ngh~"
+KinkyDungeonChangeDistraction3,"~oh~"
 KinkyDungeonChangeDistraction4,"(Heavy breathing)"
 KinkyDungeonChangeDistraction5,"(Soft moaning)"
 KinkyDungeonChangeDistraction6,"(Incoherent mumbling)"
@@ -950,10 +952,10 @@ KinkyDungeonChangeDistraction9,"(Uncontrollable moaning)"
 KinkyDungeonChangeDistraction10,"(Horny noises)"
 
 
-KinkyDungeonChangeDistractionGag0,"Mmmph..."
-KinkyDungeonChangeDistractionGag1,"Mmmph~"
-KinkyDungeonChangeDistractionGag2,"Nnngh..."
-KinkyDungeonChangeDistractionGag3,"Mmmmmmmm..."
+KinkyDungeonChangeDistractionGag0,"~mm~"
+KinkyDungeonChangeDistractionGag1,"~mmph~"
+KinkyDungeonChangeDistractionGag2,"~nnn~"
+KinkyDungeonChangeDistractionGag3,"~mmmmm~"
 KinkyDungeonChangeDistractionGag4,"(Heavy breathing)"
 KinkyDungeonChangeDistractionGag5,"(Soft moaning)"
 KinkyDungeonChangeDistractionGag6,"(Incoherent mumbling)"
@@ -1310,11 +1312,11 @@ KinkyDungeonInventoryItemAncientPowerSourceSpentDesc2,"A mysterious device used 
 
 KinkyDungeonInventoryItemGold,Gold
 KinkyDungeonInventoryItemRedKey,Key
-KinkyDungeonInventoryItemRedKeyDesc,"A key with traces of magic that fades with one use."
-KinkyDungeonInventoryItemRedKeyDesc2,"Can be used to unlock a red-locked restraint, door, or chest."
+KinkyDungeonInventoryItemRedKeyDesc,"A key. You wonder who it's for?"
+KinkyDungeonInventoryItemRedKeyDesc2,"Can be used to unlock one simple or standard-locked restraint, door, or chest."
 KinkyDungeonInventoryItemBlueKey,Magic Key
 KinkyDungeonInventoryItemBlueKeyDesc,"A glowing key enchanted with magic that fades with one use."
-KinkyDungeonInventoryItemBlueKeyDesc2,"Can be used to unlock a blue lock."
+KinkyDungeonInventoryItemBlueKeyDesc2,"Can be used to unlock a runic lock."
 KinkyDungeonInventoryItemMagicKey,Magic Key
 KinkyDungeonInventoryItemMagicKeyDesc,"A magical key with the power to open blue locks."
 KinkyDungeonInventoryItemMagicKeyDesc2,"Blue locks can't be otherwise picked."
@@ -1336,6 +1338,9 @@ KinkyDungeonInventoryItemKnife,Knife
 KinkyDungeonInventoryItemLockpick,Lockpick
 KinkyDungeonInventoryItemLockpickDesc,"A tool used to pick locks."
 KinkyDungeonInventoryItemLockpickDesc2,"Doesn't last forever, but can help in a pinch."
+KinkyDungeonInventoryItemPick,Lockpick
+KinkyDungeonInventoryItemPickDesc,"A tool used to pick locks."
+KinkyDungeonInventoryItemPickDesc2,"Doesn't last forever, but can help in a pinch."
 KinkyDungeonInventoryItem2Lockpick,lockpick x2
 KinkyDungeonInventoryItem4Lockpick,lockpicks x4
 KinkyDungeonInventoryItem3Bola,Bola x3
@@ -6375,9 +6380,19 @@ KinkyDungeonSpellSummonGag,Conjure Gag
 KinkyDungeonSpellGagBolt,Conjured Gag
 KinkyDungeonSpellGagBoltBind,The gag forces itself into your mouth and buckles tightly!
 KinkyDungeonSpellGagBoltDamage,The gag hits you! (DamageDealt)
-KinkyDungeonSpellDescriptionSummonGag,"Summons a gag which deals DamageDealt chain damage and silences for 15 turns. +40 binding if target is not silenced."
+KinkyDungeonSpellDescriptionSummonGag,"Summons a gag which deals DamageDealt chain damage and silences for 8 turns. +40 binding if target is not silenced."
 KinkyDungeonSpellCastSummonGag,You conjure a gag!
 KinkyDungeonSpellTargetSummonGag,The gag will appear next to you and fly toward the target point.
+
+
+KinkyDungeonSpellSummonAMGag,Conjure Anti-Magic Gag
+KinkyDungeonSpellAMGagBolt,Conjured Anti-Magic Gag
+KinkyDungeonSpellAMGagBoltBind,The anti-magic gag forces itself into your mouth and buckles tightly!
+KinkyDungeonSpellAMGagBoltDamage,The anti-magic gag hits you! (DamageDealt)
+KinkyDungeonSpellDescriptionSummonAMGag,"Summons a magic-absorbing gag which deals DamageDealt teasing arcane damage and silences for 15 turns. Applies a debuff that increases miscast chance by 50%."
+KinkyDungeonSpellCastSummonAMGag,You conjure an anti-magic gag!
+KinkyDungeonSpellTargetSummonAMGag,The gag will appear next to you and fly toward the target point.
+
 
 KinkyDungeonSpellSummonArmbinder,Conjure Armbinder
 KinkyDungeonSpellArmbinderBolt,Conjured Armbinder
@@ -7794,6 +7809,7 @@ KDTooltipAwareDanger,"Suspicious"
 KDTooltipAwareDangerHigh,"Notices you!"
 KDTooltipAwareUnnoticed,"Unaware"
 KDTooltipInventory,"Items carried:"
+KDTooltipInventoryWorn,"Items worn:"
 KDTooltipInventoryFull,"...and NUMBER more"
 KDTooltipWeakBinding,"Takes damage if the caster is stunned"
 KDTooltipNormalBinding,"Disappears if the caster is defeated"
@@ -9513,7 +9529,7 @@ KinkyDungeonRemindJailPlayWolfgirlLeash,"I'm going to have some fun with you~"
 KinkyDungeonRemindJailPlayWolfgirlFree,"Watch yourself, girl~"
 KinkyDungeonRemindJailPlayWolfgirlLoot,"Nice find. I'll take it."
 KinkyDungeonRemindJailPlayWolfgirlKey,"This place is off-limits for you."
-KinkyDungeonRemindJailChaseWolfgirlAlert,"I spy a pretty one!"
+KinkyDungeonRemindJailChaseWolfgirlAlert,"I spy a cute one!"
 KinkyDungeonRemindJailChaseWolfgirlAttack0,"Bad pet!"
 KinkyDungeonRemindJailChaseWolfgirlAttack1,"Looks like you're gonna need the extra special treatment~"
 KinkyDungeonRemindJailChaseWolfgirlAttack2,"Now you've done it!"
@@ -9551,6 +9567,63 @@ KinkyDungeonRemindJailChaseWolfgirlHonor2,"I smell a shady business opportunity~
 KinkyDungeonRemindJailChaseWolfgirlCommandDefend,"*growls menacingly*"
 KinkyDungeonRemindJailChaseWolfgirlCommandAssault,"Let's make this fun~"
 KinkyDungeonRemindJailChaseWolfgirlCommandBlock,"What's that about backup?"
+
+
+KinkyDungeonRemindJailPlayHelplessYen0,"This is too tight..."
+KinkyDungeonRemindJailPlayHelplessYen1,"You won't get me like this!"
+KinkyDungeonRemindJailPlayHelplessYen2,"I can't get free!"
+KinkyDungeonRemindJailPlayBratYen0,"Catch me. If you can, that is."
+KinkyDungeonRemindJailPlayBratYen1,"I double dare you."
+KinkyDungeonRemindJailPlayBratYen2,"Weren't you chasing me?"
+KinkyDungeonRemindJailPlaySubYen0,"Catch me. If you can, that is."
+KinkyDungeonRemindJailPlaySubYen1,"I double dare you."
+KinkyDungeonRemindJailPlaySubYen2,"Weren't you chasing me?"
+KinkyDungeonRemindJailPlayYen0,"I've got somethin nice for ya."
+KinkyDungeonRemindJailPlayYen1,"Be a good girl for me, will ya?"
+KinkyDungeonRemindJailPlayYen2,"You need to show some restraint."
+KinkyDungeonRemindJailPlayYenStruggle,"Stay where you belong, you naughty girl."
+KinkyDungeonRemindJailPlayYenLeash,"Let's go somewhere more private."
+KinkyDungeonRemindJailPlayYenFree,"Watch yourself, girl~"
+KinkyDungeonRemindJailPlayYenLoot,"Nice find. I'll take it."
+KinkyDungeonRemindJailPlayYenKey,"This place is off-limits for you."
+KinkyDungeonRemindJailChaseYenAlert,"Ready or not, here I come."
+KinkyDungeonRemindJailChaseYenAttack0,"Bad pet!"
+KinkyDungeonRemindJailChaseYenAttack1,"Looks like you're gonna need the extra special treatment~"
+KinkyDungeonRemindJailChaseYenAttack2,"Now you've done it!"
+KinkyDungeonRemindJailChaseYenSpell0,"Magic? Hah..."
+KinkyDungeonRemindJailChaseYenSpell1,"Such outdated practices..."
+KinkyDungeonRemindJailChaseYenSpell2,"Your spells are nothing compared to technology."
+KinkyDungeonRemindJailChaseYenSpellItem,"Quit messing around."
+KinkyDungeonRemindJailChaseYenShrine,"Those sticky fingers belong in a pair of mittens."
+KinkyDungeonRemindJailChaseYenChest,"Those sticky fingers belong in a pair of mittens."
+KinkyDungeonRemindJailChaseYenOrb,"Those sticky fingers belong in a pair of mittens."
+KinkyDungeonRemindJailChaseYenJailbreak,"All units. Apprehend convict with extreme prejudice."
+KinkyDungeonRemindJailYenGrab,"You're going nowhere."
+KinkyDungeonRemindJailYenDisarm,"Come on. This wasn't your only weapon, was it?"
+KinkyDungeonRemindJailYenHit,"Get your paws off me!"
+KinkyDungeonRemindJailYenHitPlayer,"*scoffs* Could use some work~"
+KinkyDungeonRemindJailYenMiss,"Such speed!"
+KinkyDungeonRemindJailYenBlock,"A tank, huh."
+KinkyDungeonRemindJailYenMissedMe,"Nothing personal."
+KinkyDungeonRemindJailYenBlockedMe,"Nothing personal."
+KinkyDungeonRemindJailYenLeash,"This battle is over."
+KinkyDungeonRemindJailYenPull,"You're going nowhere."
+KinkyDungeonRemindJailYenStun,"Too slow!"
+KinkyDungeonRemindJailYenPickpocket,"Mine now."
+KinkyDungeonRemindJailYenLock,"Just keeping you safe from yourself."
+KinkyDungeonRemindJailYenIntro,"PTRN, Nevermere associate. Here's my card."
+KinkyDungeonRemindJailChaseYenDefend0,"I run a legitimate business, I promise!"
+KinkyDungeonRemindJailChaseYenDefend1,"Is it the tax collectors? Oh, no, it's just you..."
+KinkyDungeonRemindJailChaseYenDefend2,"Looks like you landed on the wrong side of the coin~"
+KinkyDungeonRemindJailChaseYenDefendHonor0,"A deal's a deal, my friend."
+KinkyDungeonRemindJailChaseYenDefendHonor1,"Excuse me, you just attacked my client."
+KinkyDungeonRemindJailChaseYenDefendHonor2,"Hey! We were just talking! No sketchy underground dealings, nope."
+KinkyDungeonRemindJailChaseYenHonor0,"I'll help capture her! For a 50% share that is~"
+KinkyDungeonRemindJailChaseYenHonor1,"We deal in the finest products... like you, if you catch my drift~"
+KinkyDungeonRemindJailChaseYenHonor2,"I smell a shady business opportunity~"
+KinkyDungeonRemindJailChaseYenCommandDefend,"*growls menacingly*"
+KinkyDungeonRemindJailChaseYenCommandAssault,"Let's make this fun~"
+KinkyDungeonRemindJailChaseYenCommandBlock,"What's that about backup?"
 
 
 KinkyDungeonRemindJailPlayHelplessElf0,"This is too tight..."
@@ -9608,6 +9681,63 @@ KinkyDungeonRemindJailChaseElfHonor2,"You have faltered in your ways. I shall co
 KinkyDungeonRemindJailChaseElfCommandDefend,"Truly concerning."
 KinkyDungeonRemindJailChaseElfCommandAssault,"You leave me no choice."
 KinkyDungeonRemindJailChaseElfCommandBlock,"I stand firm."
+
+
+KinkyDungeonRemindJailPlayHelplessElfSmug0,"This is too tight..."
+KinkyDungeonRemindJailPlayHelplessElfSmug1,"You won't get me like this!"
+KinkyDungeonRemindJailPlayHelplessElfSmug2,"I can't get free!"
+KinkyDungeonRemindJailPlayBratElfSmug0,"An outsider!"
+KinkyDungeonRemindJailPlayBratElfSmug1,"Hide!"
+KinkyDungeonRemindJailPlayBratElfSmug2,"I have done nothing worthy of punishment!"
+KinkyDungeonRemindJailPlaySubElfSmug0,"I have come to study human customs. Teach me about Domination."
+KinkyDungeonRemindJailPlaySubElfSmug1,"The outsiders have such... strange and interesting practices."
+KinkyDungeonRemindJailPlaySubElfSmug2,"You seem to have many skills. Teach me about... rope."
+KinkyDungeonRemindJailPlayElfSmug0,"Hello, Outsider."
+KinkyDungeonRemindJailPlayElfSmug1,"You look so... bland."
+KinkyDungeonRemindJailPlayElfSmug2,"Outsiders are so picky about what they wear..."
+KinkyDungeonRemindJailPlayElfSmugStruggle,"You look cute in that, you should lose the rest though!"
+KinkyDungeonRemindJailPlayElfSmugLeash,"I have just the thing in mind for you..."
+KinkyDungeonRemindJailPlayElfSmugFree,"Let us put those hands away..."
+KinkyDungeonRemindJailPlayElfSmugLoot,"Give back what you take."
+KinkyDungeonRemindJailPlayElfSmugKey,"You must remain here."
+KinkyDungeonRemindJailChaseElfSmugAlert,"Trespasser!"
+KinkyDungeonRemindJailChaseElfSmugAttack0,"Resorting to violence?"
+KinkyDungeonRemindJailChaseElfSmugAttack1,"Let us clash swords!"
+KinkyDungeonRemindJailChaseElfSmugAttack2,"*scoffs*"
+KinkyDungeonRemindJailChaseElfSmugSpell0,"You have brought judgement upon youself."
+KinkyDungeonRemindJailChaseElfSmugSpell1,"Your magic is that of a child."
+KinkyDungeonRemindJailChaseElfSmugSpell2,"Imagine what you could learn in twelve lifetimes..."
+KinkyDungeonRemindJailChaseElfSmugSpellItem,"You rely on cheap gadgets."
+KinkyDungeonRemindJailChaseElfSmugShrine,"Do not defile the ancients."
+KinkyDungeonRemindJailChaseElfSmugChest,"Give that back!"
+KinkyDungeonRemindJailChaseElfSmugOrb,"The ancients are appalled."
+KinkyDungeonRemindJailChaseElfSmugJailbreak,"The outsider has escaped!"
+KinkyDungeonRemindJailElfSmugGrab,"Ready to reconsider?"
+KinkyDungeonRemindJailElfSmugDisarm,"A classic blunder."
+KinkyDungeonRemindJailElfSmugHit,"You will regret that, outsider."
+KinkyDungeonRemindJailElfSmugHitPlayer,"You get what you deserve."
+KinkyDungeonRemindJailElfSmugMiss,"You didn't see that."
+KinkyDungeonRemindJailElfSmugBlock,"You didn't see that."
+KinkyDungeonRemindJailElfSmugMissedMe,"It looks like my skills are superior."
+KinkyDungeonRemindJailElfSmugBlockedMe,"It looks like my skills are superior."
+KinkyDungeonRemindJailElfSmugLeash,"I will show you your place, outsider."
+KinkyDungeonRemindJailElfSmugPull,"You will come with me."
+KinkyDungeonRemindJailElfSmugStun,"I regret to inform you that your battle ends here."
+KinkyDungeonRemindJailElfSmugPickpocket,"You won't be needing that."
+KinkyDungeonRemindJailElfSmugLock,"There we go."
+KinkyDungeonRemindJailElfSmugIntro,"You stand before PTRN, blessed by the Goddess Ninril."
+KinkyDungeonRemindJailChaseElfSmugDefend0,"By the Four..."
+KinkyDungeonRemindJailChaseElfSmugDefend1,"I shall put an end to this."
+KinkyDungeonRemindJailChaseElfSmugDefend2,"I swear I will capture her!"
+KinkyDungeonRemindJailChaseElfSmugDefendHonor0,"Nature compels me to intervene!"
+KinkyDungeonRemindJailChaseElfSmugDefendHonor1,"I shall protect every one of the Goddess' creations."
+KinkyDungeonRemindJailChaseElfSmugDefendHonor2,"Justice shall be had!"
+KinkyDungeonRemindJailChaseElfSmugHonor0,"I shall defend you from this outsider!"
+KinkyDungeonRemindJailChaseElfSmugHonor1,"The outsider betrays our ally!"
+KinkyDungeonRemindJailChaseElfSmugHonor2,"You have faltered in your ways. I shall correct that!"
+KinkyDungeonRemindJailChaseElfSmugCommandDefend,"Truly concerning."
+KinkyDungeonRemindJailChaseElfSmugCommandAssault,"You leave me no choice."
+KinkyDungeonRemindJailChaseElfSmugCommandBlock,"I stand firm."
 
 
 KinkyDungeonRemindJailPlayHelplessDryad0,"This is too tight..."
@@ -9948,6 +10078,62 @@ KinkyDungeonRemindJailChaseElementalCommandDefend,"Do not mess with us!"
 KinkyDungeonRemindJailChaseElementalCommandAssault,"I shall take you for myself~"
 KinkyDungeonRemindJailChaseElementalCommandBlock,"Where do you think you're going?"
 
+
+KinkyDungeonRemindJailPlayHelplessAthena0,"This... this can't be..."
+KinkyDungeonRemindJailPlayHelplessAthena1,"Release me mortal!"
+KinkyDungeonRemindJailPlayHelplessAthena2,"How did you do this!?"
+KinkyDungeonRemindJailPlayBratAthena0,"You won't get me!"
+KinkyDungeonRemindJailPlayBratAthena1,"Nice try!"
+KinkyDungeonRemindJailPlayBratAthena2,"My grandma is tougher than you!"
+KinkyDungeonRemindJailPlaySubAthena0,"Restrain me."
+KinkyDungeonRemindJailPlaySubAthena1,"Play with me."
+KinkyDungeonRemindJailPlaySubAthena2,"Lock me up."
+KinkyDungeonRemindJailPlayAthena0,"This won't work."
+KinkyDungeonRemindJailPlayAthena1,"I don't play with young ones."
+KinkyDungeonRemindJailPlayAthena2,"Nice try!"
+KinkyDungeonRemindJailPlayAthenaStruggle,"Are we having fun?"
+KinkyDungeonRemindJailPlayAthenaLeash,"Get over here!"
+KinkyDungeonRemindJailPlayAthenaFree,"Oh, a lost toy!"
+KinkyDungeonRemindJailPlayAthenaLoot,"That won't help you."
+KinkyDungeonRemindJailPlayAthenaKey,"You won't escape."
+KinkyDungeonRemindJailChaseAthenaAlert,"I will take you for myself!"
+KinkyDungeonRemindJailChaseAthenaAttack0,"Ouch!"
+KinkyDungeonRemindJailChaseAthenaAttack1,"I am stronger than that!"
+KinkyDungeonRemindJailChaseAthenaAttack2,"That hurts!"
+KinkyDungeonRemindJailChaseAthenaSpell0,"Nice party trick!"
+KinkyDungeonRemindJailChaseAthenaSpell1,"Oh, shiny!"
+KinkyDungeonRemindJailChaseAthenaSpell2,"*sighs*"
+KinkyDungeonRemindJailChaseAthenaSpellItem,"Look what humans need to match only a fraction of our power!"
+KinkyDungeonRemindJailChaseAthenaShrine,"Our goddess doesn't need to listen to the likes of you!"
+KinkyDungeonRemindJailChaseAthenaChest,"Keep your hands out of our possessions."
+KinkyDungeonRemindJailChaseAthenaOrb,"Defiler! You will pay for your crimes!"
+KinkyDungeonRemindJailChaseAthenaJailbreak,"You won't get away!"
+KinkyDungeonRemindJailAthenaGrab,"You can't get away!"
+KinkyDungeonRemindJailAthenaDisarm,"You are helpless now!"
+KinkyDungeonRemindJailAthenaHit,"Tis but a scratch!"
+KinkyDungeonRemindJailAthenaHitPlayer,"Give up!"
+KinkyDungeonRemindJailAthenaMiss,"I'll get you next time!"
+KinkyDungeonRemindJailAthenaBlock,"You're a fast one."
+KinkyDungeonRemindJailAthenaMissedMe,"Nice try!"
+KinkyDungeonRemindJailAthenaBlockedMe,"Are you hiding?!"
+KinkyDungeonRemindJailAthenaLeash,"You are my pet now!"
+KinkyDungeonRemindJailAthenaPull,"There is no escape."
+KinkyDungeonRemindJailAthenaStun,"You are beneath me."
+KinkyDungeonRemindJailAthenaPickpocket,"Yoink!"
+KinkyDungeonRemindJailAthenaLock,"You can't get out now!"
+KinkyDungeonRemindJailAthenaIntro,"Who am I? You beings may call me PTRN."
+KinkyDungeonRemindJailChaseAthenaDefend0,"She thinks she can beat us~"
+KinkyDungeonRemindJailChaseAthenaDefend1,"No one will save you."
+KinkyDungeonRemindJailChaseAthenaDefend2,"Come and accept your fate."
+KinkyDungeonRemindJailChaseAthenaDefendHonor0,"An unruly subject. She needs training."
+KinkyDungeonRemindJailChaseAthenaDefendHonor1,"You should consider your actions and their consequences~"
+KinkyDungeonRemindJailChaseAthenaDefendHonor2,"Now now, a mortal should know her place!"
+KinkyDungeonRemindJailChaseAthenaHonor0,"Why don't we turn the tables?"
+KinkyDungeonRemindJailChaseAthenaHonor1,"It'll be fun seeing you squirm~"
+KinkyDungeonRemindJailChaseAthenaHonor2,"We are the keepers of balance."
+KinkyDungeonRemindJailChaseAthenaCommandDefend,"Do not mess with us!"
+KinkyDungeonRemindJailChaseAthenaCommandAssault,"I shall take you for myself~"
+KinkyDungeonRemindJailChaseAthenaCommandBlock,"Where do you think you're going?"
 
 
 KinkyDungeonRemindJailPlayHelplessDragonGirl0,"I will be free... even if it takes me a thousand years!"
@@ -12263,6 +12449,70 @@ rGenericAllyFlirtRobot,"(The SPEAKER beeps)|This unit does not know how to respo
 rGenericAllyFlirtGagged,"(The SPEAKER moans)|Mmmmmph~"
 rGenericAllyFlirtNoBrain,"(The SPEAKER appears too busy to discuss with you)"
 
+
+KDDialogue_CuddleStart_,""
+KDDialogue_CuddleStart_Gagged,""
+KDDialogue_CuddleStart_Robot,""
+KDDialogue_CuddleStart_Dom,""
+KDDialogue_CuddleStart_Brat,""
+KDDialogue_CuddleStart_Sub,""
+
+KDDialogue_CuddleEnd_,""
+KDDialogue_CuddleEnd_Gagged,""
+KDDialogue_CuddleEnd_Robot,End of line.
+KDDialogue_CuddleEnd_Dom,""
+KDDialogue_CuddleEnd_Brat,*slaps your butt*
+KDDialogue_CuddleEnd_Sub,""
+
+KDDialogue_CuddleRunAway_,""
+KDDialogue_CuddleRunAway_Gagged,""
+KDDialogue_CuddleRunAway_Robot,Error. Subject not complying?
+KDDialogue_CuddleRunAway_Dom,""
+KDDialogue_CuddleRunAway_Brat,""
+KDDialogue_CuddleRunAway_Sub,""
+
+KDDialogue_CuddleChastity_,"Got yourself locked up, huh? Better go be good now~"
+KDDialogue_CuddleChastity_Gagged,"*she bumps up against your chastity and sighs*"
+KDDialogue_CuddleChastity_Robot,"Pleasure controls detected."
+KDDialogue_CuddleChastity_Dom,"You've been a bad girl, haven't you? *taps on your chastity gear*"
+KDDialogue_CuddleChastity_Brat,"Such a naughty girl, getting yourself all locked up like that!"
+KDDialogue_CuddleChastity_Sub,"I-I know you want release, but you're in this gear for a reason~"
+
+KDDialogue_ToyPlayStart_,""
+KDDialogue_ToyPlayStart_Gagged,""
+KDDialogue_ToyPlayStart_Robot,""
+KDDialogue_ToyPlayStart_Dom,""
+KDDialogue_ToyPlayStart_Brat,""
+KDDialogue_ToyPlayStart_Sub,""
+
+KDDialogue_ToyPlayEnd_,""
+KDDialogue_ToyPlayEnd_Gagged,""
+KDDialogue_ToyPlayEnd_Robot,End of line.
+KDDialogue_ToyPlayEnd_Dom,Had fun?~
+KDDialogue_ToyPlayEnd_Brat,*turns the toy off and giggles*
+KDDialogue_ToyPlayEnd_Sub,""
+
+KDDialogue_ToyPlayRunAway_,""
+KDDialogue_ToyPlayRunAway_Gagged,""
+KDDialogue_ToyPlayRunAway_Robot,Error. Subject not complying?
+KDDialogue_ToyPlayRunAway_Dom,""
+KDDialogue_ToyPlayRunAway_Brat,""
+KDDialogue_ToyPlayRunAway_Sub,""
+
+KDDialogue_ToyPlayChastity_,"Got yourself locked up, huh? Better go be good now~"
+KDDialogue_ToyPlayChastity_Gagged,"*she bumps up against your chastity and sighs*"
+KDDialogue_ToyPlayChastity_Robot,"Pleasure controls detected."
+KDDialogue_ToyPlayChastity_Dom,"You've been a bad girl, haven't you? *taps on your chastity gear*"
+KDDialogue_ToyPlayChastity_Brat,"Such a naughty girl, getting yourself all locked up like that!"
+KDDialogue_ToyPlayChastity_Sub,"I-I know you want release, but you're in this gear for a reason~"
+
+dGenericAllyFlirt_Cuddle,"Don't I look quite cuddly?"
+dGenericAllyFlirt_CuddleGag,"(Move closer, attempting to cuddle)"
+rGenericAllyFlirt_Cuddle,"(The SPEAKER smiles)|You do, in fact!|(She inches closer)"
+rGenericAllyFlirt_CuddleDom,"(The SPEAKER smiles gently)|Aren't you precious~"
+rGenericAllyFlirt_CuddleSub,"(The SPEAKER looks flustered)|Well, it's been a long day...|I could use a hug..."
+rGenericAllyFlirt_CuddleBrat,"(The SPEAKER smirks and reaches for your body)"
+rGenericAllyFlirt_CuddleRobot,"(The SPEAKER makes a beeping noise)|Loading cuddle module..."
 
 
 dGenericAllyFlirt_BondageOffer,"Got something for me?"
@@ -21726,6 +21976,10 @@ KinkyDungeonInventoryItemCuffKeysUse,"You twirl the keys around your finger."
 KinkyDungeonInventoryItemCuffKeysDesc,"A handy key for getting out of common handcuffs and shackles."
 KinkyDungeonInventoryItemCuffKeysDesc2,"It's not sophisticated enough to work on higher-quality locks, but can be used many times."
 
+KinkyDungeonInventoryItemRedKeyUse,"You twirl a key around your finger."
+KinkyDungeonInventoryItemBlueKeyUse,"You twirl a magic key around your finger. Careful not to lose it!"
+KinkyDungeonInventoryItemPickUse,"You fidget with a lockpick."
+
 
 ItemPickupDiscPick,"You pick up a tool for picking disc detainer locks."
 KinkyDungeonInventoryItemDiscPick,Disc Lock Tool
@@ -21965,6 +22219,7 @@ KinkyDungeonSpellOffhand,"Dual Wield"
 KinkyDungeonSpellDescriptionOffhand,"Designate an Offhand weapon to gain passive effects such as a light source, armor, or extra crit damage.|(Must equip Dual Wield spell to equip an offhand weapon)"
 
 KDInventoryActionOffhand,"Equip Offhand"
+KDInventoryActionRemoveOffhand,"Remove Offhand"
 
 KinkyDungeonSpecialSpear,Make a ranged attack with the spear.
 KinkyDungeonSpecialMagicSpear,Make a ranged attack with the spear.
@@ -23262,7 +23517,7 @@ KDPaletteMaidforce,Maid
 KDPaletteElemental,Elemental
 KDPaletteElemental2,Royal
 
-KDSelectPalette,Choose default restraint palette:
+KDSelectPalette,Choose default outfit palette:
 
 KDAutoLoadMods,Auto Load Mods
 KDModVirus,SUSPICIOUS MOD DETECTED
@@ -24537,9 +24792,9 @@ KDBindNPCSlot_InnerHead,Blindfold / Earplugs
 KDBindNPCSlot_InterHead,Blindfold
 KDBindNPCSlot_OuterHead,Blindfold
 KDBindNPCSlot_Hood,Mask/Hood
-KDBindNPCSlot_InnerGag,Gag
+KDBindNPCSlot_InnerGag,Gag / Stuffing
 KDBindNPCSlot_InterGag,Gag
-KDBindNPCSlot_OuterGag,Gag / Stuffing
+KDBindNPCSlot_OuterGag,Flat Gag
 KDBindNPCSlot_Muzzle,Muzzle
 KDBindNPCSlot_Wrists,Wrists
 KDBindNPCSlot_HeavyBondage,Bondage
@@ -24850,3 +25105,25 @@ KDModMiscError,Misc Error
 KDModVer," v"
 
 KDLivingCollarSuspendDisenchant,Magical disenchantment suspends your living collar for AMNT turns
+
+KDBindType_Energy,Hardlight
+KDBindType_Magic,Magic
+KDBindType_Leather,Leather
+KDBindType_Null,Knocked Out
+KDBindType_Latex,Latex
+KDBindType_Rope,Rope
+KDBindType_MagicRope,Magic Rope
+KDBindType_Metal,Metal
+KDBindType_Slime,Slime
+KDBindType_Tape,Tape
+KDBindType_Vine,Vine
+KDBindType_Ice,Ice
+KDBindType_Furniture,Furniture
+
+KDSaving,Saving...
+KDSaved,Game Saved
+
+KDNPCEscapeRemove,ENMY escapes from the ITMN!
+KDNPCEscapeConjuredRemove,"ENMY escapes from the ITMN and the item vanishes."
+KDNPCEscapeUnlock,ENMY unlocks the ITMN!
+KDConjuredItemVanish,The conjured ITMN vanishes as it comes off.

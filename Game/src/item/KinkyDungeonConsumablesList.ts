@@ -3,7 +3,7 @@
 let KDMaxRarity = 10; // By normal means
 
 let KinkyDungeonConsumables: Record<string, consumable> = {
-	"PotionMana" : {name: "PotionMana", potion: true, rarity: 0, shop: true, type: "restore", mp_instant: 5, mpool_instant: 0, mp_gradual: 0, scaleWithMaxMP: true, gagFloor: 0.5, duration: 0, sfx: "PotionDrink"},
+	"PotionMana" : {name: "PotionMana", potion: true, costMod: 0.5, rarity: 0, shop: true, type: "restore", mp_instant: 5, mpool_instant: 0, mp_gradual: 0, scaleWithMaxMP: true, gagFloor: 0.5, duration: 0, sfx: "PotionDrink"},
 	"ManaOrb" : {name: "ManaOrb", noHands: true, rarity: 2, shop: true, type: "restore", mp_instant: 0, mpool_instant: 20, mp_gradual: 0, scaleWithMaxMP: false, duration: 0, sfx: "Invis"},
 	"PotionWill" : {name: "PotionWill", potion: true, rarity: 1, shop: true, type: "restore", wp_instant: 2.5, wp_gradual: 0, scaleWithMaxWP: true, duration: 0, gagFloor: 0.5, sfx: "PotionDrink"},
 	"PotionStamina" : {name: "PotionStamina", potion: true, rarity: 1, shop: true, type: "restore", sp_instant: 5, sp_gradual: 25, scaleWithMaxSP: true, duration: 25, gagFloor: 0.5, sfx: "PotionDrink"},
@@ -36,6 +36,9 @@ let KinkyDungeonConsumables: Record<string, consumable> = {
 	"DollID" : {name: "DollID", rarity: 0, shop: false, type: "dollID", noHands: true, sfx: "FutureLock", noConsumeOnUse: true},
 	"KeyCard" : {name: "KeyCard", rarity: 1, shop: false, type: "KeyCard", noHands: true, sfx: "FutureLock", noConsumeOnUse: true},
 	"CuffKeys" : {name: "CuffKeys", rarity: 1, sub: 0.25, shop: false, type: "CuffKeys", noConsumeOnUse: true},
+	"Pick" : {name: "Pick", rarity: 0, sub: 0.25, shop: false, type: "Lockpick", noConsumeOnUse: true},
+	"RedKey" : {name: "RedKey", rarity: 1, sub: 0.25, shop: false, type: "RedKey", noConsumeOnUse: true},
+	"BlueKey" : {name: "BlueKey", rarity: 2, costMod: 2, shop: false, type: "BlueKey", noConsumeOnUse: true},
 	"Snuffer" : {name: "Snuffer", rarity: 3, costMod: -1, shop: true, type: "Snuffer", noConsumeOnUse: true},
 	"SackOfSacks" : {name: "SackOfSacks", rarity: 3, costMod: -2, shop: true, type: "SackOfSacks", noConsumeOnUse: true},
 	"DiscPick" : {name: "DiscPick", rarity: 4, costMod: -1, sub: 0.2, shop: true, type: "DiscPick", noConsumeOnUse: true, uniqueTags: ["pick"]},

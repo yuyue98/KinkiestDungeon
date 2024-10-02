@@ -22,9 +22,16 @@ let KDMusicYMax = 50;
 let KDMusicYSpeed = 0.15;
 let KDMusicToast = "";
 
-function KDSendMusicToast(song: string): void {
-	KDMusicToast = song;
-	KDMusicUpdateTime = CommonTime();
+let WriteMusicToast = false;
+
+function KDSendMusicToast(song: string, extraLen = 0): void {
+	if (!WriteMusicToast) {
+		// This is to avoid race conditions since this is often used to notify of async e.g. save notifications
+		WriteMusicToast = true;
+		KDMusicToast = song;
+		KDMusicUpdateTime = CommonTime() + extraLen;
+		WriteMusicToast = false;
+	}
 }
 
 function KDDrawMusic(delta: number): void {

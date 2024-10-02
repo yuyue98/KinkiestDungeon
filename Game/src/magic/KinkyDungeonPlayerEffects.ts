@@ -770,7 +770,7 @@ let KDPlayerEffects: Record<string, (target: any, damage: string, playerEffect: 
 			if (!dmg.happened) return{sfx: "Shield", effect: false};
 			let restraintAdd = KinkyDungeonGetRestraint({tags: playerEffect.tags || [playerEffect.tag]}, MiniGameKinkyDungeonLevel + spell.power, (KinkyDungeonMapIndex[MiniGameKinkyDungeonCheckpoint] || MiniGameKinkyDungeonCheckpoint));
 			if (restraintAdd) {
-				KDPlayerEffectRestrain(spell, 1, [playerEffect.tag], faction);
+				KDPlayerEffectRestrain(spell, 1, playerEffect.tags || [playerEffect.tag], faction);
 				KDSendStatus('bound', restraintAdd.name, "spell_" + spell.name);
 				KinkyDungeonSendTextMessage(5, TextGet("KinkyDungeonSpell" + spell.name + "Bind").KDReplaceOrAddDmg( dmg.string), "#ff5277", 2);
 				effect = true;
@@ -1092,7 +1092,7 @@ let KDPlayerEffects: Record<string, (target: any, damage: string, playerEffect: 
 			false,
 			false,
 			!KinkyDungeonStatsChoice.has("TightRestraints"),
-			KDGetExtraTags(enemy, enemy.usingSpecial),
+			KDGetExtraTags(enemy, enemy.usingSpecial, true),
 			false,
 			{
 				//minPower: rThresh,
@@ -1110,7 +1110,7 @@ let KDPlayerEffects: Record<string, (target: any, damage: string, playerEffect: 
 				false,
 				false,
 				!KinkyDungeonStatsChoice.has("TightRestraints"),
-				KDGetExtraTags(enemy, enemy.usingSpecial),
+				KDGetExtraTags(enemy, enemy.usingSpecial, true),
 				false,
 				{
 					maxPower: rThresh + 0.01,
@@ -1848,7 +1848,7 @@ let KDPlayerEffects: Record<string, (target: any, damage: string, playerEffect: 
 		let effect = false;
 
 		if (KDTestSpellHits(spell, 0.5, 0.5)) {
-			let dmg = KinkyDungeonDealDamage({damage: playerEffect?.power || spell?.power || 1, type: playerEffect?.damage || spell?.damage || damage}, bullet);
+			let dmg = KinkyDungeonDealDamage({damage: playerEffect?.power || spell?.power || 1, type: playerEffect?.damage || spell?.damage || damage,}, bullet);
 			if (!dmg.happened) return{sfx: "Shield", effect: false};
 			let added = [];
 			for (let i = 0; i < playerEffect.count; i++) {
@@ -2099,7 +2099,7 @@ function KDPlayerEffectRestrain (
 	allowBondageResist:  boolean = true,
 	Lock?:               string,
 	options?:            any
-): { r: restraint, v: ApplyVariant }[]
+): { r: restraint, v: ApplyVariant, iv: string}[]
 {
 	let restraintsToAdd = [];
 	let player = KinkyDungeonPlayerEntity;

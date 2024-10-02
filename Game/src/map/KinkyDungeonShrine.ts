@@ -153,7 +153,8 @@ function KinkyDungeonItemCost(item: any, noScale?: boolean, sell?: boolean): num
 			//sell ? (40 * (-0.5*power-0.6+1.25**(2.38*power)))
 			//: (50 * 1.25**(2.38*power))
 			//))
-			Math.round(((1 + 2 * Math.pow(power, 1.6))))
+			Math.round(((1 - 3.67*power + 3.54*(power**0.5) + 2 * Math.pow(power, 1.6))))
+			//b=((1-3.67\cdot x\ +3.54\cdot\ x^{0.5}+2\cdot x^{1.6}))
 		);
 
 
@@ -235,15 +236,15 @@ function KinkyDungeonShrineCost(type: string): number {
 
 function KDAddBasic(item: item | shopItem) {
 	if (item.name == "RedKey") {
-		KinkyDungeonRedKeys += 1;
+		KDAddConsumable("RedKey", 1);
 	} else if (item.name == "BlueKey") {
-		KinkyDungeonBlueKeys += 1;
+		KDAddConsumable("BlueKey", 1);
 	} else if (item.name == "Lockpick") {
-		KinkyDungeonLockpicks += 1;
+		KDAddConsumable("Pick", 1);
 	} else if (item.name == "2Lockpick") {
-		KinkyDungeonLockpicks += 2;
+		KDAddConsumable("Pick", 2);
 	} else if (item.name == "4Lockpick") {
-		KinkyDungeonLockpicks += 4;
+		KDAddConsumable("Pick", 4);
 	} else if (item.name == "MaidUniform") {
 		KinkyDungeonInventoryAddOutfit("Maid");
 	} if (KinkyDungneonBasic[item.name]?.outfit) {

@@ -152,6 +152,8 @@ interface KDRestraintPropsBase {
 	Filters?: Record<string, LayerFilter>,
 	/** Used in standalone to replace Properties */
 	Properties?: Record<string, LayerProperties>,
+	/** Forces this restraint to always be conjured when applied to NPCs*/
+	forceConjure?: boolean,
 	/** TODO Used in standalone to indicate which faction colors map to which filter
 	 * color is the faction color type
 	 * override is whether the faction color overrides the filter. If true it will replace the filter in the model. If false it will apply it over the model's filter. Currently unused
@@ -1373,7 +1375,7 @@ interface shopItem {
 	name: any;
 }
 
-interface weapon {
+interface weapon extends damageInfo {
 	ignoreshield?: boolean,
 	shield_crit?: boolean, // Crit thru shield
 	shield_stun?: boolean, // stun thru shield
@@ -1387,10 +1389,17 @@ interface weapon {
 	/** Modifies the cost by changing the rarity for cost purposes only */
 	costMod?: number,
 	name: string;
-	dmg: number;
+	damage: number;
 	chance: number;
 	type: string;
+
+
+	evadeable?: boolean,
+	nokill?: boolean,
 	bind?: number;
+	nodisarm?: boolean,
+	/** Will add conjured bindings */
+	addBind?: boolean;
 	/** For rendering on player portrait */
 	angle?: number,
 	crit?: number;
@@ -1407,6 +1416,7 @@ interface weapon {
 	tease?: boolean;
 	rarity: number;
 	staminacost?: number;
+	time?: number,
 	magic?: boolean;
 	/** Determines if the weapon is a gun/staff type (does damage regardless of binding)
 	 * or a whack type that needs force to be effective*/
@@ -1430,6 +1440,7 @@ interface weapon {
 	channelslow?: boolean;
 	novulnerable?: boolean;
 	nocrit?: boolean;
+	noblock?: boolean,
 	tags?: string[];
 	special?: {
 		type: string,
@@ -1506,6 +1517,7 @@ interface KinkyDungeonEvent {
 	restraint?: string;
 	sfx?: string;
 	power?: number;
+	keepLock?: boolean,
 	distractEff?: number;
 	desireMult?: number;
 	count?: number;
@@ -1528,6 +1540,7 @@ interface KinkyDungeonEvent {
 	melee?: boolean,
 	time?: number;
 	bindType?: string;
+	addBind?: boolean,
 	chance?: number;
 	buff?: any;
 	lock?: string;
@@ -1605,6 +1618,8 @@ interface String {
 interface entity {
 	refreshSprite?: boolean,
 	FacilityAction?: string,
+
+	strugglePoints?: number,
 
 	/** Optional leash data, used for both NPC and player */
 	leash?: KDLeashData,
@@ -1889,6 +1904,8 @@ type KDPerk = {
 
 interface spell {
 
+	/** bind tags for the spell/bullet */
+	bindTags?: string[],
 
 	ignoreshield?: boolean,
 	shield_crit?: boolean, // Crit thru shield
@@ -1997,6 +2014,7 @@ interface spell {
 	customCost?: string,
 	/** Spell does not advance time */
 	quick?: boolean;
+	addBind?: boolean,
 	/** spell required to unlock this one */
 	prerequisite?: string | string[];
 	/** blocked if you have this spell */
@@ -3248,7 +3266,7 @@ interface KDCursedDef {
 	customInfo?: (item: item, Curse?: string) => void,
 	onApply?: (item: item, host?: item) => void,
 	condition: (item: item) => boolean,
-	remove: (item: item, host: item) => void, events?: KinkyDungeonEvent[]
+	remove: (item: item, host: item, specialMethod: boolean) => void, events?: KinkyDungeonEvent[]
 }
 
 type KDRestraintVariant = {

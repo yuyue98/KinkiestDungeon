@@ -1127,7 +1127,7 @@ function KinkyDungeonPassOut(noteleport?: boolean) {
 
 	KDApplyLivingCollars();
 
-	KinkyDungeonStripInventory(false);
+	KinkyDungeonStripInventory();
 
 	if (KinkyDungeonCurrentDress == "Default")
 		KinkyDungeonSetDress("Bikini", "Bikini");
@@ -1389,7 +1389,7 @@ function KinkyDungeonDefeat(PutInJail?: boolean, leashEnemy?: entity) {
 	if (KinkyDungeonStatsChoice.has("KeepOutfit")) defeat_outfit = "Default";
 
 	KinkyDungeonSetDress(defeat_outfit, "JailUniform");
-	KinkyDungeonStripInventory(true);
+	KinkyDungeonStripInventory();
 
 	if (defeat_outfit != params.defeat_outfit) {
 		if (!KinkyDungeonInventoryGet(defeat_outfit)) KinkyDungeonInventoryAdd({name: defeat_outfit, type: Outfit, id: KinkyDungeonGetItemID()});
@@ -1422,7 +1422,7 @@ function KinkyDungeonDefeat(PutInJail?: boolean, leashEnemy?: entity) {
 	}
 
 	let outfit = KDOutfit({name: KinkyDungeonCurrentDress});
-	KDFixPlayerClothes(outfit?.palette || KDGetMainFaction() || "Jail");
+	KDFixPlayerClothes(outfit?.palette || KinkyDungeonPlayer.Palette || KDGetMainFaction() || (KDToggles.ForcePalette ? KDDefaultPalette : "Jail"));
 	KinkyDungeonDressPlayer();
 
 	KDMovePlayer(nearestJail.x + (nearestJail.direction?.x || 0), nearestJail.y + (nearestJail.direction?.y || 0), false);
@@ -1530,7 +1530,7 @@ function KDKickEnemies(nearestJail: any, ignoreAware: boolean, Level: number, no
 				10, true, false)) {
 				atLeastOneAware = true;
 			} else e.aware = false;
-			if (!ignoreAware || !e.aware)
+			if (!e.leash && (!ignoreAware || !e.aware))
 				if (!nearestJail || (e.x == nearestJail.x && e.y == nearestJail.y) || (!e.Enemy.tags?.prisoner && !e.Enemy.tags?.peaceful && !KDEnemyHasFlag(e, "imprisoned"))) {
 					if (!nearestJail || KDistChebyshev(e.x - nearestJail.x, e.y - nearestJail.y) <= 4 || (e.aware || e.vp > 0.01 || e.aggro > 0)) {
 						e.x = e.spawnX;
@@ -1552,7 +1552,7 @@ function KDKickEnemies(nearestJail: any, ignoreAware: boolean, Level: number, no
 			} else e.aware = false;
 			if (!ignoreAware || !e.aware)
 				if (!nearestJail || (e.x == nearestJail.x && e.y == nearestJail.y) || (!e.Enemy.tags.prisoner && !e.Enemy.tags.peaceful && !KDEnemyHasFlag(e, "imprisoned"))) {
-					if (!KDIsImmobile(e))
+					if (!e.leash && !KDIsImmobile(e))
 						if (!already.get(e) && (!nearestJail || KDistChebyshev(e.x - nearestJail.x, e.y - nearestJail.y) <= 4 || (e.aware || e.vp > 0.01 || e.aggro > 0))) {
 							let p = KinkyDungeonGetRandomEnemyPoint(true);
 							if (p) {
@@ -1680,11 +1680,7 @@ function KDKickEnemyLocal(e: entity) {
 	}
 }
 
-function KinkyDungeonStripInventory(KeepPicks: boolean) {
-	KinkyDungeonRedKeys = 0;
-	KinkyDungeonBlueKeys = 0;
-	KinkyDungeonLockpicks = KeepPicks ? (Math.min(Math.max(0, Math.round(3 * (1 - (KDGetEffSecurityLevel(undefined, true) + 50)/100))), KinkyDungeonLockpicks)) : 0;
-
+function KinkyDungeonStripInventory() {
 	let newInv = KinkyDungeonInventory.get(Restraint);
 	let HasBound = false;
 	let boundWeapons = [];

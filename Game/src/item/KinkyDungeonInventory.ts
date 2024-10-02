@@ -55,6 +55,10 @@ let KDInventoryActionsDefault: Record<string, (item: item) => string[]> = {
 		ret.push("QuickSlot2");
 		ret.push("QuickSlot3");
 		ret.push("QuickSlot4");
+		if (KDGameData.Offhand == _item.name)
+			ret.push("RemoveOffhand");
+		else if (KDGameData.InventoryAction != "Offhand")
+			ret.push("Offhand");
 		ret.push("Hotbar");
 		return ret;
 	},
@@ -574,6 +578,14 @@ function KinkyDungeonInventoryGetSafe(Name: string): item | null {
 function KinkyDungeonInventoryGetLoose(Name: string): item | null {
 	return KinkyDungeonInventory.get(LooseRestraint).get(Name);
 }
+/**
+ * @param Name
+ */
+function KinkyDungeonInventoryGetWorn(Name: string): item | null {
+	return KinkyDungeonInventory.get(Restraint).get(Name);
+}
+
+
 
 /**
  * @param Name
@@ -1197,7 +1209,7 @@ function KinkyDungeonDrawInventorySelected (
 			let off = (bindEff || bind) ? 75 : 0;
 			let offCost = (weapon.cutBonus) ? 75 : 0;
 
-			DrawTextKD(TextGet("KinkyDungeonWeaponDamage") + Math.round(weapon.dmg * 10), xOffset - off + canvasOffsetX_ui + 640*KinkyDungeonBookScale/3.35, canvasOffsetY_ui + 483*KinkyDungeonBookScale/5 + 350, KDBookText, KDTextTan, 24, undefined, 130);
+			DrawTextKD(TextGet("KinkyDungeonWeaponDamage") + Math.round(weapon.damage * 10), xOffset - off + canvasOffsetX_ui + 640*KinkyDungeonBookScale/3.35, canvasOffsetY_ui + 483*KinkyDungeonBookScale/5 + 350, KDBookText, KDTextTan, 24, undefined, 130);
 			if (off) DrawTextKD(TextGet("KinkyDungeonWeaponDamageBind") + (bind ? Math.round(bind * 10) : (bindEff ? Math.round(bindEff * 100) + "%" : "")), xOffset + off + canvasOffsetX_ui + 640*KinkyDungeonBookScale/3.35, canvasOffsetY_ui + 483*KinkyDungeonBookScale/5 + 350, KDBookText, KDTextTan, 24, undefined, 130);
 
 			DrawTextKD(TextGet("KinkyDungeonWeaponCrit") + Math.round((weapon.crit || KDDefaultCrit) * 100) + "%", xOffset - off + canvasOffsetX_ui + 640*KinkyDungeonBookScale/3.35, canvasOffsetY_ui + 483*KinkyDungeonBookScale/5 + 380, KDBookText, KDTextTan, 24, undefined, 130);
@@ -1775,6 +1787,43 @@ function KinkyDungeonSendInventoryEvent(Event: string, data: any) {
 			if (item.events) {
 				for (let e of item.events) {
 					if (e.trigger === Event && (!e.curse || curse) && (!e.requireEnergy || ((!e.energyCost && KDGameData.AncientEnergyLevel > 0) || (e.energyCost && KDGameData.AncientEnergyLevel > e.energyCost)))) {
+						if (iteration == (e.delayedOrder ? e.delayedOrder : 0)) {
+							KinkyDungeonHandleInventoryEvent(Event, e, item, data);
+						} else {
+							stack = true;
+						}
+					}
+				}
+			}
+			if (curse && KDCurses[curse]?.events) {
+				for (let e of KDCurses[curse].events) {
+					if (e.trigger === Event && (!e.curse || curse) && (!e.requireEnergy || ((!e.energyCost && KDGameData.AncientEnergyLevel > 0) || (e.energyCost && KDGameData.AncientEnergyLevel > e.energyCost)))) {
+						if (iteration == (e.delayedOrder ? e.delayedOrder : 0)) {
+							KinkyDungeonHandleInventoryEvent(Event, e, item, data);
+						} else {
+							stack = true;
+						}
+					}
+				}
+			}
+		}
+		iteration += 1;
+	}
+}
+
+
+function KDSendNPCRestraintEvent(Event: string, data: any) {
+	let iteration = 0;
+	let stack = true;
+	KDGetItemEventCache();
+	while ((stack) && iteration < 100) {
+		stack = false;
+		for (let item of Object.values(data.NPCRestraintEvents as Record<string, NPCRestraint>)) {
+			let curse = KDGetCurse(item);
+
+			if (item.events) {
+				for (let e of item.events) {
+					if (e.trigger === Event && (!e.curse || curse)) {
 						if (iteration == (e.delayedOrder ? e.delayedOrder : 0)) {
 							KinkyDungeonHandleInventoryEvent(Event, e, item, data);
 						} else {
@@ -2467,7 +2516,8 @@ function KinkyDungeonhandleQuickInv(NoUse?: boolean): boolean {
 function KDDropItemInv(name: string, player?: entity, playerDropped: boolean = true) {
 	let item = KinkyDungeonInventoryGetLoose(name) || KinkyDungeonInventoryGet(name);
 	if (!player) player = KinkyDungeonPlayerEntity;
-	if (item && item.type != Restraint && item.name != KinkyDungeonPlayerWeapon) { // We cant drop equipped items
+	if (item && item.type != Restraint && item.name != KinkyDungeonPlayerWeapon
+		&& (!KDWeapon(item) || !isUnarmed(KDWeapon(item)))) { // We cant drop equipped items
 		// Drop one of them
 		if (item.quantity > 1) {
 			item.quantity -= 1;
@@ -2760,6 +2810,9 @@ function KDPruneInventoryVariants(worn: boolean = true, loose: boolean = true, l
 				if (restraint?.name) {
 					found[restraint.name] = true;
 				}
+				if (restraint?.inventoryVariant) {
+					found[restraint.inventoryVariant] = true;
+				}
 			}
 		}
 	}
@@ -2890,6 +2943,38 @@ function KDGiveInventoryVariant(variant: KDRestraintVariant, prefix: string = ""
 	let q = quantity;
 	if (KinkyDungeonInventoryGet(newname)) q = KinkyDungeonInventoryGet(newname).quantity + quantity;
 	KinkyDungeonInventoryAdd({faction: faction, name: newname, curse: curse, id: KinkyDungeonGetItemID(), type: LooseRestraint, events:events, quantity: q, showInQuickInv: true,});
+}
+
+
+/**
+ * Adds an inventory variant to the player's inventory
+ * @param variant
+ * @param [prefix]
+ * @param [curse]
+ * @param [ID]
+ * @param [forceName]
+ * @param [suffix]
+ * @param [faction]
+ * @param [powerBonus]
+ * @param [quantity]
+ */
+function KDGetInventoryVariant(variant: KDRestraintVariant, prefix: string = "", curse: string = undefined, ID: string = "", forceName?: string, suffix: string = "", faction: string = "", powerBonus?: number, quantity: number = 1): item {
+	let origRestraint = KinkyDungeonGetRestraintByName(variant.template);
+	let events = origRestraint.events ? JSON.parse(JSON.stringify(origRestraint.events)) : [];
+	let newname = forceName ? forceName : (prefix + variant.template + (ID || (KinkyDungeonGetItemID() + "")) + (curse ? curse : ""));
+	if (prefix) variant.prefix = prefix;
+	if (suffix) variant.suffix = suffix;
+	if (curse) {
+		variant = JSON.parse(JSON.stringify(variant));
+		variant.curse = curse;
+	}
+	if (powerBonus) variant.power = powerBonus;
+	if (!KinkyDungeonRestraintVariants[newname])
+		KinkyDungeonRestraintVariants[newname] = variant;
+	if (variant.events)
+		Object.assign(events, variant.events);
+	let q = quantity;
+	return {faction: faction, name: newname, curse: curse, id: KinkyDungeonGetItemID(), type: LooseRestraint, events:events, quantity: q, showInQuickInv: true,};
 }
 /**
  * Adds an inventory variant to the player's inventory

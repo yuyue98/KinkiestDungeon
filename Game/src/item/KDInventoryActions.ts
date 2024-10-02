@@ -1,6 +1,6 @@
 "use strict";
 
-let KDMarketRateDecay = 0.95;
+let KDMarketRateDecay = 0.98;
 
 let KDInventoryAction: Record<string, KDInventoryActionDef> = {
 	"Equip": {
@@ -129,6 +129,7 @@ let KDInventoryAction: Record<string, KDInventoryActionDef> = {
 		},
 		valid: (_player, item) => {
 			if ((item?.type == Restraint)) return false;
+			if ((item?.type == Weapon && isUnarmed(KDWeapon(item)))) return false;
 			return true;
 		},
 		click: (_player, item) => {
@@ -244,7 +245,7 @@ let KDInventoryAction: Record<string, KDInventoryActionDef> = {
 		valid: (_player, item) => {
 			let r = KDRestraint(item);
 			let sg = KinkyDungeonStruggleGroups.find((group) => {return r.Group == group.group;});
-			return KinkyDungeonLockpicks > 0 && !sg.blocked;
+			return KinkyDungeonItemCount("Pick") > 0 && !sg.blocked;
 		},
 		click: (_player, item) => {
 			let itemIndex = KDGetItemLinkIndex(item, false);
@@ -542,7 +543,7 @@ let KDInventoryAction: Record<string, KDInventoryActionDef> = {
 			if (KDHasRemovableCurse(item, KDGameData.CurseLevel) || KDHasRemovableHex(item, KDGameData.CurseLevel)) {
 				if (KDHasRemovableCurse(item, KDGameData.CurseLevel)) {
 					if (item.curse && KDCurses[item.curse]) {
-						KDCurses[item.curse].remove(item, KDGetRestraintHost(item));
+						KDCurses[item.curse].remove(item, KDGetRestraintHost(item), true);
 					}
 
 					let inventoryAs = item.inventoryVariant || item.name || (KDRestraint(item).inventoryAs);
@@ -651,12 +652,40 @@ let KDInventoryAction: Record<string, KDInventoryActionDef> = {
 			if (!(item?.type == Weapon && KDCanOffhand(item))) return false;
 			return KinkyDungeonCanUseWeapon(false, undefined, KDWeapon(item));
 		},
+		show: (_player, item) => {
+			return KDGameData.Offhand != item.name;
+		},
 		/** Happens when you click the button */
 		click: (_player, item) => {
 			KDGameData.Offhand = item.name;
 			KDGameData.OffhandOld = item.name;
 			KinkyDungeonAdvanceTime(1, true, true);
-			KinkyDungeonDrawState = "Game";
+			//if (KDGameData.InventoryAction == "Offhand")
+			//	KinkyDungeonDrawState = "Game";
+			KDRefreshCharacter.set(KinkyDungeonPlayer, true);
+			KinkyDungeonDressPlayer();
+		},
+		/** Return true to cancel it */
+		cancel: (_player, delta) => {
+			if (delta > 0) {
+				if (KinkyDungeonLastTurnAction) {
+					return true;
+				}
+			}
+			return false;
+		},
+	},
+	"RemoveOffhand": {
+		icon: (_player, _item) => {
+			return "InventoryAction/RemoveOffhand";
+		},
+		valid: (_player, item) => {
+			return KDGameData.Offhand == item.name;
+		},
+		/** Happens when you click the button */
+		click: (_player, item) => {
+			KDGameData.Offhand = "";
+			KDGameData.OffhandOld = "";
 			KDRefreshCharacter.set(KinkyDungeonPlayer, true);
 			KinkyDungeonDressPlayer();
 		},
