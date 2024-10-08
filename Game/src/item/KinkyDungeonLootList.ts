@@ -252,6 +252,8 @@ for (let armor of KDShadowRestraints) {
 	armor.forceEquip = true;
 }
 
+
+
 let KinkyDungeonLootTable = {
 	"rubble": [
 		//{name: "nothing", minLevel: 0, weight:9, message:"LootRubbleFail", messageColor:"#aaaaaa", messageTime: 2, allFloors: true},
@@ -893,6 +895,15 @@ let KinkyDungeonLootTable = {
 			enchantlist: "Gold", enchantchance: 1,
 			enchantlevelmin: 0, enchantlevelmax: 20,
 			message:"KDGoddessQuestReward_Armor", messageColor:"lightblue", messageTime: 3, allFloors: true},
+		{name: "CyberDoll", minLevel: 0, weight: 40,
+			armortags: ["cyberDollRestraints"], armor: "ControlHarness",
+			amtMult: 1.75,
+			maxEnchants: 3,
+			cursesuffix: "",
+			faction: "Curse",
+			enchantlist: "Gold", enchantchance: 1,
+			unlockcurse: ["Divine"], enchantlevelmin: 0, enchantlevelmax: 20,
+			message:"KDGoddessQuestReward_Armor", messageColor:"lightblue", messageTime: 3, allFloors: true},
 		{name: "ControlHarness", minLevel: 0, weight: 10,
 			armor: "ControlHarness",
 			amtMult: 2.5,
@@ -1330,3 +1341,29 @@ let KDLootEvents: Record<string, lootEventFunc> = {
 		};
 	},
 };
+
+interface KDMinorLootEntry {
+	rarity: number,
+	options: any[],
+}
+
+let KDMinorLootTable = {
+	chest: {
+		rarity: 1,
+		extraQuantity: 0,
+		options: [
+			{name: "Knife", minLevel: 0, weight:5, allFloors: true, message:"", messageColor:""},
+			{name: "Pick", minLevel: 0, weight:5, quantity: 1, extraQuantity: 2, allFloors: true, message:"", messageColor:""},
+			{name: "RedKey", minLevel: 0, weight:3, quantity: 1, extraQuantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "Bomb", minLevel: 0, weight:5, quantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "FlashBomb", minLevel: 0, weight:0.1, quantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "SmokeBomb", minLevel: 0, weight:5, quantity: 2, allFloors: true, message:"", messageColor:""},
+			{name: "Flashbang", minLevel: 0, weight:5, quantity: 2, allFloors: true, message:"", messageColor:""},
+			{name: "PotionMana", minLevel: 0, weight:3, quantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "PotionStamina", minLevel: 0, weight:3, quantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "PotionWill", minLevel: 0, weight:2, quantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "PotionFrigid", minLevel: 0, weight:2, quantity: 1, allFloors: true, message:"", messageColor:""},
+			{name: "Gunpowder", minLevel: 0, weight:2, quantity: 1, allFloors: true, message:"", messageColor:""},
+		],
+	},
+}

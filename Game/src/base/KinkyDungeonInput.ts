@@ -422,7 +422,7 @@ function KDProcessInput(type: string, data: any): string {
 				let spell = KinkyDungeonFindSpell("CommandWord", true);
 				let miscast = KinkyDungeonMiscastChance;
 				let gagTotal = KinkyDungeonGagTotal();
-				if (KinkyDungeoCheckComponents(KinkyDungeonFindSpell("CommandWord"), KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y).length > 0) {
+				if (KinkyDungeoCheckComponents(KinkyDungeonFindSpell("CommandWord"), KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y).failed.length > 0) {
 					miscast = miscast + Math.max(0, 1 - miscast) * Math.min(1, !KDSpellIgnoreComp(spell) ? gagTotal : 0);
 				}
 				if (KDRandom() > miscast) {
@@ -949,7 +949,7 @@ function KDProcessInput(type: string, data: any): string {
 		}
 		case "select": {
 			if (data.enemy && KDAllied(data.enemy)) {
-				if (data.enemy.buffs?.AllySelect?.duration > 0) data.enemy.buffs.AllySelect.duration = 0;
+				if (data.enemy.buffs?.AllySelect?.duration > 0) KinkyDungeonExpireBuff(data.enemy, "AllySelect")
 				else KinkyDungeonApplyBuffToEntity(data.enemy, {
 					id: "AllySelect",
 					aura: "#ffffff",
@@ -963,7 +963,7 @@ function KDProcessInput(type: string, data: any): string {
 		}
 		case "selectOnly": {
 			for (let e of KDMapData.Entities) {
-				if (e.id != data.enemy?.id && e.buffs?.AllySelect) e.buffs.AllySelect.duration = 0;
+				if (e.id != data.enemy?.id && e.buffs?.AllySelect) KinkyDungeonExpireBuff(e, "AllySelect")
 				else if (e.id == data.enemy?.id) KinkyDungeonApplyBuffToEntity(e, {
 					id: "AllySelect",
 					aura: "#ffffff",
@@ -982,7 +982,7 @@ function KDProcessInput(type: string, data: any): string {
 				let enemy = KinkyDungeonFindID(data.enemy.id);
 				if (!enemy && KDGameData.Party) enemy = KDGameData.Party.find((entity) => {return entity.id == data.enemy.id;});
 				if (enemy) {
-					if (enemy.buffs?.AllySelect) enemy.buffs.AllySelect.duration = 0;
+					if (enemy.buffs?.AllySelect) KinkyDungeonExpireBuff(enemy, "AllySelect")
 					KinkyDungeonSetEnemyFlag(enemy, "NoFollow", -1);
 					KDRemoveFromParty(enemy, false);
 					KinkyDungeonSendTextMessage(10, TextGet("KDOrderRemove").replace("ENMY", TextGet("Name" + enemy.Enemy.name)), "#ffffff", 1);
@@ -1208,7 +1208,7 @@ function KDProcessInput(type: string, data: any): string {
 		case "recycle":
 			break;
 		case "tightenNPCRestraint":
-			KDNPCRefreshBondage(data.npc, data.player);
+			KDNPCRefreshBondage(data.npc, data.player, false, false);
 			break;
 		case "releaseNPC":
 			if (data?.selection) {
@@ -1336,18 +1336,19 @@ function KDProcessInputs(ReturnResult?: boolean): string {
 	return "";
 }
 
-function KDInteract(x, y) {
+function KDInteract(x: number, y: number, dist?: number) {
+	if (dist == undefined) dist = KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y);
 	KinkyDungeonSendEvent("beforeInteract", {x:x, y: y});
-	if (KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5 && !KinkyDungeonEntityAt(x, y, false, undefined, undefined, false))
+	if (dist < 1.5 && !KinkyDungeonEntityAt(x, y, false, undefined, undefined, false))
 		KinkyDungeonItemCheck(x, y, MiniGameKinkyDungeonLevel, true);
 	KDInteracting = false;
 	let tile = KinkyDungeonTilesGet(x + ',' + y);
 	if (tile?.Type) {
 		if (KDObjectInteract[tile.Type]) {
-			let ret = KDObjectInteract[tile.Type](x, y);
+			let ret = KDObjectInteract[tile.Type](x, y, dist);
 			KinkyDungeonSendEvent("afterInteract", {x:x, y: y, type: "object", objtype: tile.Type});
 			return ret;
-		} else if (KDObjectClick[tile.Type] && KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5) {
+		} else if (KDObjectClick[tile.Type] && dist < 1.5) {
 			let ret = KDObjectClick[tile.Type](x, y);
 			KinkyDungeonSendEvent("afterInteract", {x:x, y: y, type: "objectclick", objtype: tile.Type});
 			return ret;
@@ -1355,7 +1356,7 @@ function KDInteract(x, y) {
 	}
 	let tiletype = KinkyDungeonMapGet(x, y);
 	if (KDTileInteract[tiletype]) {
-		let ret = KDTileInteract[tiletype](x, y);
+		let ret = KDTileInteract[tiletype](x, y, dist);
 		KinkyDungeonSendEvent("afterInteract", {x:x, y: y, type: "tile", objtype: tiletype});
 		return ret;
 

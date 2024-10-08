@@ -31,7 +31,7 @@ RestartNeededRU,"Restart required!"
 
 KDVersion,"Version"
 KinkyDungeon,"Kinky Dungeon"
-KDVersionStr,"5.3.42"
+KDVersionStr,"5.3.44"
 KDLogo2,"By Ada18980"
 Intro,"You are an adventurer descending into an ancient underground city of magic."
 Intro2,"Beneath its depths lies the Mistress' Staff, an artifact of untold power."
@@ -45,6 +45,7 @@ KDToggleTabUI,UI
 KDToggleTabControls,Controls
 KDToggleTabKeybindings,Keybindings
 
+KDToggle,Auto loot all from chests
 
 KDToggleApplyPaletteRestraint,Apply palettes to Restraints
 KDToggleApplyPaletteTransform,Apply palettes to transforms
@@ -156,8 +157,8 @@ KinkyDungeonStats,"Select perks to start with."
 KinkyDungeonStats2,"Having 10+ spare points will trigger Hard Mode, granting unique loot."
 KDHardMode," (HARD MODE ENABLED)"
 KinkyDungeonStartGameAdv,"Advanced start (choose perks)"
-KinkyDungeonStartGameKinky,"Kinky start (stricter, more bondage focused)"
-KinkyDungeonStartGameQuick,"Confirm and start playing!"
+KinkyDungeonStartGameKinky,"Kinky start"
+KinkyDungeonStartGameQuick,"Normal start"
 
 KinkyDungeonStatCost,"Point Cost: AMOUNT"
 KinkyDungeonStatPoints,"Points Available: AMOUNT"
@@ -382,6 +383,9 @@ KinkyDungeonStatDollmakerMask,"Doll Hunter M"
 KinkyDungeonStatDescDollmakerMask,"You start with the Dollmaker's Mask."
 KinkyDungeonStatStartShadow,"Persisting Desires"
 KinkyDungeonStatDescStartShadow,"Your dark desires are endless."
+
+KinkyDungeonStatSugarRush,"Sugar Rush"
+KinkyDungeonStatDescSugarRush,"Consuming sweets makes you hyperactive, decreasing stamina costs and granting free moves."
 
 KinkyDungeonStatVengeance,"Vengeance"
 KinkyDungeonStatDescVengeance,"Defeating an enemy greatly distracts you."
@@ -3546,6 +3550,7 @@ ClimbDown,"You climb down to the next level"
 
 KinkyDungeonRestraintLevel,Level RestraintLevel (Rarity)
 
+KinkyDungeonCategoryFilterAll,All
 KinkyDungeonCategoryFilterconsumable,Consumable
 KinkyDungeonCategoryFilterrestraint,Worn
 KinkyDungeonCategoryFilterweapon,Weapons
@@ -5526,7 +5531,7 @@ KDTileTooltipO,Orb Altar
 KDTileTooltipo,Empty Altar
 KDTileTooltipC,Chest
 KDTileTooltipC2,Faction Chest
-KDTileTooltipc,Empty Chest
+KDTileTooltipc,Open Chest
 KDTileTooltipR,Shiny Object
 KDTileTooltipY,Shiny Object
 KDTileTooltip4,Cracked Wall
@@ -8020,6 +8025,7 @@ KinkyDungeonEasyModeDesc2,"If you get captured, you are totally on your own."
 
 KinkyDungeonStartGame,Start Playing
 KinkyDungeonStartGameDesc,"Lock your settings in, nice and tight."
+KinkyDungeonStartGameDescKinky,"Start with some perks that increase strictness and immersion."
 KinkyDungeonStartGameDescAdc,"Choose some perks to spice up your run."
 
 KinkyDungeonConsent,"This game engages in safe and consensual analytics."
@@ -24700,6 +24706,8 @@ KDFacility_Recycler,Recycler
 KDFacilityDesc_Recycler,"Convert low tier restraints into raw materials and output higher quality restraints.|Adding more servants increase the conversion speed."
 KDFacility_CuddleLounge,Cuddle Lounge
 KDFacilityDesc_CuddleLounge,"Assign prisoners to the lounge in order to improve servant and prisoner opinion."
+KDFacility_Warden,Warden
+KDFacilityDesc_Warden,"Appoint a warden to keep prisoners in check and automatically bind using restraints from storage."
 
 KDRecycleButton,Recycle Restraints
 
@@ -24876,7 +24884,7 @@ KDLastNPCLocationCapturedNone,"Captured by enemies"
 
 KDCantFree,Use 'Truss'em'Up' to edit restraints on this NPC
 KDNeedsTighten,"The NPC needs tightening, but is unavailable right now"
-KDTightenRestraint,Tighten loose restraints
+KDTightenRestraint,Tighten non-conjured restraints
 
 
 KDNPCEscaped,NPC has escaped!
@@ -25127,3 +25135,29 @@ KDNPCEscapeRemove,ENMY escapes from the ITMN!
 KDNPCEscapeConjuredRemove,"ENMY escapes from the ITMN and the item vanishes."
 KDNPCEscapeUnlock,ENMY unlocks the ITMN!
 KDConjuredItemVanish,The conjured ITMN vanishes as it comes off.
+
+KDWardenTightened,AMNT restraints added since last tick~
+KDWardenConfiscate,AMNT restraints confiscated since last tick~
+KDWardenNoRestraints,You have no restraints in storage. Go to the Summit to deposit restraints.
+
+KDContainerBack_Facilities,Back to Facilities
+KDContainerBack_Game,Back to Game
+
+KDContainerType_Self,Your Inventory
+KDContainerType_Chest,Chest
+KDContainerType_,Chest
+KDContainerType_WardenChest,Warden's Storage
+
+KDAdd1,Store 1 ITMN
+KDTake1,Take 1 ITMN
+KDAdd5,Store 5 ITMN
+KDTake5,Take 5 ITMN
+KDAddAll,Store ALL ITMN
+KDTakeAll,Take ALL ITMN
+KDAddAll1,Store ALL-1 ITMN
+KDTakeAll1,Take ALL-1 ITMN
+KDTakeEverything,Take Everything
+KDDepositEverything,Deposit All
+
+KDAutoLoot,"Auto-loot found "
+KDNotPickedUp," (not picked up)"

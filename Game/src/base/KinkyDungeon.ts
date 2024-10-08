@@ -251,6 +251,7 @@ let KDToggles = {
 	IgnoreApplyCharPalette: true,
 	AlwaysApplyCharPalette: true,
 	DefaultApplyCharPalette: false,
+	Autoloot: true,
 };
 
 let KDToggleCategories = {
@@ -321,6 +322,7 @@ let KDToggleCategories = {
 	IgnoreApplyCharPalette: "none",
 	AlwaysApplyCharPalette: "none",
 	DefaultApplyCharPalette: "none",
+	Autoloot: "UI",
 };
 
 let KDDefaultKB = {
@@ -624,12 +626,14 @@ interface KDGameDataBase {
 	InteractTargetX:		number,
 	InteractTargetY:		number,
 	RegimentID:			number,
+	Containers: Record<string, KDContainer>,
 	FacilitiesData:			FacilitiesData,
 	Regiments:			Record<string, KDRegiment>,
 	QuickLoadouts:			Record<string, string[]>,
 };
 
 let KDGameDataBase: KDGameDataBase = {
+	Containers: {},
 	PersistentItems: {},
 	Regiments: {},
 	FacilitiesData: null,
@@ -2359,8 +2363,9 @@ function KinkyDungeonRun() {
 
 		if (MouseIn(875, 650, 750, 64)) {
 			DrawTextFitKD(TextGet("KinkyDungeonStartGameDesc"), 1250, 120, 1000, "#ffffff", KDTextGray0);
-		}
-		if (MouseIn(875, 720, 750, 64)) {
+		} else if (MouseIn(875, 720, 750, 64)) {
+			DrawTextFitKD(TextGet("KinkyDungeonStartGameDescKinky"), 1250, 120, 1000, "#ffffff", KDTextGray0);
+		} else if (MouseIn(875, 790, 750, 64)) {
 			DrawTextFitKD(TextGet("KinkyDungeonStartGameDescAdc"), 1250, 120, 1000, "#ffffff", KDTextGray0);
 		}
 
@@ -3465,6 +3470,7 @@ function KDMouseWheel (event: WheelEvent): void {
 	if (KDFunctionOptionsScroll(event.deltaY)) return;
 	if (KDFunctionCollectionScroll(event.deltaY)) return;
 	if (KDFunctionFacilitiesScroll(event.deltaY)) return;
+	if (KDFunctionContainerScroll(event.deltaY)) return;
 	if (KDFunctionDialogueScroll(event.deltaY)) return;
 	if (KDFunctionPerksScroll(event.deltaY || event.deltaX)) return;
 	if (KDFunctionQuestScroll(event.deltaY || event.deltaX)) return;
@@ -3532,6 +3538,17 @@ function KDFunctionFacilitiesScroll(amount: number): boolean {
 			KDClickButton("facDown");
 		} else {
 			KDClickButton("facUp");
+		}
+		return true;
+	}
+	return false;
+}
+function KDFunctionContainerScroll(amount: number): boolean {
+	if (KinkyDungeonState == "Game" && KinkyDungeonDrawState == "Container") {
+		if (amount > 0) {
+			KDClickButton("conDown");
+		} else {
+			KDClickButton("conUp");
 		}
 		return true;
 	}
@@ -4906,6 +4923,19 @@ function KinkyDungeonStartNewGame(Load: boolean = false) {
 		KDGameData.RoomType = "JourneyFloor";//KinkyDungeonStatsChoice.get("easyMode") ? "ShopStart" : "JourneyFloor";
 		MiniGameKinkyDungeonLevel = 0;
 		KDInitializeJourney("");
+
+		// Remove all chests and add to lost items
+		let lostItems: item[] = [];
+		for (let entry of Object.entries(KDGameData.Containers)) {
+			if (entry[1].location?.mapY > 0) {
+				lostItems.push(...Object.values(entry[1].items));
+				delete KDGameData.Containers[entry[0]];
+			}
+		}
+		for (let item of lostItems) {
+			KDAddLostItemSingle(item.name, 1);
+		}
+
 		if (KDTileToTest) {
 			KinkyDungeonMapIndex.grv = cp;
 		}
@@ -5726,6 +5756,7 @@ function KinkyDungeonLoadGame(String: string = "") {
 			KDGameData = JSON.parse(JSON.stringify(KDGameDataBase));
 			if (saveData.KDGameData != undefined) KDGameData = Object.assign({}, saveData.KDGameData);
 
+			if (!KDGameData.Containers) KDGameData.Containers = {};
 
 			InitFacilities();
 
@@ -5852,6 +5883,11 @@ function KinkyDungeonLoadGame(String: string = "") {
 			KDRefreshSpellCache = true;
 			for (let spell of saveData.spells) {
 				let sp = KinkyDungeonFindSpell(spell);
+				if (sp) KDPushSpell(sp);
+			}
+
+			if (KDHasSpell("BattleRhythm") && !KDHasSpell("FighterOffhand")) {
+				let sp = KinkyDungeonFindSpell("FighterOffhand");
 				if (sp) KDPushSpell(sp);
 			}
 

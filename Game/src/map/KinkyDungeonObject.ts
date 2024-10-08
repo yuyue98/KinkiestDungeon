@@ -50,17 +50,17 @@ let KDObjectClick: Record<string, (x: number, y: number) => void> = {
 /**
  * Script happens when you interact to an object
  */
-let KDObjectInteract: Record<string, (x: number, y: number) => void> = {
-	"DollDropoff": (x, y) => {
-		if (KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
+let KDObjectInteract: Record<string, (x: number, y: number, dist?: number) => void> = {
+	"DollDropoff": (x, y, dist) => {
+		if (dist != undefined ? dist : KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
 			//if (!KinkyDungeonGetRestraintItem("ItemDevices")) {
 			KDGameData.InteractTargetX = x;
 			KDGameData.InteractTargetY = y;
 			KDStartDialog("DollDropoff", "", true);
 			//}
 	},
-	"Furniture": (x, y) => {
-		if (KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
+	"Furniture": (x, y, dist) => {
+		if (dist != undefined ? dist : KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
 			//if (!KinkyDungeonGetRestraintItem("ItemDevices")) {
 			KDGameData.InteractTargetX = x;
 			KDGameData.InteractTargetY = y;
@@ -78,13 +78,27 @@ let KDObjectInteract: Record<string, (x: number, y: number) => void> = {
 /**
  * Script happens when you interact to an tile
  */
-let KDTileInteract: Record<string, (x: number, y: number) => void> = {
-	'B': (x, y) => {
-		if (KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
+let KDTileInteract: Record<string, (x: number, y: number, dist?: number) => void> = {
+	'B': (x, y, dist) => {
+		if (dist != undefined ? dist : KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
 			if (!KinkyDungeonFlags.get("slept") && !KinkyDungeonFlags.get("nobed") && KinkyDungeonStatWill < KinkyDungeonStatWillMax * 0.49) {
 				KDGameData.InteractTargetX = x;
 				KDGameData.InteractTargetY = y;
 				KDStartDialog("Bed", "", true);
+			}
+	},
+	'c': (x, y, dist) => {
+		if (dist != undefined ? dist : KDistChebyshev(x - KDPlayer().x, y - KDPlayer().y) < 1.5)
+			KDGameData.InteractTargetX = x;
+			KDGameData.InteractTargetY = y;
+			// Open container
+			KDUI_CurrentContainer = KDGetContainer("Chest", {x: x, y: y}, KDGetCurrentLocation(),
+				true)?.name;
+			if (KDUI_CurrentContainer) {
+				KDUI_ContainerBackScreen = KinkyDungeonDrawState;
+				KinkyDungeonDrawState = "Container";
+				KinkyDungeonCurrentFilter = "All";
+				KDUI_Container_LastSelected = "Chest";
 			}
 	},
 };
@@ -125,11 +139,12 @@ function KinkyDungeonDrawDoor() {
 		KDModalArea_y = 700;
 		//}
 		DrawButtonKDEx("ModalDoorPick", () => {
-			if (KinkyDungeonItemCount("Pick") > 0 && (KDLocks[KinkyDungeonTargetTile.Lock].canPick({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
-				// Done, converted to input
-				KDSendInput("pick", {targetTile: KinkyDungeonTargetTileLocation});
-				return true;
-			}
+			if (KinkyDungeonTargetTile)
+				if (KinkyDungeonItemCount("Pick") > 0 && (KDLocks[KinkyDungeonTargetTile.Lock].canPick({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
+					// Done, converted to input
+					KDSendInput("pick", {targetTile: KinkyDungeonTargetTileLocation});
+					return true;
+				}
 			return true;
 		}, true, KDModalArea_x + 450, KDModalArea_y + 100, 250, 60, TextGet("KinkyDungeonPickDoor"),
 		(KDLocks[KinkyDungeonTargetTile.Lock].pickable)
@@ -137,11 +152,12 @@ function KinkyDungeonDrawDoor() {
 			: "#888888", "", "");
 
 		DrawButtonKDEx("ModalDoorUnlock", () => {
-			if ((KDLocks[KinkyDungeonTargetTile.Lock].canUnlock({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
-				// Done, converted to input
-				KDSendInput("unlock", {targetTile: KinkyDungeonTargetTileLocation});
-				return true;
-			}
+			if (KinkyDungeonTargetTile)
+				if ((KDLocks[KinkyDungeonTargetTile.Lock].canUnlock({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
+					// Done, converted to input
+					KDSendInput("unlock", {targetTile: KinkyDungeonTargetTileLocation});
+					return true;
+				}
 			return true;
 		}, true, KDModalArea_x + 175, KDModalArea_y + 100, 250, 60, TextGet("KinkyDungeonUnlockDoor"),
 		(KDLocks[KinkyDungeonTargetTile.Lock].unlockable) ?
@@ -149,11 +165,12 @@ function KinkyDungeonDrawDoor() {
 			: "#888888", "", "");
 		let spell = KinkyDungeonFindSpell("CommandWord", true);
 		DrawButtonKDEx("ModalDoorCmd", () => {
-			if (((KinkyDungeonTargetTile.Lock.includes("Purple") && KinkyDungeonStatMana > KinkyDungeonGetManaCost(KinkyDungeonFindSpell("CommandWord", true))))) {
-				// Done, converted to input
-				KDSendInput("commandunlock", {targetTile: KinkyDungeonTargetTileLocation});
-				return true;
-			}
+			if (KinkyDungeonTargetTile)
+				if (((KinkyDungeonTargetTile.Lock.includes("Purple") && KinkyDungeonStatMana > KinkyDungeonGetManaCost(KinkyDungeonFindSpell("CommandWord", true))))) {
+					// Done, converted to input
+					KDSendInput("commandunlock", {targetTile: KinkyDungeonTargetTileLocation});
+					return true;
+				}
 			return true;
 		}, true, KDModalArea_x + 725, KDModalArea_y + 100, 250, 60, TextGet("KinkyDungeonUnlockDoorPurple"),
 		KDLocks[KinkyDungeonTargetTile.Lock].commandable
@@ -186,11 +203,12 @@ function KinkyDungeonDrawLock() {
 			action = true;
 			KDModalArea = true;
 			DrawButtonKDEx("ModelLockPick", () => {
-				if (KinkyDungeonItemCount("Pick") > 0 && (KDLocks[KinkyDungeonTargetTile.Lock].canPick({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
-					// Done, converted to input
-					KDSendInput("pick", {targetTile: KinkyDungeonTargetTileLocation});
-					return true;
-				}
+				if (KinkyDungeonTargetTile)
+					if (KinkyDungeonItemCount("Pick") > 0 && (KDLocks[KinkyDungeonTargetTile.Lock].canPick({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
+						// Done, converted to input
+						KDSendInput("pick", {targetTile: KinkyDungeonTargetTileLocation});
+						return true;
+					}
 				return true;
 			}, true, KDModalArea_x + 313, KDModalArea_y + 25, 112, 60, TextGet("KinkyDungeonPickDoor"),
 			(KDLocks[KinkyDungeonTargetTile.Lock].canPick({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation})) ? "#ffffff" : "#ff5277", "", "");
@@ -200,11 +218,12 @@ function KinkyDungeonDrawLock() {
 			action = true;
 			KDModalArea = true;
 			DrawButtonKDEx("ModalLockUnlock", () => {
-				if ((KDLocks[KinkyDungeonTargetTile.Lock].canUnlock({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
-					// Done, converted to input
-					KDSendInput("unlock", {targetTile: KinkyDungeonTargetTileLocation});
-					return true;
-				}
+				if (KinkyDungeonTargetTile)
+					if ((KDLocks[KinkyDungeonTargetTile.Lock].canUnlock({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation}))) {
+						// Done, converted to input
+						KDSendInput("unlock", {targetTile: KinkyDungeonTargetTileLocation});
+						return true;
+					}
 				return true;
 			}, true, KDModalArea_x + 175, KDModalArea_y + 25, 112, 60, TextGet("KinkyDungeonUnlockDoor"),
 			(KDLocks[KinkyDungeonTargetTile.Lock].canUnlock({target: KinkyDungeonTargetTile, location: KinkyDungeonTargetTileLocation})) ? "#ffffff" : "#ff5277", "", "");
@@ -214,11 +233,12 @@ function KinkyDungeonDrawLock() {
 			KDModalArea = true;
 			let spell = KinkyDungeonFindSpell("CommandWord", true);
 			DrawButtonKDEx("ModalLockCmd", () => {
-				if (((KinkyDungeonTargetTile.Lock.includes("Purple") && KinkyDungeonStatMana > KinkyDungeonGetManaCost(KinkyDungeonFindSpell("CommandWord", true))))) {
-					// Done, converted to input
-					KDSendInput("commandunlock", {targetTile: KinkyDungeonTargetTileLocation});
-					return true;
-				}
+				if (KinkyDungeonTargetTile)
+					if (((KinkyDungeonTargetTile.Lock.includes("Purple") && KinkyDungeonStatMana > KinkyDungeonGetManaCost(KinkyDungeonFindSpell("CommandWord", true))))) {
+						// Done, converted to input
+						KDSendInput("commandunlock", {targetTile: KinkyDungeonTargetTileLocation});
+						return true;
+					}
 				return true;
 			}, true, KDModalArea_x + 175, KDModalArea_y + 25, 112, 60, TextGet("KinkyDungeonUnlockDoorPurple"),
 			(KinkyDungeonStatMana >= KinkyDungeonGetManaCost(spell)) ? "#ffffff" : "#ff5277",

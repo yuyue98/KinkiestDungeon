@@ -1913,7 +1913,7 @@ function KinkyDungeonUpdateBulletsCollisions(delta: number, Catchup?: boolean) {
 					}
 					KinkyDungeonBulletHit(b, 0);
 				}
-				if (delta > 0 && !b.collisionUpdate) {
+				if (delta > 0 && !b.collisionUpdate && b.bullet.damage) {
 					b.born = 0;
 				}
 			}
@@ -3117,14 +3117,15 @@ function KDCanOffhand(item: item): boolean {
 		item: item,
 		is2handed: KDWeapon(item)?.clumsy,
 		is2handedPrimary: KinkyDungeonPlayerDamage?.clumsy,
-		canOffhand: !KinkyDungeonPlayerDamage?.clumsy && KDWeapon(item)?.events?.some((e) => {
+		allowedOffhand: !KinkyDungeonPlayerDamage?.clumsy && KDWeapon(item)?.events?.some((e) => {
 			return e.offhand;
 		}),
+		canOffhand: false,
 	};
 
 	KinkyDungeonSendEvent("canOffhand", data);
 
-	return data.item && data.canOffhand;
+	return data.item && data.canOffhand && data.allowedOffhand;
 }
 
 /**

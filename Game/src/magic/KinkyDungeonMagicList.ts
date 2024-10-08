@@ -434,18 +434,27 @@ let KinkyDungeonSpellList: Record<string, spell[]> = { // List of spells you can
 
 
 
-		{name: "RogueOffhand", tags: ["utility", "defense", "offense"], school: "Special", prerequisite: "RogueTargets", classSpecific: "Rogue", hideWithout: "RogueTargets",
-			hideLearned: true, hideWith: "Offhand",
+		{name: "FighterOffhand", tags: ["utility", "defense", "offense"], school: "Special",
+			prerequisite: "BattleRhythm", classSpecific: "Fighter", hideWithout: "BattleRhythm",
+			hideLearned: true, hideWith: "FighterOffhand",
 			events: [
-				{trigger: "canOffhand", type: "RogueOffhand"},
+				{trigger: "canOffhand", type: "FighterOffhand"},
+			],
+			manacost: 0, components: [], level:1, spellPointCost: 1, type:"", passive: true, autoLearn: ["Offhand"],
+			onhit:"", time:25, power: 0, range: 1.5, size: 1, damage: ""},
+		{name: "RogueOffhand", tags: ["utility", "defense", "offense"], school: "Special",
+			prerequisite: "RogueTargets", classSpecific: "Rogue", hideWithout: "RogueTargets",
+			hideLearned: true, hideWith: "FighterOffhand",
+			events: [
+				{trigger: "canOffhand", type: "RogueOffhand", delayedOrder: 1},
 			],
 			manacost: 0, components: [], level:1, spellPointCost: 1, type:"", passive: true, autoLearn: ["Offhand"],
 			onhit:"", time:25, power: 0, range: 1.5, size: 1, damage: ""},
 		{name: "WizardOffhand", tags: ["utility", "defense", "offense"], school: "Special", prerequisite: "ManaRegen", classSpecific: "Mage", hideWithout: "ManaRegen",
-			hideLearned: true, hideWith: "Offhand",
+			hideLearned: true, hideWith: "FighterOffhand",
 			events: [
-				{trigger: "canOffhand", type: "WizardOffhand"},
-				{trigger: "tick", type: "WizardOffhand"},
+				{trigger: "canOffhand", type: "WizardOffhand", delayedOrder: 1},
+				{trigger: "tick", type: "WizardOffhand", delayedOrder: 1},
 			],
 			manacost: 0, components: [], level:1, spellPointCost: 1, type:"", passive: true, autoLearn: ["Offhand"],
 			onhit:"", time:25, power: 0, range: 1.5, size: 1, damage: ""},
@@ -1389,7 +1398,7 @@ let KinkyDungeonSpellList: Record<string, spell[]> = { // List of spells you can
 				{type: "HandsFree", trigger: "calcDamage"},
 				{type: "ArmsFree", trigger: "calcDamage"},
 			]},*/
-		{name: "Lockdown", prerequisite: "ApprenticeMetal", tags: ["metal", "lock", "binding", "utility", "offense"], sfx: "MagicSlash", school: "Conjure", manacost: 4.5, components: ["Verbal"], mustTarget: true, level:1,
+		{name: "Lockdown", prerequisite: "ApprenticeMetal", tags: ["metal", "lock", "binding", "utility", "command", "offense"], sfx: "MagicSlash", school: "Conjure", manacost: 4.5, components: ["Verbal"], mustTarget: true, level:1,
 			/*buffs: [
 				{id: "Lockdown", aura: "#a96ef5", type: "Locked", duration: 8, power: 1.0, player: true, enemies: true, tags: ["lock", "debuff"]},
 				{id: "Lockdown2", type: "MoveSpeed", duration: 8, power: -1.0, player: false, enemies: true, noAlly: true, tags: ["slow", "debuff"]},
@@ -1446,7 +1455,7 @@ let KinkyDungeonSpellList: Record<string, spell[]> = { // List of spells you can
 			type:"special", special: "NegateRune",
 			onhit:"", time:0, power: 3.0, range: 1.5, size: 1, aoe: 0.5, damage: "inert"},
 
-		{name: "CommandSlime", prerequisite: "ApprenticeLatex", tags: ["command", "slime", "defense"], sfx: "MagicSlash", school: "Conjure", manacost: 9, components: ["Verbal"], level:1,
+		{name: "CommandSlime", prerequisite: "ApprenticeLatex", tags: ["slime", "defense"], sfx: "MagicSlash", school: "Conjure", manacost: 9, components: ["Verbal"], level:1,
 			type:"special", special: "CommandSlime",
 			onhit:"", time:0, power: 9.9, range: 2.5, size: 1, aoe: 1.5, damage: "inert"},
 

@@ -400,7 +400,7 @@ function KDDrawNPCRestrain(npcID: number, restraints: Record<string, NPCRestrain
 
 	if (!currentBottomTab) {
 		let enemy = KDGetGlobalEntity(npcID);
-		if (enemy?.boundLevel < KDGetExpectedBondageAmountTotal(npcID, enemy)) {
+		if (enemy?.boundLevel < KDGetExpectedBondageAmountTotal(npcID, enemy, false)) {
 			if (DrawButtonKDEx("TightenBinds", (b) => {
 				if (!KDIsNPCPersistent(npcID) || KDGetPersistentNPC(npcID).collect)
 					KDSendInput("tightenNPCRestraint", {
@@ -613,13 +613,13 @@ function KDGetEncaseGroupSlot(id): NPCBindingSubgroup {
 	return null;
 }
 
-function KDNPCRefreshBondage(id: number, player: number, force?: boolean) {
+function KDNPCRefreshBondage(id: number, player: number, force: boolean = false, allowConjured: boolean = true, container?: Record<string, item>) {
 	let restraints: Record<string, NPCRestraint> = JSON.parse(JSON.stringify(KDGetNPCRestraints(id)));
 
 	if (restraints) {
 		let already = {};
 		for (let inv of Object.entries(restraints)) {
-			if (!already[inv[1].id]) {
+			if (!already[inv[1].id] && (allowConjured || !inv[1].conjured)) {
 				already[inv[1].id] = true;
 				KDInputSetNPCRestraint({
 					slot: inv[0],
@@ -630,14 +630,14 @@ function KDNPCRefreshBondage(id: number, player: number, force?: boolean) {
 					npc: id,
 					player: player,
 					force: true,
-				});
+				}, container);
 
 			}
 		}
 		// Readd
 		already = {};
 		for (let inv of Object.entries(restraints)) {
-			if (!already[inv[1].id]) {
+			if (!already[inv[1].id] && (allowConjured || !inv[1].conjured)) {
 				already[inv[1].id] = true;
 				KDInputSetNPCRestraint({
 					slot: inv[0],
@@ -650,11 +650,12 @@ function KDNPCRefreshBondage(id: number, player: number, force?: boolean) {
 					inventoryVariant: inv[1].inventoryVariant,
 					events: inv[1].events,
 					powerbonus: inv[1].powerbonus,
+					conjured: inv[1].conjured,
 
 					npc: id,
 					player: player,
 					force: true,
-				});
+				}, container);
 			}
 		}
 	}
@@ -712,7 +713,7 @@ function KDFreeNPCRestraints(id: number, player: number) {
 	}
 }
 
-function KDInputSetNPCRestraint(data): boolean {
+function KDInputSetNPCRestraint(data, container?: Record<string, item>): boolean {
 	let row = KDGetEncaseGroupRow(data.slot);
 	let slot = KDGetEncaseGroupSlot(data.slot);
 	let item: item = null;
@@ -804,13 +805,21 @@ function KDInputSetNPCRestraint(data): boolean {
 				KDNPCRestraintTieUp(data.npc, rrr, 1);
 			} else return;
 
-			if (!data.noInventory && KinkyDungeonInventoryGetSafe(data.restraint)) {
-				KinkyDungeonInventoryGetSafe(data.restraint).quantity =
-				(KinkyDungeonInventoryGetSafe(data.restraint).quantity || 1) - 1;
-				if (KinkyDungeonInventoryGetSafe(data.restraint).quantity <= 0) {
-					KinkyDungeonInventoryRemoveSafe(KinkyDungeonInventoryGetSafe(data.restraint));
-					KDSortInventory(KDPlayer());
+			if (!data.noInventory) {
+				if (container && container[data.restraint]) {
+					container[data.restraint].quantity -= 1;
+					if (container[data.restraint].quantity <= 0) {
+						delete container[data.restraint];
+					}
+				} else if (KinkyDungeonInventoryGetSafe(data.restraint)) {
+					KinkyDungeonInventoryGetSafe(data.restraint).quantity =
+						(KinkyDungeonInventoryGetSafe(data.restraint).quantity || 1) - 1;
+						if (KinkyDungeonInventoryGetSafe(data.restraint).quantity <= 0) {
+							KinkyDungeonInventoryRemoveSafe(KinkyDungeonInventoryGetSafe(data.restraint));
+							KDSortInventory(KDPlayer());
+						}
 				}
+
 			}
 		}
 
@@ -848,7 +857,7 @@ function KDInputSetNPCRestraint(data): boolean {
 	}
 	if (item && !data.noInventory) {
 		KDReturnNPCItem(
-			item
+			item, container
 		);
 	}
 
@@ -862,36 +871,60 @@ function KDInputSetNPCRestraint(data): boolean {
 	return true;
 }
 
-function KDReturnNPCItem(item: item) {
+function KDReturnNPCItem(item: item, container?: Record<string, item>) {
 	let restraint = KDRestraint(item);
 		if (!item.conjured) {
 
 			let inventoryAs = item.inventoryVariant || restraint?.inventoryAs || item.name;
 
-			if (!KinkyDungeonInventoryGetSafe(item.name)) {
-				if (KinkyDungeonRestraintVariants[item.inventoryVariant || item.name]) {
-					KDGiveInventoryVariant(KinkyDungeonRestraintVariants[item.inventoryVariant || item.name], undefined,
-						KinkyDungeonRestraintVariants[item.inventoryVariant || item.name].curse, "", item.name);
+			if (container) {
+				if (!container[item.name]) {
+					if (KinkyDungeonRestraintVariants[item.inventoryVariant || item.name]) {
+						container[item.name] = KDGetInventoryVariant(KinkyDungeonRestraintVariants[item.inventoryVariant || item.name], undefined,
+							KinkyDungeonRestraintVariants[item.inventoryVariant || item.name].curse, "", item.name);
+
+					} else {
+						container[item.name] = {
+						name: inventoryAs,
+						//curse: curse,
+						id: item.id,
+						type: LooseRestraint,
+						//events:events,
+						quantity: 1,
+						showInQuickInv: KinkyDungeonRestraintVariants[item.inventoryVariant || item.name] != undefined,};
+					}
 
 				} else {
-					KinkyDungeonInventoryAdd({
-					name: inventoryAs,
-					//curse: curse,
-					id: item.id,
-					type: LooseRestraint,
-					//events:events,
-					quantity: 1,
-					showInQuickInv: KinkyDungeonRestraintVariants[item.inventoryVariant || item.name] != undefined,});
+					container[item.name].quantity = (container[item.name].quantity || 1) + 1;
 				}
+			} else {
+				if (!KinkyDungeonInventoryGetSafe(item.name)) {
+					if (KinkyDungeonRestraintVariants[item.inventoryVariant || item.name]) {
+						KDGiveInventoryVariant(KinkyDungeonRestraintVariants[item.inventoryVariant || item.name], undefined,
+							KinkyDungeonRestraintVariants[item.inventoryVariant || item.name].curse, "", item.name);
+
+					} else {
+						KinkyDungeonInventoryAdd({
+						name: inventoryAs,
+						//curse: curse,
+						id: item.id,
+						type: LooseRestraint,
+						//events:events,
+						quantity: 1,
+						showInQuickInv: KinkyDungeonRestraintVariants[item.inventoryVariant || item.name] != undefined,});
+					}
 
 
-				KDSortInventory(KDPlayer());
-			} else KinkyDungeonInventoryGetSafe(item.name).quantity += 1;
+					KDSortInventory(KDPlayer());
+				} else KinkyDungeonInventoryGetSafe(item.name).quantity = (KinkyDungeonInventoryGetSafe(item.name).quantity || 1) + 1;
+			}
+
 		} else {
-			KinkyDungeonSendTextMessage(4, TextGet("KDConjuredRestraintVanish").replace(
-				"RSTN",
-				KDGetItemName(item),
-			), "#5577aa", 1);
+			if (!container)
+				KinkyDungeonSendTextMessage(4, TextGet("KDConjuredRestraintVanish").replace(
+					"RSTN",
+					KDGetItemName(item),
+				), "#5577aa", 1);
 		}
 }
 
@@ -930,13 +963,13 @@ function KDGetExpectedBondageAmount(id: number, target: entity): Record<string, 
 	return result;
 }
 /** Gets the expected total bondage amounts */
-function KDGetExpectedBondageAmountTotal(id: number, target: entity): number {
+function KDGetExpectedBondageAmountTotal(id: number, target: entity, allowConjured: boolean = true): number {
 	if (!KDGameData.NPCRestraints) return 0;
 	let result = 0;
 	let restraints = Object.values(KDGameData.NPCRestraints[id + ""] || {});
 	let already = {};
 	for (let item of restraints) {
-		if (!already[item.id] && KDRestraint(item)) {
+		if (!already[item.id] && KDRestraint(item) && (allowConjured || !item.conjured)) {
 			let stats = KDGetRestraintBondageStats(item, target)
 			already[item.id] = true;
 			result +=  stats.amount;

@@ -198,8 +198,8 @@ function KDDrawRecycler(x: number, y: number, width: number): number {
 
 
 		} else {
-			yy += 180;
-			DrawTextFitKD(TextGet("KDFacilityLocal"), x + 560, y + 240, 1050 - 160, "#ffffff", KDTextGray0, 32, "center");
+			yy += 240;
+			DrawTextFitKD(TextGet("KDFacilityLocal"), x + 560, y + 280, 1050 - 160, "#ffffff", KDTextGray0, 32, "center");
 		}
 
 	}
@@ -441,7 +441,7 @@ function KDMapToRecycleOutputs(amount: Record<string, number>): RecyclerOutputs 
 }
 
 function KDRecyclerResources(restraint: restraint, mult: number = 1.4, variant?: string): Record<string, number> {
-	mult *= 1 + Math.max(0, restraint.power * 0.5);
+	mult *= 1 + Math.max(0, restraint.power * 0.1);
 	let res: Record<string, number> = {};
 	if (variant) {
 		// TODO add an actual event

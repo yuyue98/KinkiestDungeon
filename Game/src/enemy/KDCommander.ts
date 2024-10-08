@@ -676,7 +676,7 @@ let KDCommanderOrders: Record<string, KDCommanderOrder> = {
 					|| ((!KDAIType[KDGetAI(enemy)].ambush || enemy.ambushtrigger)))
 				&& KDNearbyEnemies(enemy.x, enemy.y, enemy.Enemy.visionRadius/2 || 1.5, undefined, true, enemy).some((en) => {
 					return en != enemy && KDBoundEffects(en) > 1 && !KDHostile(enemy, en) && (!KDStruggleAssisters[en.id] || KDStruggleAssisters[en.id] == enemy.id)
-					&& !KDEnemyHasFlag(en, "imprisoned")
+					&& !KDIsImprisoned(en)
 					&& (!KDEntityHasBuffTags(en, "commandword") || enemy.Enemy.unlockCommandLevel > 0)
 					;
 				})
@@ -687,7 +687,7 @@ let KDCommanderOrders: Record<string, KDCommanderOrder> = {
 			return data.combat ? 50 : 400;
 		},
 		apply: (enemy, _data) => {
-			if ((enemy.aware || enemy.vp > 0.1) && KDRandom() < 0.15)
+			if ((enemy.aware || enemy.vp > 0.1) && KDRandom() < 0.45)
 				KinkyDungeonSendDialogue(enemy,
 					TextGet("KinkyDungeonRemindJailChase" + (KDGetEnemyPlayLine(enemy) ? KDGetEnemyPlayLine(enemy) : "") + "CommandDefend")
 						.replace("EnemyName", TextGet("Name" + enemy.Enemy.name)), KDGetColor(enemy),
@@ -697,9 +697,9 @@ let KDCommanderOrders: Record<string, KDCommanderOrder> = {
 
 		// Role maintenance
 		maintain: (enemy, _data) => {
-			if (!KDNearbyEnemies(enemy.x, enemy.y, enemy.Enemy.visionRadius/2 || 1.5, undefined, true, enemy).some((en) => {
+			if (enemy.idle && !KDNearbyEnemies(enemy.x, enemy.y, enemy.Enemy.visionRadius/2 || 1.5, undefined, true, enemy).some((en) => {
 				return en != enemy && KDBoundEffects(en) > 1 && !KDHostile(enemy, en) && (!KDStruggleAssisters[en.id] || KDStruggleAssisters[en.id] == enemy.id)
-				&& !KDEnemyHasFlag(en, "imprisoned")
+				&& !KDIsImprisoned(en)
 				&& (!KDEntityHasBuffTags(en, "commandword") || enemy.Enemy.unlockCommandLevel > 0)
 				;
 			})) return false;
@@ -715,13 +715,13 @@ let KDCommanderOrders: Record<string, KDCommanderOrder> = {
 			if (!KDEnemyHasFlag(enemy, "tickHS")) {
 				let search = KDNearbyEnemies(enemy.x, enemy.y, 1.5, undefined, true, enemy).filter((en) => {
 					return en != enemy && KDBoundEffects(en) > 1 && !KDHostile(enemy, en) && (!KDStruggleAssisters[en.id] || KDStruggleAssisters[en.id] == enemy.id)
-					&& !KDEnemyHasFlag(en, "imprisoned")
+					&& !KDIsImprisoned(en)
 					&& (!KDEntityHasBuffTags(en, "commandword") || enemy.Enemy.unlockCommandLevel > 0)
 					;
 				});
 				if (search.length == 0) search = KDNearbyEnemies(enemy.x, enemy.y, enemy.Enemy.visionRadius/2 || 1.5, undefined, true, enemy).filter((en) => {
 					return en != enemy && KDBoundEffects(en) > 1 && !KDHostile(enemy, en) && (!KDStruggleAssisters[en.id] || KDStruggleAssisters[en.id] == enemy.id)
-					&& !KDEnemyHasFlag(en, "imprisoned")
+					&& !KDIsImprisoned(en)
 					&& (!KDEntityHasBuffTags(en, "commandword") || enemy.Enemy.unlockCommandLevel > 0)
 					;
 				});

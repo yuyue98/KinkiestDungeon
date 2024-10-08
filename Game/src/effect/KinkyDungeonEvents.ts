@@ -3763,7 +3763,36 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 							failedcomp.push(comp);
 						}
 					}
-					if (failedcomp.length > 0) {
+					let castdata = {
+						targetX: data.targetX,
+						targetY: data.targetY,
+						spell: spell,
+						components: data.components,
+						flags: {
+							miscastChance: KinkyDungeonMiscastChance,
+						},
+						gaggedMiscastFlag: false,
+						gaggedMiscastType: "Gagged",
+						query: true,
+					};
+					KDDoGaggedMiscastFlag(castdata);
+					let oldMiscast = castdata.flags.miscastChance;
+
+					castdata = {
+						targetX: data.targetX,
+						targetY: data.targetY,
+						spell: spell,
+						components: ["Verbal"],
+						flags: {
+							miscastChance: KinkyDungeonMiscastChance,
+						},
+						gaggedMiscastFlag: false,
+						gaggedMiscastType: "Gagged",
+						query: true,
+					};
+					KDDoGaggedMiscastFlag(castdata);
+					let newMiscast = castdata.flags.miscastChance;
+					if (failedcomp.length > 0 || oldMiscast > newMiscast) {
 						data.components = ["Verbal"];
 					}
 				}
@@ -3802,17 +3831,23 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 	},
 	"canOffhand": {
 		"RogueOffhand": (_e, _spell, data) => {
-			if (data.canOffhand && KDHasSpell("RogueOffhand") && !KDHasSpell("BattleRhythm")) {
-				if (KDWeapon(data.item)?.clumsy || KDWeapon(data.item)?.heavy || KDWeapon(data.item)?.massive) {
-					data.canOffhand = false;
+			if (!data.canOffhand && KDHasSpell("RogueOffhand")) {
+				if (!(KDWeapon(data.item)?.clumsy || KDWeapon(data.item)?.heavy || KDWeapon(data.item)?.massive)
+					|| KDWeapon(data.item)?.tags?.includes("illum")) {
+					data.canOffhand = true;
 				}
 			}
 		},
 		"WizardOffhand": (_e, _spell, data) => {
-			if (data.canOffhand && KDHasSpell("WizardOffhand") && !KDHasSpell("BattleRhythm")) {
-				if (!KDWeaponIsMagic(data.item)) {
-					data.canOffhand = false;
+			if (!data.canOffhand && KDHasSpell("WizardOffhand")) {
+				if (KDWeaponIsMagic(data.item) || KDWeapon(data.item)?.tags?.includes("illum")) {
+					data.canOffhand = true;
 				}
+			}
+		},
+		"FighterOffhand": (_e, _spell, data) => {
+			if (!data.canOffhand) {
+				data.canOffhand = true;
 			}
 		},
 	},
@@ -4141,7 +4176,7 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 		},
 		"Psychokinesis": (e, _spell, data) => {
 			if (data.spell && data.spell.tags && data.spell.tags.includes("telekinesis")) {
-				if (KinkyDungeoCheckComponents(data.spell, KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, true).length > 0) {
+				if (KinkyDungeoCheckComponents(data.spell, KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y, true).failed.length > 0) {
 					KinkyDungeonChangeDistraction((data.spell.manacost ? data.spell.manacost : 1) * e.mult);
 				}
 			}
@@ -4403,7 +4438,7 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 			}
 		},
 		"WizardOffhand": (_e, _spell, _data) => {
-			if (!KDHasSpell("BattleRhythm")) {
+			if (!KDHasSpell("FighterOffhand")) {
 				if (KDGameData.Offhand && KinkyDungeonInventoryGetWeapon(KDGameData.Offhand)) {
 					let weapon = KDWeapon(KinkyDungeonInventoryGetWeapon(KDGameData.Offhand));
 					if (weapon?.clumsy || weapon?.heavy || weapon?.massive)
@@ -5573,7 +5608,7 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 
 				let player = KinkyDungeonPlayerEntity;
 				let cost = KinkyDungeonGetManaCost(spell, false, true);
-				if (KinkyDungeoCheckComponents(spell, player.x, player.y).length == 0) {
+				if (KinkyDungeoCheckComponents(spell, player.x, player.y).failed.length == 0) {
 					if (KinkyDungeonHasMana(cost)) {
 
 						KinkyDungeonApplyBuffToEntity(player, {
@@ -5608,7 +5643,7 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 
 				let player = KinkyDungeonPlayerEntity;
 				let cost = KinkyDungeonGetManaCost(spell, false, true);
-				if (KinkyDungeoCheckComponents(spell, player.x, player.y).length == 0) {
+				if (KinkyDungeoCheckComponents(spell, player.x, player.y).failed.length == 0) {
 					if (KinkyDungeonHasMana(cost)) {
 						KinkyDungeonUpdateLightGrid = true;
 						KinkyDungeonApplyBuffToEntity(player, {
@@ -5653,7 +5688,7 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 
 				let player = KinkyDungeonPlayerEntity;
 				let cost = KinkyDungeonGetManaCost(spell, false, true);
-				if (KinkyDungeoCheckComponents(spell, player.x, player.y).length == 0) {
+				if (KinkyDungeoCheckComponents(spell, player.x, player.y).failed.length == 0) {
 					if (KinkyDungeonHasMana(cost)) {
 						KinkyDungeonUpdateLightGrid = true;
 						if (!KDGameData.RevealedTiles) KDGameData.RevealedTiles = {};
@@ -5796,7 +5831,7 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 				});
 				for (let en of list)
 					if (en) {
-						if (en.buffs?.AllySelect) en.buffs.AllySelect.duration = 0;
+						if (en.buffs?.AllySelect) KinkyDungeonExpireBuff(en, "AllySelect")
 					}
 			}
 		},
