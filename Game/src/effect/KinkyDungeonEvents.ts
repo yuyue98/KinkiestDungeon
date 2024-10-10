@@ -1148,7 +1148,9 @@ let KDEventMapInventory: Record<string, Record<string, (e: KinkyDungeonEvent, it
 			if (!data.delta) return;
 			let healed = false;
 			for (let enemy of KDMapData.Entities) {
-				if (KDAllied(enemy) && KDistEuclidean(enemy.x - KinkyDungeonPlayerEntity.x, enemy.y - KinkyDungeonPlayerEntity.y) <= e.aoe) {
+				if (KDAllied(enemy)
+					&& (enemy.hp > 0 || KDHelpless(enemy))
+					&& KDistEuclidean(enemy.x - KinkyDungeonPlayerEntity.x, enemy.y - KinkyDungeonPlayerEntity.y) <= e.aoe) {
 					let origHP = enemy.hp;
 					enemy.hp = Math.min(enemy.hp + e.power, enemy.Enemy.maxhp);
 					if (enemy.hp - origHP > 0) {
@@ -7052,7 +7054,7 @@ let KDEventMapWeapon: Record<string, Record<string, (e: KinkyDungeonEvent, weapo
 					let newX = data.targetX + Math.round(e.dist * (data.targetX - KinkyDungeonPlayerEntity.x));
 					let newY = data.targetY + Math.round(e.dist * (data.targetY - KinkyDungeonPlayerEntity.y));
 					if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(newX, newY)) && KinkyDungeonNoEnemy(newX, newY, true)
-						&& (e.dist == 1 || KinkyDungeonCheckProjectileClearance(data.enemy.x, data.enemy.y, newX, newY))) {
+						&& (e.dist == 1 || KinkyDungeonCheckProjectileClearance(data.enemy.x, data.enemy.y, newX, newY, false))) {
 						KDMoveEntity(data.enemy, newX, newY, false);
 					}
 				}
@@ -7463,7 +7465,7 @@ let KDEventMapBullet: Record<string, Record<string, (e: KinkyDungeonEvent, b: an
 						let newX = data.enemy.x + Math.round(1 * Math.sign(b.vx));
 						let newY = data.enemy.y + Math.round(1 * Math.sign(b.vy));
 						if (KinkyDungeonMovableTilesEnemy.includes(KinkyDungeonMapGet(newX, newY)) && KinkyDungeonNoEnemy(newX, newY, true)
-						&& (e.dist == 1 || KinkyDungeonCheckProjectileClearance(data.enemy.x, data.enemy.y, newX, newY))) {
+						&& (e.dist == 1 || KinkyDungeonCheckProjectileClearance(data.enemy.x, data.enemy.y, newX, newY, false))) {
 							KDMoveEntity(data.enemy, newX, newY, false);
 						}
 					}
@@ -9015,7 +9017,9 @@ let KDEventMapEnemy: Record<string, Record<string, (e: KinkyDungeonEvent, enemy:
 
 		"HolyOrbAura": (e, enemy, data) => {
 			// We heal nearby allies and self
-			if (data.delta && KinkyDungeonCanCastSpells(enemy) && ((data.allied && KDAllied(enemy)) || (!data.allied && !KDAllied(enemy)))) {
+			if (data.delta && KinkyDungeonCanCastSpells(enemy)
+				&& enemy.hp > 0
+				&& ((data.allied && KDAllied(enemy)) || (!data.allied && !KDAllied(enemy)))) {
 				if (!e.chance || KDRandom() < e.chance) {
 					let nearby = KDNearbyEnemies(enemy.x, enemy.y, e.dist);
 					for (let en of nearby) {
@@ -9654,6 +9658,19 @@ let KDEventMapGeneric: Record<string, Record<string, (e: string, data: any) => v
 					}
 			}
 		},
+	},
+	"beforeMove": {
+		"changeFace": (e, intent) => {
+			if (KDToggles.FlipPlayerAuto) {
+				let movedelta = intent.x - KinkyDungeonPlayerEntity.x;
+				if (movedelta > 0) {
+					KDToggles.FlipPlayer = true;
+				}
+				else if (movedelta < 0) {
+					KDToggles.FlipPlayer = false;
+				}
+			}
+		}
 	},
 	"resetEventVar": {
 		/**

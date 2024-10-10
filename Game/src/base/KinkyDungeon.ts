@@ -230,6 +230,7 @@ let KDToggles = {
 	ForcePalette: false,
 	AutoLoadMods: false,
 	FlipPlayer: true,
+	FlipPlayerAuto: true,
 	Helper: true,
 	FastFloaters: false,
 	NoDmgFloaters: false,
@@ -310,6 +311,7 @@ let KDToggleCategories = {
 	//LazyWalk: "Controls",
 	//ShiftLatch: "Controls",
 	FlipPlayer: "Clothes",
+	FlipPlayerAuto: "Clothes",
 	GreyscaleBlindness: "GFX",
 	DynamicArmor: "Clothes",
 	OnlySelfQuickInv: "UI",
@@ -4924,17 +4926,7 @@ function KinkyDungeonStartNewGame(Load: boolean = false) {
 		MiniGameKinkyDungeonLevel = 0;
 		KDInitializeJourney("");
 
-		// Remove all chests and add to lost items
-		let lostItems: item[] = [];
-		for (let entry of Object.entries(KDGameData.Containers)) {
-			if (entry[1].location?.mapY > 0) {
-				lostItems.push(...Object.values(entry[1].items));
-				delete KDGameData.Containers[entry[0]];
-			}
-		}
-		for (let item of lostItems) {
-			KDAddLostItemSingle(item.name, 1);
-		}
+
 
 		if (KDTileToTest) {
 			KinkyDungeonMapIndex.grv = cp;

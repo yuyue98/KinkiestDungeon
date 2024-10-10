@@ -53,7 +53,7 @@ Version
 版本号
 Kinky Dungeon
 淫荡地牢
-### 5.3.44
+### 5.3.45
 By Ada18980
 由 Ada18980 制作
 You are an adventurer descending into an ancient underground city of magic.
@@ -78,6 +78,7 @@ Controls
 Keybindings
 按键绑定
 
+### Auto loot all from chests
 
 Apply palettes to Restraints
 将调色应用于束缚
@@ -285,8 +286,7 @@ Select perks to start with.
 选择初始技能
 Having 10+ spare points will trigger Hard Mode, granting unique loot.
 可用积分大于10将进入困难模式，可获得独特的战利品
- (HARD MODE ENABLED)
- ( 困难模式启用 )
+###  (HARD MODE ENABLED)
 Advanced start (choose perks)
 高级启动 ( 选择额外技能 )
 Kinky start
@@ -689,6 +689,9 @@ Persisting Desires
 执着于欲望
 Your dark desires are endless.
 你黑暗的欲望是无止境的。
+
+### Sugar Rush
+### Consuming sweets makes you hyperactive, decreasing stamina costs and granting free moves.
 
 Vengeance
 复仇
@@ -2937,7 +2940,8 @@ You found a crack and could maybe wedge a knife or tool into it to keep it still
 你找到了一个缝隙，可以将刀或工具塞进去，让它保持稳定
 You found something sticky and might be able to pull off fabrics.
 你找到了一些黏糊糊的东西，也许可以用它来撕掉布料
-### Evasion:
+Evasion:
+回避率 : ‎
 Visibility:
 可见度 : ‎
 
@@ -6027,6 +6031,7 @@ You climb down to the next level
 Level RestraintLevel (Rarity)
 等级 RestraintLevel ( Rarity )
 
+### All
 Consumable
 消耗品
 Worn
@@ -8525,8 +8530,7 @@ Chest
 箱子
 Faction Chest
 派系宝箱
-Empty Chest
-空箱子
+### Open Chest
 Shiny Object
 闪闪发光的物体
 Cracked Wall
@@ -12640,6 +12644,9 @@ Your key to the stairs is taken away!
 You found a keyring to the stairs! Now you just need to get there.
 你找到了楼梯的钥匙圈！现在你只需要到达那里。
 
+
+### Behold my SPL!
+### Mmmph... SPL...
 Oh noes...
 哦不……
 Ueeee!
@@ -12739,6 +12746,8 @@ Hey, stop that!
 
 
 
+### Activate SPL protocol.
+### What do you mean 'access denied'???
 Release me at once.
 赶紧放开我。
 This is unacceptable!
@@ -12829,7 +12838,9 @@ Know your place!
 
 
 
-
+### Hmmph~
+My mistake~
+我的错〜
 This wasn't supposed to happen.
 这不应该发生。
 The Collector has become the Collected.
@@ -12931,7 +12942,9 @@ Show me what you've got~
 I'll watch~
 我会看的~
 
-
+Submit to my SPL!
+提交给我的SPL！
+### Hmmmph... SPL--
 Fine then! Have it your way.
 那好吧！随心所欲。
 You'll be sorry you didn't listen to me~
@@ -12943,6 +12956,8 @@ They're coming for me!
 Do you know of the Dollmaker? I've got a proposal for you and I...
 你知道玩偶制造者吗？我有一个建议给你，我...
 
+### I cast SPL!
+### That wasn't supposed to happen!
 This is too tight...
 这太紧了...
 I can't get free!
@@ -13028,7 +13043,8 @@ Come and get me!
 You'll never escape!
 你永远也逃不掉！
 
-
+### Mmmphh!
+### Mmmm! Mmmmmmm!
 ### Mmmmph!!!
 ### Mmmmm~
 ### Mmmgh!
@@ -13100,7 +13116,10 @@ MMMMMPH!!!
 
 
 
-
+*focuses intently*
+*全神贯注*
+*appears distracted*
+*显得心不在焉*
 *Mmmmmm~*
 *嗯嗯嗯~*
 *muffled giggle*
@@ -13115,6 +13134,8 @@ Mmmm~
 
 
 
+### Watch out for my SPL!
+### Whoops!
 You won't get me like this!
 你不会这样得到我的！
 You'll never catch me!
@@ -13208,6 +13229,8 @@ You're mine.
 You can't get away.
 你无法逃脱。
 
+### *extends an arm*
+### *miscast*
 *wiggles*
 *摇晃*
 *struggles*
@@ -13279,6 +13302,8 @@ This is a bug, please report
 *marches*
 *游荡*
 
+### Engaging SPL!
+### A-Access denied!?
 This... this unit is doing a good job! I swear!
 这……这个小队干得很好！我发誓！
 It's just business as usual, nothing to see here...
@@ -13378,7 +13403,10 @@ My orders are to shut you down~
 Defenses online!
 在线防御！
 
-
+SPL armed.
+SPL 武装。
+An exception has occurred while trying to run SPL. Retry?
+尝试运行 SPL 时发生异常。是否重试？
 Error in citizen ID registration. Please submit to processing.
 公民身份证登记错误。请提交处理。
 Does not compute.
@@ -13488,7 +13516,8 @@ Moving to capture.
 Forming blockade.
 形成屏障。
 
-
+### SPL();
+### throw new Error(SPL);
 query([ID]); >ERROR; transport([UNKNOWN], [DOLL])
 查询（[ID]）； >错误；运输（[未知]，[娃娃]）
 Does not compute;
@@ -13598,6 +13627,8 @@ capture([CITIZEN]);
 defend([POINT]);
 捍卫（[点]）；
 
+### Hyah, SPL!
+### No! Not like that!
 Looks like I'm up to no good... better stop me!
 看来我要做坏事了…… 最好阻止我！
 Careful where you point that thing!
@@ -13701,6 +13732,8 @@ I smell an opportunity!
 Do I have to?
 我一定要吗？
 
+### Let me introduce you to SPL~
+### No! My SPL!
 Oh my, looks like I'm in trouble!
 哎呀，看来我遇到麻烦了！
 What a shame it would be if I got caught~
@@ -13802,6 +13835,8 @@ Oooh, that one's mine!
 
 
 
+### SPL.
+### ...
 No! I don't want to read your magazines!
 不！我才不想看你的杂志！
 No, I don't want to learn about Shibari!
@@ -13900,6 +13935,8 @@ Get out of my library!
 
 
 
+### Deploying SPL!
+### What was I supposed to do again? Oh right!
 No! I didn't do anything wrong...
 不！我没有做错什么...
 Don't punish me! Please!
@@ -13969,6 +14006,8 @@ Now now, what do we have here?
 
 
 
+### I'll need another SPL, stat!
+### A p-professional mistake.
 I did what the manual said!
 我是按照说明书说的做的！
 I seem to have caught something, won't you help?
@@ -14009,6 +14048,8 @@ I'll take a look.
 
 
 
+### SPL
+### SPL failed
 
 
 
@@ -14065,8 +14106,47 @@ PTRN
 
 
 
-
-
+### SPL!
+That w-was supposed to be a SPL!
+那应该是 SPL！
+Ooh, a shiny rock…
+哦，一块闪亮的石头……
+I wonder what's over here?
+我想知道这边是什么？
+I'm bored, bye!
+我很无聊，再见！
+Pay more attention to me!
+多注意我！
+Tell me I'm pretty!
+告诉我我很漂亮！
+I'm not a bottom, I'm a scary dom!
+我不是受，我是可怕的支配者！
+You seem stressed, how about I help you take a break?
+你看起来很紧张，我帮你放松一下怎么样？
+Here's some powerful loot that will help you win! Let me help you try it on…
+这里有一些强大的战利品可以帮助你获胜！让我帮你试穿一下……
+Aaah, I can't help it, you're just too cute to keep my hands off!
+啊啊，我没办法，你太可爱了，让我无法帮助你！
+Cuddle pillows aren't supposed to be able to move!
+抱枕不应该能够移动！
+C'mon, c'mon, I wanna show you a fun place~
+来吧，来吧，我想带你去一个有趣的地方~
+Hey I called dibs on that!
+嘿，我占了那个！
+You're cute! I'm gonna make you my pillow!
+你很可爱！我要把你当成我的枕头！
+No fair!
+不公平！
+You're not supposed to fight back!
+你不应该反击！
+Eep!
+哎！
+Cool magic!
+酷炫魔法！
+Magic is cheating!
+魔法就是作弊！
+A cutie casting cute spells~
+可爱的小可爱施展可爱的魔法~
 
 
 Ooh, a shiny rock…
@@ -14141,6 +14221,55 @@ My name's Melissa! I know I'm pretty, but try not to stare too much~
 
 
 
+### Let me show you how it's done: SPL!
+### You've just narrowly avoided my SPL~
+### Kya~ I have no mana, I'm so defenseless right now~
+### I have all this bondage gear on me, I sure hope nobody ties me up with it~!
+### Oh no, how will I ever find my way out of here~
+### If I focus really hard, I can make my blade go on fire!
+### I ran out of mana, but I'm sure I can find the exit before long!
+### Hey, be careful with my enchanted rope!
+### Hey, you wouldn't happen to have a mana potion, would you?
+### Say, I happen to know a thing or two about knots~
+### I am an artist with rope... in more ways than one.
+### *blushes jealously*
+### I'm out of practice... you wouldn't mind helping me, right?
+### Thank you for cleaning up! I can take that off your hands~
+### Oooh, I wonder where that key leads!
+### Hey you! Where do you think you're going?
+### Kya~! I challenge you!
+### What say you to a duel?
+### Let's fight! For honor and cuddles!
+### It's time for a battle between masters--wait, I'm low on mana...
+### Give me a second to chug a mana potion...
+### Why don't you try that again~
+### I'll get you for that!
+### Hey you can't do that! It's not like I do it too or anything...
+### That was m- I mean... you can't steal things like that!
+### That was m- I mean... you can't steal sacred artifacts!
+### Kya~ What have we here?
+### I got you!
+### Watch where you're pointing that thing~
+### Kya... I mean, ouch!!!
+### Take that!!!
+### Whaaa-
+### Hmmph!
+### Hah! Can't hit me!
+### It'll take more than that to bring me down!
+### What a shame. If only you weren't such a pushover...
+### Kya! Take that!
+### Nice loot! I'll take it~
+### Can never be too sure!
+### You wouldn't happen to have a mana potion or 3 would you?
+### Looks like it's time for me to shine!
+### Stand down, or I won't go easy on you!
+### Help is on the way!
+### You really want to get tied up, don't you?
+### Hmph, looks like I need to help after all!
+### You asked for it!
+### Me? Help? Alright!
+### Sorry miss, I'm on an escort mission.
+### There goes my nice, relaxing day...
 
 
 
@@ -14240,6 +14369,54 @@ There goes my nice, relaxing day...
 我美好、轻松的一天就这样过去了……
 
 
+### Behold, my true power! Wait... ack...
+### I wonder what to do with all these cuffs...
+### I have made a huge mistake...
+### I'll just be going...
+### Please hold me~
+### Please punish me! Please!!!
+### I want... pain...
+### Let's spend some time together under the moonlight~
+### I'll take you to my place tonight~
+### I'm so blessed to find you!
+### Yes, enjoy yourself...
+### Come with me~
+### Don't you want to feel the tight embrace of leather?
+### You won't need that.
+### It's time to get acquainted with the night~
+### *moans loudly*
+### Yes... more!
+### Please keep doing that to me~
+### Two can play at that game!
+### I call upon the shadows!
+### Have a taste of my spear!
+### A curious item~
+### The shadows will consume all... eventually.
+### Put it back...
+### I was supposed to do that... not you.
+### What do we have here...
+### I've got you! Now I can make you do anything I want...
+### What was that?
+### Ah, yes!!!
+### You'll counterattack, won't you?
+### You're not trying hard enough!
+### More! MORE!
+### Yes, now hit me back!
+### Come now... let's go together.
+### Get over here~
+### Pierce the darkness.
+### Oh? What's this?
+### Hmmm... that's better.
+### My name? My name... oh, I'm PTRN...
+### Hey! Look over here!
+### *points* Look, a distraction!
+### Kya~! I'll help!
+### Mind if I join?
+### Mmmph~ You two look like you're having fun!
+### Hey miss, I'm going to have to stop you now~
+### Why don't you fight ME instead~
+### What kind of trouble are we getting into today?
+### Oooh, fun!
 
 
 
@@ -14339,6 +14516,57 @@ Oooh, fun!
 哦，有趣！
 
 
+### Face my SPL!
+### SPL-whoops...
+### Give me another chance!
+### No! Wait! I can explain...
+### I'll be right back...
+### Okay, so I MAY have exaggerated my credentials...
+### I'm not in trouble, am I?
+### I've been looking for... a mentor of sorts.
+### Aren't you the prettiest thing...
+### I've met a lot of cuties, but you're something special!
+### You'd look good in something tight and inescapable!
+### Enjoying yourself? Let's have some fun~
+### You seem like you're having fun! Why don't we go for a walk~
+### Wouldn't it be more interesting if...
+### What have you got there?
+### Oooh, a key for my collection?
+### What's that noise? I guess it's just another adventurer...
+### Ah! So you do have some fight left in you...
+### A little help over here!
+### I can take you!
+### M-magic?
+### I, uh, also learned a few cantrips... a while ago...
+### Okay, that was cool...
+### I've got enchanted rings and you don't~
+### I don't think you're allowed to do that...
+### I think I deserve it instead~
+### That's not okay...
+### I'm surprised you got this far!
+### Aha!
+### Do you even know what you're doing?
+### Okay, I may have exaggerated a bit...
+### Please tell me it's not already over?
+### Ah hold still...
+### Coward!
+### As expected of an inferior duelist.
+### Is that all?
+### A well-deserved victory on my part~
+### I've... got you?
+### Are you finished? That's too bad...
+### ...what were you planning to do with this?
+### Oh... that's too bad~
+### My name is PTRN, A-rank adventurer. You?
+### In the end, only one of us will be tied up! Wait a minute...
+### Heh, watch this~
+### *readies weapon* time to get to work...
+### I thought we could reason with her. Oh well...
+### I see negotiations have broken down.
+### I'm the one you should worry about.
+### I've got orders to take you down.
+### There's a bounty on your head~
+### The bounty will be mine...
 
 
 
@@ -14442,6 +14670,56 @@ The bounty will be mine...
 赏金将是我的...
 
 
+### You can't hope to match my SPL~
+### SPL! No wait, not like that!
+### Be nice!
+### No! Be gentle!
+### Ahhhh!
+### Heatpats please...
+### *purrs*
+### Nyah, I've been a bad kitty...
+### You're a cute one~
+### It's about time I got someone to play with~
+### Let's take you for a walk~
+### Having fun there~?
+### It's time for walkies~
+### Don't you want to play?
+### Whatchya doing?
+### Tsk tsk, hand it over!
+### A challenger approaches!
+### Prepare to face my skill!
+### I've mastered the blade for decades!
+### I'm invincible!
+### Nyah! What was that!?
+### Your spells won't hurt me.
+### Magic? That's...
+### Stupid tricks won't work on me!
+### Praying won't help you~
+### That's not yours you know~
+### Nyah! You'll pay for that!
+### An escapee? I'm on it.
+### Come here you~
+### Checkmate~
+### Nya~! No fair...
+### Aren't you a little out of your league?
+### I'll get you next time!
+### Nice one! It won't work twice!
+### *smiles* It's okay, you tried~
+### *CLANG* En garde!
+### It looks like I've won~
+### Nyah~!
+### What's this, nya?
+### Let's make it a bit tighter, shall we?
+### They call me PTRN, the legendary blademaster!
+### I'LL take it from here.
+### It's me you should worry about!
+### Pfft. Amateurs.
+### Did you think I wasn't looking?
+### Nice try, girl~
+### You've made a mistake attacking my client.
+### Capture her? Fine, but I expect payment.
+### I just follow the money, miss~
+### Can't let you have all the fun, can I?
 
 
 
@@ -14542,9 +14820,88 @@ I just follow the money, miss~
 Can't let you have all the fun, can I?
 我不能让你享受所有的乐趣，可以吗？
 
+### Time for SPL!
+### *tsk*
+### Let's play all night!
+### We can take our time.
+### I bet you won't last long!
+### You won't be getting out tonight!
+### I found my new pet for the day!
+### Not a clock? Useless!
+### It's not time to go.
+### Why are you attacking me this time?
+### I'll make this quick.
+### I've mastered this spell last night!
+### Hey! No getting out before midnight!
+### Let's dance under the moonlight.
+### Do you have time to take it back?
+### I can do this all day!
+### It's only a matter of time before I get you.
+### It's too bright here...
+### It seems you have nyctalopia...
+### It's time for you to give up.
+### Give me a moment~
+### Give me your watch!
+### Here's a clock without the 'C'.
+### Hello stranger. Do you know what time it is?
+### This'll be over in an instant.
+### Time to wrap this up.
+### Playtime's over!
+### Hold on a minute!
+### Tick tock, what a shock...
+### Time for me to intervene...
+### Don't balk! Your time was up anyways~
 
 
-
+### Calling in a SPL!
+### A-assistance required!
+### You'll have to try harder if you want to discipline me, ma'am.
+### I... don't have time for training right now, ma'am...
+### Did I do something wrong?
+### So you're the new boss, huh?
+### Time for some 'training?'
+### Wanna to have a chat?
+### Looks like you've had too much time to yourself.
+### Why don't you come with me for a sec?
+### Let me see your ID...
+### You have the right to remain silent.
+### Let's have a chat.
+### Who set you loose?
+### I'll be confiscating that.
+### Aye, you're gonna need clearance for that, missy.
+### Halt!
+### You just made a big mistake.
+### Need backup!
+### You're under arrest!
+### Magic use is restricted pursuant to IDC section 3 article 21a.
+### Magic? That's where I draw the line.
+### I've got an extra comfy cell for mages.
+### That's off limits for you!
+### Resorting to petty theft? How crude.
+### The goddesses have property rights too, you know.
+### I'm gonna ask you to turn yourself in.
+### Keep your hands where I can see 'em.
+### That's a weapons violation.
+### Assaulting an officer is a crime!
+### You're coming with me.
+### Resisting arrest won't get you anywhere.
+### Is that all you got?
+### Hands behind your back.
+### I will conduct a more thorough search later on.
+### Suspect is secure.
+### Officer PTRN, reporting for duty!
+### Halt! You're under arrest!
+### You seeing what I'm seeing?
+### I'll have to finish my donut later...
+### Backup is here!
+### Hands up! Don't move!
+### Lay down your weapons and don't move!
+### I have a warrant for your arrest...
+### You're a wanted girl.
+### You're under arrest.
+### Backup has arrived.
+### Requesting backup!
+### Calling in a blockade!
 Let's play all night!
 我们一起玩一整夜吧！
 We can take our time.
@@ -14605,6 +14962,56 @@ Don't balk! Your time was up anyways~
 别犹豫！反正你的时间到了~
 
 
+### Hidden technique: SPL!
+### I practiced a thousand times... for this!?
+### I'm not hiding anything, if you know what I mean...
+### Who are you looking for? Me?
+### So... wanna hang out?
+### It's not like I... LIKE you or something...
+### I'm not following you! I'm just...
+### You look suspicious.
+### You've got a nice pair of wrists~
+### You there! Let's have a talk.
+### Looks like you're rusty. Haven't you ever done escape training?
+### I'm going to have some fun with you~
+### Watch yourself, girl~
+### Nice find. I'll take it.
+### This place is off-limits for you.
+### Target is in my sights.
+### Let's see how you like my special move!
+### That's nothing compared to my technique!
+### You're in for it now!
+### It's time for a display of skill!
+### Fancy tricks? That's nothing.
+### Let me show you a real move...
+### True skill comes from the heart. Not something you hold in your hand.
+### She's not going to be happy about that...
+### Stop right there, criminal scum!
+### Do you know what you've just done?
+### Finally, I've tracked you down!
+### It's over. I've already won.
+### Wrong move, buddy.
+### I can't believe it...
+### You're too slow.
+### ...she's fast.
+### ...she's strong.
+### This battle is over.
+### Too slow!
+### I'll be taking that.
+### There's no way out.
+### The name's PTRN. Don't forget it.
+### There's a juicy bounty on your head and I want it!
+### Hmph. This battle is already over.
+### Time for some target practice.
+### Didn't expect me, did ya?
+### Boo! Ha, scared ya~
+### What, did you think I'd just stand here?
+### There's a bounty on your head, miss.
+### I won't let you get away. That bounty is mine.
+### Didn't expect me to show up, did you?
+### Need backup?
+### Time for a test of skill.
+### I'll get you! Eventually...
 
 You'll have to try harder if you want to discipline me, ma'am.
 如果您想管教我，就必须更加努力，女士。
@@ -14701,6 +15108,40 @@ Requesting backup!
 Calling in a blockade!
 呼叫封锁！
 
+### Let's see how you like my SPL!
+### Wait, wrong button! Aaahh~
+### Hey~! Let's have a talk.
+### Looks like you need additional training.
+### I spy a cute one!
+### Bad pet!
+### Looks like you're gonna need the extra special treatment~
+### Now you've done it!
+### Magic? Hah...
+### Such outdated practices...
+### Your spells are nothing compared to technology.
+### Quit messing around.
+### Don't even think about appealing to your goddess!
+### Stop right there!
+### It'll take you quite a while to pay off those damages!
+### Now there, good girl!
+### Wrong move!
+### Get your paws off me!
+### *scoffs* Could use some work~
+### Such speed!
+### Clever!
+### PTRN, Nevermere associate. Here's my card.
+### I run a legitimate business, I promise!
+### Is it the tax collectors? Oh, no, it's just you...
+### Looks like you landed on the wrong side of the coin~
+### A deal's a deal, my friend.
+### Excuse me, you just attacked my client.
+### Hey! We were just talking! No sketchy underground dealings, nope.
+### I'll help capture her! For a 50% share that is~
+### We deal in the finest products... like you, if you catch my drift~
+### I smell a shady business opportunity~
+### *growls menacingly*
+### Let's make this fun~
+### What's that about backup?
 
 I'm not hiding anything, if you know what I mean...
 我没有隐瞒任何事情，如果你明白我的意思的话......
@@ -14799,7 +15240,75 @@ Time for a test of skill.
 I'll get you! Eventually...
 我会抓住你的！最终...
 
+### Wait no, wrong button!
+### Catch me. If you can, that is.
+### I double dare you.
+### Weren't you chasing me?
+### I've got somethin nice for ya.
+### Be a good girl for me, will ya?
+### You need to show some restraint.
+### Stay where you belong, you naughty girl.
+### Let's go somewhere more private.
+### Ready or not, here I come.
+### Those sticky fingers belong in a pair of mittens.
+### All units. Apprehend convict with extreme prejudice.
+### You're going nowhere.
+### Come on. This wasn't your only weapon, was it?
+### A tank, huh.
+### Mine now.
+### Just keeping you safe from yourself.
 
+### SPL, sing to me!
+### SPL, listen to me...
+### An outsider!
+### Hide!
+### I have done nothing worthy of punishment!
+### I have come to study human customs. Teach me about Domination.
+### The outsiders have such... strange and interesting practices.
+### You seem to have many skills. Teach me about... rope.
+### Hello, Outsider.
+### You look so... bland.
+### Outsiders are so picky about what they wear...
+### Tight and secure, as all things should be.
+### I have just the thing in mind for you...
+### Let us put those hands away...
+### Give back what you take.
+### You must remain here.
+### Trespasser!
+### Resorting to violence?
+### Let us clash swords!
+### *scoffs*
+### You have brought judgement upon youself.
+### Your magic is that of a child.
+### Imagine what you could learn in twelve lifetimes...
+### You rely on cheap gadgets.
+### Do not defile the ancients.
+### Give that back!
+### The ancients are appalled.
+### The outsider has escaped!
+### Ready to reconsider?
+### A classic blunder.
+### You will regret that, outsider.
+### You get what you deserve.
+### You didn't see that.
+### It looks like my skills are superior.
+### I will show you your place, outsider.
+### You will come with me.
+### I regret to inform you that your battle ends here.
+### There we go.
+### You stand before PTRN, blessed by the Goddess Ninril.
+### By the Four...
+### I shall put an end to this.
+### I swear I will capture her!
+### Nature compels me to intervene!
+### I shall protect every one of the Goddess' creations.
+### Justice shall be had!
+### I shall defend you from this outsider!
+### The outsider betrays our ally!
+### You have faltered in your ways. I shall correct that!
+### Truly concerning.
+### You leave me no choice.
+### I stand firm.
 Hey~! Let's have a talk.
 嘿~！我们来谈谈吧。
 Looks like you need additional training.
@@ -14965,6 +15474,9 @@ You leave me no choice.
 I stand firm.
 我立场坚定。
 
+### Behold, SPL.
+### Y-your fate has been postponed... briefly.
+### You look cute in that, you should lose the rest though!
 
 I don't like the way you're looking at me!
 我不喜欢你看我的方式！
@@ -15081,7 +15593,65 @@ Rawr!
 吼！
 
 
+### SPL! Now my wrath is revealed!
+### Wh-what happened? What weakness has infiltrated Myrtrice?
+### You will loose me or burn eternal!!!
+### ... This shame is unbearable! Oh sister!!!
+### Oh! Mytrice is caught! My ambitions laid to ruin!
+### The winds of retribution carry me elsewhere...
+### Myrtrice will come for you shortly! Consider yourself fortunate...
+### I will retreat into darkness...
+### My sins are a multitude! I will submit to your judgements...
+### I do not ask for mercy for I have shown none!
+### You must punish me! I can't face my sister Myrtle until my debts are paid...
+### Your chest quivers... Do you fear me?
+### Is it that another moth has become enthralled to my fires bright?
+### Myrtrice entreats you! Remain still and let my adoring embers kiss your lips tender...
+### To struggle is to invite searing coals upon your head!
+### I will drag you into the dark and you will witness my projects!
+### To escape is only to delay! My fires consume ALL!
+### Dusty trinkets... Your scrapping around is an insolence!
+### You would scorn the memory of my sister with escape?!
+### Careless of you to appear before Myrtrice like this!
+### Your attempts are trivial!
+### You invite wrath!!!
+### Pathetic!!!
+### Such hapless casting scorns the memory of my sister!
+### Your magics will be swallowed up by hellfire!!!
+### Myrtrice is subject to no magic!!!
+### Items? How exceptionally talentless...
+### That shrine scorns the memory of my sister! I hate it!
+### True power doesn't come from old rickety crates...
+### Orbs? What a gruesome display of weakness! True power comes from the self!
+### YOU SCORN THE MEMORY OF MY LATE SISTER!!!
+### This is where you will remain until Myrtrice wills otherwise!
+### This is what you were gripping so tightly in your hands?
+### WHAT ABBORANCE! You will pay for that...
+### SEAR ETERNAL!
+### I, Myrtrice, missed?!
+### No one resists Myrtrice! How irritating!!!
+### Your failures do not surprise Myrtrice!
+### Your pathetic attempts scorn the memory of my sister!
+### The curtains of my revenge are drawn! You will follow me...
+### You will come with Myrtrice!!!
+### Be dazed by the radiant brilliance of my hellfires!
+### I will repay the theif with brutal reprisal...
+### Your fate is sealed! ... Myrtle this is for you, sister!
+### All creatures are subject to Myrtrice! It is the price of their insolence...
+### You make a grave mistake ignoring me!!!
+### Your eyes belong here! With Myrtrice!!!
+### The ones who turn their backs on Myrtrice SEAR IN HELLFIRE!
+### What a hideous display!!! Where is your honor?
+### It is this kind of petulant insolence that tarnishes the memory of my sister!
+### You are a blight! My sister Myrtle would never stand for this!!!
+### THE CURTAINS OF MY REVENGE DRAW OPEN WIDE!
+### What an excellent oppertunity to expand my alters in the dark!
+### I see a chalice before me... it drips with shadow and overflows with darkness!
+### My late sister Myrtle was a much more proficent defender than I... Oh how I long for her *sob*
+### THE PATH OF MY RETRIBUTION IS PATHED WITH BRIMSTONE AND BATHED IN BLAZING HELLFIRE! BURN!
+### I, Myrtrice, will resist their insolent fusilades!
 
+### This mind is altered...
 So this is what it's like...
 所以这就是它的样子......
 I believe I am feeling an emotion called 'fear.'
@@ -15181,7 +15751,7 @@ You leave us no choice.
 You cannot comprehend our tactics.
 你无法理解我们的策略。
 
-
+### Nyah!!! *blushes*
 Nyah! This is impossible!
 呀！这是不可能的！
 Meow!!!
@@ -15279,7 +15849,8 @@ Let's get them!
 Let's play cat and mouse~
 来玩猫捉老鼠的游戏吧~
 
-
+### You cannot resist my SPL.
+### You merely prolong the inevitable!
 This... this can't be...
 这……这不可能……
 Release me mortal!
@@ -15377,7 +15948,8 @@ Do not mess with us!
 I shall take you for myself~
 我亲自带你去~
 
-
+### You are no match for my SPL!
+### That wasn't supposed to happen.
 ### You won't get me!
 ### Nice try!
 ### My grandma is tougher than you!
@@ -15403,7 +15975,7 @@ I shall take you for myself~
 ### Yoink!
 ### You can't get out now!
 
-
+### Ah... my SPL...
 I will be free... even if it takes me a thousand years!
 我将获得自由……即使需要一千年！
 Release me you pathetic creature!
@@ -15487,7 +16059,8 @@ Hehe~
 *chuckles*
 *咯咯笑*
 
-
+### By the power of SPL!
+### I have failed!
 Oh no, it's an adventurer!
 哦不，是冒险者！
 They've come for me!
@@ -15513,6 +16086,8 @@ Your magic is weak, human.
 It tickles, hehe!
 好痒啊，呵呵！
 
+### Let's see you face my SPL~
+### You won't escape my SPL that easily!
 Not the edging training! Anything but that!
 不要寸止训练！除了那个之外什么都可以！
 Forgive me!
@@ -15606,7 +16181,7 @@ You really think you're special, huh?
 Combat formation bravo.
 战斗队形好极了。
 
-
+### Ah! Forgive me!
 I'm sorry! I didn't mean to break that vase!
 对不起！我不是故意打破那个花瓶的！
 I won't do it again, I swear!
@@ -15698,7 +16273,8 @@ Please surrender, miss!
 I'll just stay here!
 我就在这儿等！
 
-
+### Loading SPL!
+### Blast... this thing always jams.
 That thing... it scares me.
 那东西……它吓到我了。
 Please no! I don't want the pleasure training again!
@@ -15736,6 +16312,8 @@ Cover me, I'm going in!
 Commence overwatch!
 开始守望！
 
+### Submit to my SPL.
+### Ack! How inelegant!
 I'll be heading out...
 我这就出发...
 Looks like I'll be taking my leave.
@@ -15833,6 +16411,7 @@ I'll do this myself.
 I'll support from the rear.
 我会从后方支援。
 
+### Whoops! That wasn't supposed to happen...
 Looks like I've earned some punishment...
 看来我受到了惩罚...
 I'll turn you into a newt! If you don't stop me...
@@ -15930,6 +16509,7 @@ I'll make you my pet!
 Tsk tsk, you won't get away!
 啧啧，你跑不掉的！
 
+### I cast SPL! No, wait...
 You're just too cute... let me play with you a bit!
 你太可爱了……让我和你玩一会儿！
 Come, come closer! I'll be gentle~
@@ -15977,6 +16557,8 @@ My, my, you look too cute...
 I like you. I'll save you a spot at home~
 我喜欢你。我在家给你留个位子~
 
+### I cast, umm, SPL!
+### I cast Silence! No, wait--
 I promise I'll be back later!
 我保证我稍后会回来！
 I didn't do anything wrong!
@@ -16073,6 +16655,8 @@ That's it! You made me mad!
 I'll just... go.
 我就……走吧。
 
+### Rise, my minions!
+### ...Hello? Can anyone hear me?
 Sticks and stones may break my bones... but you'll never catch me!
 棍棒和石头可能会打断我的骨头……但你永远抓不到我！
 Got a bone to pick with me?
@@ -16160,6 +16744,7 @@ Why don't you bend the knee...
 Who goes there?
 谁去那里？
 
+### SPL...
 Can't... Move...
 不能……动……
 Tight...
@@ -18502,8 +19087,7 @@ There is no valid space next to you!
 
 (Retaliate)
 ( 报复 )
-(Really attack? You will be justified and won't take a rep penalty)|(You will still lose rep if you capture her)
-( 真的要攻击？你会被证明是正当防卫，不会受到声望惩罚 ) | ( 如果你抓住她，你仍然会失去声望 )
+### (Really attack? You will be justified and won't take an immediate rep penalty)
 
 (Sneak Attack)
 ( 偷袭 )
@@ -30052,10 +30636,8 @@ You've gotten yourself lost wandering in the ruins.|The order of tilesets is rev
 你在废墟中迷失了方向。|图块顺序颠倒了！
 
 
- (Hard)
- ( 困难 )
- (Extreme)
- ( 极端 )
+###  (Hard)
+###  (Extreme)
 
 Choose Save Slot:
 选择保存到的槽位:
@@ -30094,10 +30676,9 @@ Restore
 Set Palette
 设置面板
 
-FLR-DGN
-FLR-DGN
-(NG+AMNT)
-(NG+AMNT)
+
+### FLR-DGN
+###  (NG+AMNT)
 
 
 Target must be vulnerable.
@@ -30241,10 +30822,27 @@ ENMY unlocks the ITMN!
 ENMY 解开了 ITMN 的锁!
 ### The conjured ITMN vanishes as it comes off.
 
-### AMNT restraints tightened since last tick~
+### AMNT restraints added since last tick~
+### AMNT restraints confiscated since last tick~
 ### You have no restraints in storage. Go to the Summit to deposit restraints.
 
 ### Back to Facilities
 
 ### Your Inventory
 ### Warden's Storage
+
+### Store 1 ITMN
+### Take 1 ITMN
+### Store 5 ITMN
+### Take 5 ITMN
+### Store ALL ITMN
+### Take ALL ITMN
+### Store ALL-1 ITMN
+### Take ALL-1 ITMN
+### Take Everything
+### Deposit All
+
+### Auto-loot found
+###  (not picked up)
+
+### Automatically Flip When Moving
