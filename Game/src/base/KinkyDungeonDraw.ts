@@ -1511,6 +1511,10 @@ function KinkyDungeonDrawGame() {
 										(newX - CamX)*KinkyDungeonGridSizeDisplay, (newY - CamY)*KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, KinkyDungeonGridSizeDisplay, undefined, {
 											zIndex: 99,
 										});
+									DrawTextKD(Math.round(-KDSprintCost()*10) + "sp",
+										(xx - CamX + 0.5)*KinkyDungeonGridSizeDisplay,
+										(yy - CamY - 0.25)*KinkyDungeonGridSizeDisplay, "#88ff88");
+
 									xx = newX;
 									yy = newY;
 								}
@@ -1872,7 +1876,7 @@ function KinkyDungeonDrawGame() {
 			if (KDGameData.PlayerName) {
 				DrawTextFitKD(KDGameData.PlayerName, 250, 25, 480, "#ffffff", KDTextGray0, 32, "center", 20);
 			}
-			KDDrawContainer(KDUI_CurrentContainer, undefined, KDGameData.Containers[KDUI_CurrentContainer]?.filters);
+			KDDrawContainer(KDUI_CurrentContainer, undefined, KDGameData.Containers[KDUI_CurrentContainer]?.filters, KDValidateContainer(KDGameData.Containers[KDUI_CurrentContainer]));
 		}
 
 

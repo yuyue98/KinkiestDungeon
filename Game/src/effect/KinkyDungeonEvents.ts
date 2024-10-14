@@ -4972,12 +4972,13 @@ let KDEventMapSpell: Record<string, Record<string, (e: KinkyDungeonEvent, spell:
 			}
 		},
 		"BattleRhythmStore": (_e, _spell, data) => {
-			if (data.target && -data.attackCost > 0 && !KinkyDungeonFlags.get("BRStore" + data.target.id)) {
+			let atkCost = Math.min(data.attackCost, data.attackCostOrig);
+			if (data.target && -atkCost > 0 && !KinkyDungeonFlags.get("BRStore" + data.target.id)) {
 				let player = KinkyDungeonPlayerEntity;
 				let buff = KDEntityGetBuff(player, "BattleRhythm");
 				let max = 0.4 * KinkyDungeonMultiplicativeStat(-KDEntityBuffedStat(player, "MaxBattleRhythm"));
 				let mult = 0.1 * KinkyDungeonMultiplicativeStat(-KDEntityBuffedStat(player, "MultBattleRhythm"));
-				let powerAdded = 0.1 * -data.attackCost * mult;
+				let powerAdded = 0.1 * -atkCost * mult;
 				if (powerAdded > 0)
 					KinkyDungeonSetFlag("BRCombat", 20);
 				if (!buff) {
@@ -7341,11 +7342,13 @@ let KDEventMapBullet: Record<string, Record<string, (e: KinkyDungeonEvent, b: an
 					novulnerable: KinkyDungeonPlayerDamage.novulnerable,
 					tease: KinkyDungeonPlayerDamage.tease}
 
-
-
+				if (KinkyDungeonPlayerDamage.stam50mult && KinkyDungeonStatMana/KinkyDungeonStatManaMax >= 0.50) {
+					attData.damage *= KinkyDungeonPlayerDamage.stam50mult;
+				}
 				let dd = {
 					target: data.enemy,
 					attackCost: 0.0, // Important
+					attackCostOrig: 0.0,
 					skipTurn: false,
 					spellAttack: true,
 					attackData: attData
@@ -7395,9 +7398,14 @@ let KDEventMapBullet: Record<string, Record<string, (e: KinkyDungeonEvent, b: an
 					boundBonus: KinkyDungeonPlayerDamage.boundBonus,
 					novulnerable: KinkyDungeonPlayerDamage.novulnerable,
 					tease: KinkyDungeonPlayerDamage.tease};
+
+				if (KinkyDungeonPlayerDamage.stam50mult && KinkyDungeonStatMana/KinkyDungeonStatManaMax >= 0.50) {
+					attData.damage *= KinkyDungeonPlayerDamage.stam50mult;
+				}
 				let dd = {
 					target: data.enemy,
 					attackCost: 0.0, // Important
+					attackCostOrig: 0.0,
 					skipTurn: false,
 					spellAttack: true,
 					attackData: attData
@@ -7413,6 +7421,7 @@ let KDEventMapBullet: Record<string, Record<string, (e: KinkyDungeonEvent, b: an
 				let dd = {
 					target: data.enemy,
 					attackCost: 0.0, // Important
+					attackCostOrig: 0.0,
 					skipTurn: false,
 					spellAttack: true,
 					attackData: Object.assign({}, b.bullet.damage),
@@ -7430,6 +7439,7 @@ let KDEventMapBullet: Record<string, Record<string, (e: KinkyDungeonEvent, b: an
 				let dd = {
 					target: data.enemy,
 					attackCost: 0.0, // Important
+					attackCostOrig: 0.0,
 					skipTurn: false,
 					spellAttack: true,
 					attackData: Object.assign({}, b.bullet.damage),
@@ -9363,6 +9373,22 @@ function KinkyDungeonHandleEnemyEvent(Event: string, e: KinkyDungeonEvent, enemy
 
 
 let KDEventMapGeneric: Record<string, Record<string, (e: string, data: any) => void>> = {
+	"inventoryTooltip": {
+		"stamdmg": (e, data) => {
+			if (data.item && data.item.type == Weapon && KDWeapon(data.item)?.stam50mult) {
+
+				data.extraLines.push(TextGet("KDStamDmgBonus")
+					.replace("AMNT", KDWeapon(data.item).stam50mult + ""));
+				data.extraLineColor.push(KDBookText); // e.color || "#ffffff"
+				let bg = "#000000";
+				if (!KDToggles.SpellBook) {
+					let col = DrawHexToRGB(bg);
+					bg = `rgba(${col.r/2}, ${col.g/2}, ${col.b/2}, 0.5)`;
+				}
+				data.extraLineColorBG.push(bg);
+			}
+		},
+	},
 	"perkOrb": {
 		"Cursed": (_e, data) => {
 			if (data?.perks?.includes("Cursed")) {

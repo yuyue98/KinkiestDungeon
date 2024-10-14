@@ -759,11 +759,11 @@ function KDLoadMapFromWorld(x: number, y: number, room: string, direction: numbe
  */
 function KDPlacePlayerBasedOnDirection(direction: number = 0, sideRoomIndex: number = -1) {
 	if (sideRoomIndex >= 0 && KDMapData.ShortcutPositions && KDMapData.ShortcutPositions[sideRoomIndex]) {
-		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, x: KDMapData.ShortcutPositions[sideRoomIndex].x, y:KDMapData.ShortcutPositions[sideRoomIndex].y, player:true};
+		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, id: -1, x: KDMapData.ShortcutPositions[sideRoomIndex].x, y:KDMapData.ShortcutPositions[sideRoomIndex].y, player:true};
 	} else if (direction == 1 && KDMapData.EndPosition) {
-		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, x: KDMapData.EndPosition.x, y:KDMapData.EndPosition.y, player:true};
+		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, id: -1, x: KDMapData.EndPosition.x, y:KDMapData.EndPosition.y, player:true};
 	} else {
-		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, x: KDMapData.StartPosition.x, y:KDMapData.StartPosition.y, player:true};
+		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, id: -1, x: KDMapData.StartPosition.x, y:KDMapData.StartPosition.y, player:true};
 	}
 }
 
@@ -1161,7 +1161,7 @@ function KinkyDungeonCreateMap (
 
 
 		// Place the player!
-		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, x: KDMapData.StartPosition.x, y:KDMapData.StartPosition.y, player:true};
+		KinkyDungeonPlayerEntity = {MemberNumber:DefaultPlayer.MemberNumber, id: -1, x: KDMapData.StartPosition.x, y:KDMapData.StartPosition.y, player:true};
 
 
 		let traps = [];
@@ -4746,11 +4746,16 @@ function KinkyDungeonLaunchAttack(Enemy: entity, skip?: number): string {
 					boundBonus: KinkyDungeonPlayerDamage.boundBonus,
 					novulnerable: KinkyDungeonPlayerDamage.novulnerable,
 					tease: KinkyDungeonPlayerDamage.tease};
+
+				if (KinkyDungeonPlayerDamage.stam50mult && KinkyDungeonStatStamina/KinkyDungeonStatStaminaMax >= 0.50) {
+					damageInfo.damage *= KinkyDungeonPlayerDamage.stam50mult;
+				}
 				let data = {
 					orighp: Enemy.hp,
 					origbinding: Enemy.boundLevel,
 					target: Enemy,
 					attackCost: attackCost,
+					attackCostOrig: attackCost ? KinkyDungeonPlayerDamage.staminacost || 1 : 0,
 					skipTurn: false,
 					attackData: damageInfo
 				};
@@ -5966,7 +5971,7 @@ function KDSprintCost(sprintdata?: any): number {
 	let data = {
 		sprintdata: sprintdata,
 		sprintCostMult: KinkyDungeonMultiplicativeStat(KinkyDungeonGetBuffedStat(KinkyDungeonPlayerBuffs, "SprintEfficiency")),
-		cost: (-KDSprintCostBase - KDSprintCostSlowLevel[Math.round(KinkyDungeonSlowLevel)]),
+		cost: (-KDSprintCostBase - KDSprintCostSlowLevel[Math.min(KDSprintCostSlowLevel.length, Math.round(KinkyDungeonSlowLevel))]),
 		boost: 0,
 	};
 

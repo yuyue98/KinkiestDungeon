@@ -31,7 +31,7 @@ RestartNeededRU,"Restart required!"
 
 KDVersion,"Version"
 KinkyDungeon,"Kinky Dungeon"
-KDVersionStr,"5.3.45"
+KDVersionStr,"5.3.47"
 KDLogo2,"By Ada18980"
 Intro,"You are an adventurer descending into an ancient underground city of magic."
 Intro2,"Beneath its depths lies the Mistress' Staff, an artifact of untold power."
@@ -1557,6 +1557,11 @@ KinkyDungeonInventoryItemFoil,Foil
 KinkyDungeonInventoryItemFoilDesc,"En garde!"
 KinkyDungeonInventoryItemFoilDesc2,"Deals pierce damage. Deals 30 damage instead on vulnerable targets."
 ItemPickupFoil,"You pick up a fencing sword."
+
+KinkyDungeonInventoryItemMaul,Maul
+KinkyDungeonInventoryItemMaulDesc,"Do you have what it takes?"
+KinkyDungeonInventoryItemMaulDesc2,"Deals heavy crush damage and knocks the target back 2 spaces."
+ItemPickupMaul,You pick up a heavy maul.
 
 KinkyDungeonInventoryItemHammer,Hammer
 KinkyDungeonInventoryItemHammerDesc,"A crude way of fixing your problems."
@@ -5694,7 +5699,7 @@ KinkyDungeonSpellDescriptionSowing,"Defeating a non-humanoid enemy causes vines 
 
 
 KinkyDungeonSpellBattleRhythm,"Battle Rhythm"
-KinkyDungeonSpellDescriptionBattleRhythm,"Stores 10% of the stamina spent from attacks as Rhythm, up to a total of 40. While you have over 10 Rhythm, you gain +10 Block and Evasion. Enemy base accuracy against you is decreased by a % equal to your Rhythm. If an attack misses or is blocked because of this, reduce Rhythm by 25% of the enemy attack power. Decays when not attacking."
+KinkyDungeonSpellDescriptionBattleRhythm,"Stores 10% of the stamina cost of attacks as Rhythm, up to a total of 40. While you have over 10 Rhythm, you gain +10 Block and Evasion. Enemy base accuracy against you is decreased by a % equal to your Rhythm. If an attack misses or is blocked because of this, reduce Rhythm by 25% of the enemy attack power. Decays when not attacking."
 
 KinkyDungeonSpellLimitSurge,"Limit Surge"
 KinkyDungeonSpellDescriptionLimitSurge,"Spend 50 WP to fully restore Stamina, also stamina gain is increased by 30% for 20 turns. If your Willpower ends up 0 because of this, you are stunned for 2 turns."
@@ -11680,34 +11685,65 @@ dOfferLatex2Force_YesGag,"(Moan and giggle)"
 dOfferLatex2Force_No,"Wait, what? (PERCENT chance to avoid)"
 dOfferLatex2Force_NoGag,"(Shake your head and moan) (PERCENT chance to avoid)"
 
-rOfferChastity,"(The SPEAKER nervously walks up to you)|Excuse me miss...|Can you help me out?"
-rOfferChastityYes,"(The SPEAKER blushes deeply)|I managed to unlock my RESTRAINT,|but my mistress expects me to wear it!|Do you mind wearing it instead?"
-rOfferChastityYes_Yes,"(The SPEAKER smiles)|Thank you so much, miss!"
-rOfferChastityYes_No,"(The SPEAKER frowns)|I'm going to get in trouble..."
-rOfferChastityNo,"(The SPEAKER blushes)|Oh... okay."
-rOfferChastityForce,"(The SPEAKER frowns angrily)|Look, I know you're in trouble around here.|Just do me a favor. Please.|I need you to wear this RESTRAINT."
-rOfferChastityForceYes,"(The SPEAKER pleads with you)|My mistress is a magician!|She put a spell on it that senses if it's being worn.|Please, you have to hurry!"
-rOfferChastityForce_No,"(The SPEAKER sighs and wears it herself)|(The lock starts glowing brightly...)"
-rOfferChastityForce_Yes,"(The SPEAKER looks relieved)|Thank you so much miss!|I won't forget you!"
-rOfferChastityForce_Failure,"(As you turn around, the SPEAKER surprises you)|(You hear a click around your waist)|Hmmph! Serves you right!|"
+rOfferChastity,"(The SPEAKER walks up to you)|Say, would you be interested in some 'protection?'"
+rOfferChastityYes,"(The SPEAKER grins)|Wonderful! You see, I've just recently acquired one of these...|(She shows you a loose RESTRAINT)|I'm not too interested in wearing one myself,|but I thought you'd be a good fit for it?"
+rOfferChastityYes_Yes,"(The SPEAKER blushes as she locks the belt around your waist)|I'm enjoying this more than I thought I would~"
+rOfferChastityYes_No,"(The SPEAKER smiles)|Enjoy your freedom while it lasts~"
+rOfferChastityNo,"(The SPEAKER shrugs)|That's okay, just thought I'd ask."
+rOfferChastityForce,"(The SPEAKER rubs the smooth metal seductively)|Are you sure?|Adventurers need to take care of themselves.|You don't want to lose control of yourself and run into some curse,|do you?"
+rOfferChastityForceYes,"(The SPEAKER gives an evil smile)|What if I wasn't asking?"
+rOfferChastityForce_No,"(The SPEAKER sighs)|I'll find some other cutie to wear it, I guess~"
+rOfferChastityForce_Yes,"(The SPEAKER blushes as she locks the RESTRAINT onto you)|There we go~"
+rOfferChastityForce_Failure,"(As you turn around, the SPEAKER surprises you)|(You hear a click around your waist)|Whoops! I guess I acted too soon.|Ah well~"
 rOfferChastityGlow,"(The lock on the RESTRAINT starts glowing...)"
 
-dOfferChastity_Yes,"I would love to help!"
+dOfferChastity_Yes,"Protection? Certainly!"
 dOfferChastity_YesGag,"(Nod eagerly)"
-dOfferChastity_No,"Go find someone else."
+dOfferChastity_No,"Nah, I'm good."
 dOfferChastity_NoGag,"(Shake your head)"
 
-dOfferChastityYes_Yes,"That sounds like a tempting offer."
+dOfferChastityYes_Yes,"I would love to wear it!"
 dOfferChastityYes_YesGag,"(Nod again, excited)"
-dOfferChastityYes_No,"...What? Why would I need to wear it?"
+dOfferChastityYes_No,"...No thank you."
 dOfferChastityYes_NoGag,"(Shake your head, puzzled)"
 
-dOfferChastityForce_Yes,"Fine. I'll do it because you asked."
+dOfferChastityForce_Yes,"Fine. I need the protection anyway."
 dOfferChastityForce_YesGag,"(Moan and nod slowly)"
-dOfferChastityForce_No,"I won't help you. Wear it yourself. (PERCENT chance to avoid)"
+dOfferChastityForce_No,"I refuse. (PERCENT chance to avoid)"
 dOfferChastityForce_NoGag,"(Shake your head) (PERCENT chance to avoid)"
 
 dOfferChastityObserve,"(Look at your belt...)"
+
+
+
+rOfferCursed,"(The SPEAKER nervously walks up to you)|Excuse me miss...|Can you help me out?"
+rOfferCursedYes,"(The SPEAKER blushes deeply)|I found this cursed RESTRAINT and I can't let go of it!|Could you... wear it for me?"
+rOfferCursedYes_Yes,"(The SPEAKER smiles)|Thank you so much, miss!"
+rOfferCursedYes_No,"(The SPEAKER frowns)|...That does seem rather far-fetched of me to ask."
+rOfferCursedNo,"(The SPEAKER blushes)|Oh... okay."
+rOfferCursedForce,"(The SPEAKER frowns angrily)|Look, we all know how much you enjoy being restrained~|Do me a favor and wear the RESTRAINT, okay?"
+rOfferCursedForceYes,"(The SPEAKER pleads with you)|...point taken. But still!|I'll end up stuck in it for a really long time..."
+rOfferCursedForce_No,"(The SPEAKER sighs and wears it herself)|(The lock starts glowing brightly...)"
+rOfferCursedForce_Yes,"(The SPEAKER looks relieved)|Thank you so much miss!|I won't forget you!"
+rOfferCursedForce_Failure,"(As you turn around, the SPEAKER surprises you)|(You hear a click around your waist)|I'm sorry miss! It was my only choice~"
+rOfferCursedGlow,"(The lock on the RESTRAINT starts glowing...)"
+
+dOfferCursed_Yes,"I would love to help!"
+dOfferCursed_YesGag,"(Nod eagerly)"
+dOfferCursed_No,"You're asking me to get cursed?"
+dOfferCursed_NoGag,"(Shake your head)"
+
+dOfferCursedYes_Yes,"That sounds like a tempting offer."
+dOfferCursedYes_YesGag,"(Nod again, excited)"
+dOfferCursedYes_No,"...What? Why would I need to wear it?"
+dOfferCursedYes_NoGag,"(Shake your head, puzzled)"
+
+dOfferCursedForce_Yes,"Fine. I'll do it because you asked."
+dOfferCursedForce_YesGag,"(Moan and nod slowly)"
+dOfferCursedForce_No,"I won't help you. Wear it yourself. (PERCENT chance to avoid)"
+dOfferCursedForce_NoGag,"(Shake your head) (PERCENT chance to avoid)"
+
+dOfferCursedObserve,"(Look at your belt...)"
 
 
 
@@ -23282,7 +23318,7 @@ KDHarvest_Yes,"You twirl your weapon, harvesting AMNT seeds!"
 KDHarvest_No,"There is nothing to harvest."
 
 KinkyDungeonSpellFloatingWeapon,Telekinesis 101
-KinkyDungeonSpellDescriptionFloatingWeapon,"Unlocks telekinetic abilities. Can equip weapons while bound, but at 0% accuracy. Learn Recover Object."
+KinkyDungeonSpellDescriptionFloatingWeapon,"Unlocks telekinetic abilities. Toggle on to equip weapons while bound, but at 0% accuracy. Learn Recover Object."
 
 
 KinkyDungeonSpellRecoverObject,Recover Object
@@ -23625,6 +23661,7 @@ KDToughArmor,"Tough Armor (1/2 crit mult while aware)"
 KDAbsoluteArmor,"Absolute Armor (1/2 crit mult)"
 
 KDDressNPC,Change Outfit
+KDZoomNPC,Enlarged View
 KDBackToGame,Back to Game
 
 KinkyDungeonSpellVineSlimeBall,Slimy Spit
@@ -24958,6 +24995,7 @@ KDCollectionTabStatusOption_Guest,Guests
 
 KDCollectionAssign,"Assign to "
 KDCollectionRemove,"Remove from "
+KDCollectionCant,"Can't assign to "
 KDImprison,Imprison
 
 KDNPCOpinion,"Opinion: "
@@ -25006,6 +25044,9 @@ KDCollectionFilterUnavailable,"Unavailable"
 
 KDCollectionTab_AutoBind,Auto Bind Interface
 KDDrawSelectedTab_AutoBind,AutoBind
+
+KDCollectionTab_FacilityQuick,Assign to Facility
+KDDrawSelectedTab_FacilityQuick,Assign to Facility
 
 KDAutoBindCopy,Copy Restraints
 KDAutoBindPaste,Paste Restraints from NME
@@ -25224,6 +25265,8 @@ KDWardenTightened,AMNT restraints added since last tick~
 KDWardenConfiscate,AMNT restraints confiscated since last tick~
 KDWardenNoRestraints,You have no restraints in storage. Go to the Summit to deposit restraints.
 
+KDWardenNoRestraints,You have no restraints in storage. Go to the Summit to deposit restraints.
+
 KDContainerBack_Facilities,Back to Facilities
 KDContainerBack_Game,Back to Game
 
@@ -25247,3 +25290,15 @@ KDAutoLoot,"Auto-loot found "
 KDNotPickedUp," (not picked up)"
 
 KDToggleFlipPlayerAuto,Automatically Flip When Moving
+
+KDWardenNeedSummit,Go to the summit to deposit restraints
+
+
+KDStamDmgBonus,AMNTx damage when SP is over 50%
+
+KinkyDungeonSpellManyOrbs,"Barrage of Barrier Orb"
+KinkyDungeonSpellZombieOrb,"Barrier Orb"
+KinkyDungeonSpellFuukaOrbMulti,"Barrage of Sealing Talisman"
+KinkyDungeonSpellFuukaOrb,"Sealing Talisman"
+KinkyDungeonSpellEnemyCM_self,"Self Unlock"
+KinkyDungeonSpellCrystalBoltMany,"Crystal Storm"

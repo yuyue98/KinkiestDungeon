@@ -1394,6 +1394,9 @@ interface weapon extends damageInfo, NamedAndTyped {
 	type: string;
 
 
+	/** Multiplies the damage when over 50% stamina */
+	stam50mult?: number,
+
 	evadeable?: boolean,
 	nokill?: boolean,
 	bind?: number;
@@ -2035,6 +2038,8 @@ interface spell {
 	noAggro?: boolean;
 	/** Whether the spell defaults to the Player faction */
 	allySpell?: boolean;
+	/** This spell wont friendly fire the player */
+	noFF?: boolean;
 	/** Spell overrides the faction */
 	faction?: string;
 	/** Whether the spell defaults to the Enemy faction */
@@ -3768,6 +3773,8 @@ type PIXIFilter = import('pixi.js').Filter;
 
 type PIXIMatrix = import('pixi.js').Matrix;
 type PIXIPoint = import('pixi.js').Point;
+type PIXIRenderer = import('pixi.js').Renderer;
+
 type ISpriteMaskTarget = import('pixi.js').ISpriteMaskTarget;
 
 type PIXICLEAR_MODES = import('pixi.js').CLEAR_MODES;

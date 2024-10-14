@@ -22,7 +22,14 @@ let KDFacilityCollectionDataTypeMap = {
 let KDCollectionTabButtons = [
 	"AutoBind",
 	"Release",
+	"FacilityQuick",
 ];
+
+let KDCollectionTabButtonFilter = {
+	FacilityQuick: () => {
+		return KinkyDungeonFlags.get("1stSummit");
+	},
+}
 
 let KDCollFilter = "";
 
@@ -120,6 +127,7 @@ function KDDrawCollectionTabOptions(x: number, y: number) {
 	let spacing = 80;
 	let II = 0;
 	for (let tab of KDCollectionTabButtons) {
+		if (!KDCollectionTabButtonFilter[tab] || KDCollectionTabButtonFilter[tab]())
 		if (DrawButtonKDEx("KDCollTabSet" + tab, (_b) => {
 			if (KDCollectionTab) KDCollectionTab = "";
 			else KDCollectionTab = tab;
@@ -447,12 +455,77 @@ function KDDrawSelectedCollectionMember(value: KDCollectionEntry, x: number, y: 
 		alpha: 0.9
 	});
 
-	DrawButtonKDEx("toggleBig", () => {
+	if (DrawButtonKDEx("toggleBig", () => {
 		KDToggleBigView = !KDToggleBigView;
 		return true;
-	}, true, x - 50, y, 40, 40, "", "#ffffff",
+	}, true, x - 90, y, 80, 80, "", "#ffffff",
 		KinkyDungeonRootDirectory + "UI/vision.png", undefined, undefined,
-		!KDToggleBigView, KDButtonColor)
+		!KDToggleBigView, KDButtonColorIntense, undefined, undefined, {
+			centered: true
+		})) {
+
+		DrawTextFitKD(TextGet("KDZoomNPC"), x + 220, y + 750, 500, "#ffffff", KDTextGray0);
+	}
+	if (KDGameData.Collection[value.id + ""] && DrawButtonKDEx("dressNPC", () => {
+		if (KDSoundEnabled())
+			AudioPlayInstantSoundKD(KinkyDungeonRootDirectory + "Audio/" + "LightJingle" + ".ogg");
+		//KDSpeakerNPC = null;
+		KinkyDungeonState = "Wardrobe";
+		KDCanRevertFlag = value.customOutfit != undefined;
+		ForceRefreshModels(KDSpeakerNPC);
+		KDOriginalValue = "";
+		CharacterReleaseTotal(KDSpeakerNPC);
+		KDWardrobeCallback = () => {
+			let value2 = value;
+			//if (KDOriginalValue) {
+			value2.customOutfit = LZString.compressToBase64(AppearanceItemStringify(KDSpeakerNPC.Appearance));
+			value2.Palette = KDSpeakerNPC.Palette;
+
+			KDRefreshCharacter.set(KDSpeakerNPC, true);
+			//}
+		};
+		if (value.customOutfit) {
+			let outfit = value.customOutfit;
+			KDWardrobeRevertCallback = () => {
+				if (outfit)
+					CharacterAppearanceRestore(KDSpeakerNPC, DecompressB64(outfit),false, true);
+				CharacterRefresh(KDSpeakerNPC);
+				KDInitProtectedGroups(KDSpeakerNPC);
+				KDRefreshCharacter.set(KDSpeakerNPC, true);
+				KinkyDungeonDressPlayer(KDSpeakerNPC, true);
+			};
+			KDWardrobeResetCallback = () => {
+				delete value.customOutfit;
+			};
+		} else {
+			KDWardrobeRevertCallback = () => {
+				delete value.customOutfit;
+				KDRefreshCharacter.set(KDSpeakerNPC, true);
+				KinkyDungeonDressPlayer(KDSpeakerNPC, true);
+			};
+			KDWardrobeResetCallback = null;
+		}
+
+		KDPlayerSetPose = false;
+		KDInitCurrentPose(true,KDSpeakerNPC);
+		KinkyDungeonInitializeDresses();
+		KDUpdateModelList();
+		KDRefreshOutfitInfo();
+		let itt = localStorage.getItem("kinkydungeonappearance" + KDCurrentOutfit);
+		let orig = itt ?
+			JSON.parse(LZString.decompressFromBase64(itt)).appearance
+			|| itt : "";
+		let current = LZString.compressToBase64(AppearanceItemStringify(KinkyDungeonPlayer.Appearance));
+		if (orig != current) KDOriginalValue = orig;
+		ForceRefreshModelsAsync(KDSpeakerNPC);
+		return true;
+	}, true, x - 90, y + 90, 80, 80, "", "#ffffff",
+		KinkyDungeonRootDirectory + "UI/Dress.png", undefined, undefined,
+		true, KDButtonColorIntense, undefined, undefined, {
+			centered: true
+		})) {
+		DrawTextFitKD(TextGet("KDDressNPC"), x + 220, y + 750, 500, "#ffffff", KDTextGray0);
+	}
 
 
 	let sp = (value.sprite || value.type);
@@ -585,63 +658,6 @@ function KDDrawSelectedCollectionMember(value: KDCollectionEntry, x: number, y: 
 		if (!KDToggleBigView) {
 			let III = 0;
 			let buttonSpacing = 85;
-			if (!KDCollectionTab && KDGameData.Collection[value.id + ""] && DrawButtonKDEx("dressNPC", (_b) => {
-				if (KDSoundEnabled())
-					AudioPlayInstantSoundKD(KinkyDungeonRootDirectory + "Audio/" + "LightJingle" + ".ogg");
-				//KDSpeakerNPC = null;
-				KinkyDungeonState = "Wardrobe";
-				KDCanRevertFlag = value.customOutfit != undefined;
-				ForceRefreshModels(KDSpeakerNPC);
-				KDOriginalValue = "";
-				CharacterReleaseTotal(KDSpeakerNPC);
-				KDWardrobeCallback = () => {
-					let value2 = value;
-					//if (KDOriginalValue) {
-					value2.customOutfit = LZString.compressToBase64(AppearanceItemStringify(KDSpeakerNPC.Appearance));
-					value2.Palette = KDSpeakerNPC.Palette;
-
-					KDRefreshCharacter.set(KDSpeakerNPC, true);
-					//}
-				};
-				if (value.customOutfit) {
-					let outfit = value.customOutfit;
-					KDWardrobeRevertCallback = () => {
-						if (outfit)
-							CharacterAppearanceRestore(KDSpeakerNPC, DecompressB64(outfit),false, true);
-						CharacterRefresh(KDSpeakerNPC);
-						KDInitProtectedGroups(KDSpeakerNPC);
-						KDRefreshCharacter.set(KDSpeakerNPC, true);
-						KinkyDungeonDressPlayer(KDSpeakerNPC, true);
-					};
-					KDWardrobeResetCallback = () => {
-						delete value.customOutfit;
-					};
-				} else {
-					KDWardrobeRevertCallback = () => {
-						delete value.customOutfit;
-						KDRefreshCharacter.set(KDSpeakerNPC, true);
-						KinkyDungeonDressPlayer(KDSpeakerNPC, true);
-					};
-					KDWardrobeResetCallback = null;
-				}
-
-				KDPlayerSetPose = false;
-				KDInitCurrentPose(true,KDSpeakerNPC);
-				KinkyDungeonInitializeDresses();
-				KDUpdateModelList();
-				KDRefreshOutfitInfo();
-				let itt = localStorage.getItem("kinkydungeonappearance" + KDCurrentOutfit);
-				let orig = itt ?
-					JSON.parse(LZString.decompressFromBase64(itt)).appearance
-					|| itt : "";
-				let current = LZString.compressToBase64(AppearanceItemStringify(KinkyDungeonPlayer.Appearance));
-				if (orig != current) KDOriginalValue = orig;
-				ForceRefreshModelsAsync(KDSpeakerNPC);
-				//KinkyDungeonDressPlayer(KDSpeakerNPC, true, true);
-				return true;
-			}, true, x + 10 + buttonSpacing*III++, y + 730 - 10 - 80, 80, 80, "", "#ffffff", KinkyDungeonRootDirectory + "UI/Dress.png")) {
-				DrawTextFitKD(TextGet("KDDressNPC"), x + 220, y + 750, 500, "#ffffff", KDTextGray0);
-			}
 
 			III = KDCollectionTabDraw[tab || "Default"](value, buttonSpacing, III, x, y);
 
