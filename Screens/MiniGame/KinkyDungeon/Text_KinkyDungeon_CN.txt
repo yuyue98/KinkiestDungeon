@@ -11301,7 +11301,7 @@ Ejahl
 (A page from the Book of Aeons)|They say that Archmagus Sariel Vinlaga studied in this very library. Having gathered together all of human knowledge, magical, spiritual, technological, she tasked her twelve lesser magi with the job of sorting and collating the wealth of knowledge she had acquired. No one knows why she suddenly abandoned it, or why it remains in such disrepair today.
 ( 《万古之书》中的一页 ) |据说大法师萨里尔·文拉加(Sariel Vinlaga)就在这个图书馆学习过。在收集了所有人类知识 ( 魔法、精神、技术 ) 后，她指派十二位小魔法师负责整理和整理她所获得的知识财富。没有人知道她为什么突然放弃它，或者为什么它至今仍如此年久失修。
 (A page from the Book of Aeons)|The Overgown Ruins remain a puzzle to scholars. Hardly any light comes through the cracks in the ceiling, and yet the area teems with life. It is known that the regenerative powers that keep humans from dying relies on an individual's own mana supply. So how do plants and beasts without mana survive? The devout say it is the Goddess of Restoration who preserves the jungle, but could it be that the Old Civilization developed a means of sustaining life underground?
-（《万古之书》中的一页）|长袍废墟对于学者来说仍然是一个谜。几乎没有任何光线从天花板的裂缝中透进来，但这个区域却充满了生机。众所周知，人类免于死亡的再生能力依赖于个人自身的法力供应。那么没有法力的植物和野兽如何生存呢？虔诚的人说是恢复女神保护了丛林，但旧文明是否发展出了一种维持地下生命的手段？
+( 《万古之书》中的一页 ) |长袍废墟对于学者来说仍然是一个谜。几乎没有任何光线从天花板的裂缝中透进来，但这个区域却充满了生机。众所周知，人类免于死亡的再生能力依赖于个人自身的法力供应。那么没有法力的植物和野兽如何生存呢？虔诚的人说是恢复女神保护了丛林，但旧文明是否发展出了一种维持地下生命的手段？
 (A page from the Book of Aeons)|The problem of Energy has plagued civilization for millenia. Before the leylines were discovered, humankind relied on natural sources of power such as rivers and firewood. When the Crystal Caves were discovered, a great revolution occurred. No longer reliant on natural sources, civilizations could tap the wellsprings of chaotic energy underground to power machinery like never seen before.
 ( 《万古之书》中的一页 ) |能源问题已经困扰了文明数千年。在地脉被发现之前，人类依赖河流和木柴等自然资源。当水晶洞被发现时，发生了一场伟大的革命。文明不再依赖自然资源，可以利用地下混沌能量的源泉为机械提供前所未有的动力。
 (A page from the Book of Aeons)|The 'Lost Temple' as they call it, is a subject of great speculation. It seems that its creators worshipped only four creator goddesses, rather than all the Eight. It was perhaps abandoned several hundred years ago when a flood caused great panic, and it seems that this must have occurred before humanity was made immortal by the archmagus, as there are many remains still found inside.
@@ -12602,11 +12602,11 @@ Allow Rear Plugs
 Allow Piercings
 允许穿孔
 
-Start with 200 willpower and Iron Will, good at melee and blocking attacks.
+Start with 150 willpower and Iron Will, good at melee and blocking attacks.
 战士擅长近战攻击和防砍，开始游戏时将意志力上限提升到 200 点，并学得钢铁意志技能
-Start with 200 stamina and Sneaky, good at stealth and evasive gameplay.
+Start with 150 stamina and Sneaky, good at stealth and evasive gameplay.
 盗贼擅长潜行和躲避，开始游戏时将体力上限提升到 200 点，并学得潜行技能
-Start with 200 mana and Magical Sight, good at casting spells.
+Start with 150 mana and Magical Sight, good at casting spells.
 法师擅长施法，开始游戏时将魔力上限提升到 200 点，并学得魔之眼技能
 Start with nothing to your name. For those who want a challenge.
 适用于那些想要挑战的人，开始游戏时一无所有
